@@ -173,6 +173,18 @@
 			)
 		)
 	)
+	(junction
+		(at 106.68 87.63)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "071c4e3e-afb5-43ba-9d88-7db1053c8d2c")
+	)
+	(junction
+		(at 109.22 85.09)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "6c7fb4d7-0c08-46e8-8477-dd758b9a2431")
+	)
 	(wire
 		(pts
 			(xy 106.68 107.95) (xy 172.72 107.95)
@@ -222,6 +234,26 @@
 			(type default)
 		)
 		(uuid "2d7f1fbf-7c79-40d5-a439-3cef3d23b9b2")
+	)
+	(wire
+		(pts
+			(xy 106.68 87.63) (xy 124.46 87.63)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "38ce22ac-9c6d-44b8-b039-f45ba74f1d3e")
+	)
+	(wire
+		(pts
+			(xy 151.13 90.17) (xy 172.72 90.17)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "590d4394-6e7c-4769-9036-5283203f5ad1")
 	)
 	(wire
 		(pts
@@ -355,6 +387,26 @@
 	)
 	(wire
 		(pts
+			(xy 151.13 82.55) (xy 172.72 82.55)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c747c233-e91e-48d0-b023-069117495063")
+	)
+	(wire
+		(pts
+			(xy 151.13 87.63) (xy 172.72 87.63)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c97dd86e-5ad3-497e-aea5-a9e7bd5670d0")
+	)
+	(wire
+		(pts
 			(xy 149.86 123.19) (xy 172.72 123.19)
 		)
 		(stroke
@@ -435,6 +487,16 @@
 	)
 	(wire
 		(pts
+			(xy 109.22 85.09) (xy 124.46 85.09)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ed0222fb-d160-4905-8cdb-0d44389a5760")
+	)
+	(wire
+		(pts
 			(xy 68.58 87.63) (xy 106.68 87.63)
 		)
 		(stroke
@@ -442,6 +504,16 @@
 			(type default)
 		)
 		(uuid "f0c30213-5d5e-415e-a6e7-0be9acd29d31")
+	)
+	(wire
+		(pts
+			(xy 151.13 85.09) (xy 172.72 85.09)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f8b0405b-9cbb-4385-aa10-83bfaf9ca2b7")
 	)
 	(wire
 		(pts
@@ -517,6 +589,28 @@
 			(justify top)
 		)
 		(uuid "96c3892d-5df9-417f-a2cb-e80382d132a4")
+	)
+	(text "Line/Mic Level Audio -> 0-3.3V \nMCU Controlled Gain"
+		(exclude_from_sim no)
+		(at 125.222 98.806 0)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left bottom)
+		)
+		(uuid "9798d1a7-1bc4-42b4-bfea-46990a780f50")
+	)
+	(text "Analog Audio"
+		(exclude_from_sim no)
+		(at 157.734 81.788 0)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left bottom)
+		)
+		(uuid "9e2ecd58-e5ac-4542-8954-6ca452ae3662")
 	)
 	(text "I2C Bus (max. 400 kHz)"
 		(exclude_from_sim no)
@@ -1353,6 +1447,104 @@
 			(project "main_board"
 				(path "/8e1f1504-76c2-49e6-9261-3c1190503f8c"
 					(page "7")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 124.46 80.01)
+		(size 26.67 12.7)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "62c05929-ef0a-4f70-9eff-4dad203c33f9")
+		(property "Sheetname" "Audio"
+			(at 124.46 79.2984 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "audio.kicad_sch"
+			(at 124.46 93.2946 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "SCL" input
+			(at 124.46 87.63 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "7955d0d4-cff2-44d9-96af-6ca248651518")
+		)
+		(pin "SDA" bidirectional
+			(at 124.46 85.09 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "a7192ae1-8554-4521-a116-f6073580583b")
+		)
+		(pin "~{PIP_EN}" input
+			(at 151.13 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "52374844-77ce-412c-9ca1-05d50224d584")
+		)
+		(pin "MIC" output
+			(at 151.13 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "c68cb367-67b4-472b-b071-bf9b2297f877")
+		)
+		(pin "AUDIO_L" output
+			(at 151.13 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "f0da589c-d445-4dc0-96c9-b6bc629a4e76")
+		)
+		(pin "AUDIO_R" output
+			(at 151.13 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "6283efbb-7f29-489d-b3ce-2bd4d9a2e131")
+		)
+		(instances
+			(project "main_board"
+				(path "/8e1f1504-76c2-49e6-9261-3c1190503f8c"
+					(page "6")
 				)
 			)
 		)

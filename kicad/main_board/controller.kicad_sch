@@ -9986,7 +9986,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "6bbb4c16-f038-4b86-adb2-66e5b7ebf442")
-		(property "Reference" "TP20"
+		(property "Reference" "TP19"
 			(at 31.496 163.83 0)
 			(effects
 				(font
@@ -10073,7 +10073,7 @@
 		(instances
 			(project "main_board"
 				(path "/8e1f1504-76c2-49e6-9261-3c1190503f8c/c17fbfa0-81d7-4817-8752-da6de21e6518"
-					(reference "TP20")
+					(reference "TP19")
 					(unit 1)
 				)
 			)
@@ -10698,7 +10698,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "7b8f827c-c323-4cad-838e-d9e4c7366afd")
-		(property "Reference" "TP18"
+		(property "Reference" "TP17"
 			(at 17.526 158.75 0)
 			(effects
 				(font
@@ -10785,7 +10785,7 @@
 		(instances
 			(project "main_board"
 				(path "/8e1f1504-76c2-49e6-9261-3c1190503f8c/c17fbfa0-81d7-4817-8752-da6de21e6518"
-					(reference "TP18")
+					(reference "TP17")
 					(unit 1)
 				)
 			)
@@ -10932,7 +10932,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "8b8056d6-fd10-4023-8e58-b7ef348b7cf7")
-		(property "Reference" "TP24"
+		(property "Reference" "TP23"
 			(at 165.1 191.7699 0)
 			(effects
 				(font
@@ -11019,7 +11019,7 @@
 		(instances
 			(project "main_board"
 				(path "/8e1f1504-76c2-49e6-9261-3c1190503f8c/c17fbfa0-81d7-4817-8752-da6de21e6518"
-					(reference "TP24")
+					(reference "TP23")
 					(unit 1)
 				)
 			)
@@ -11243,7 +11243,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "a2113304-c2f4-4365-ade6-a93b60cb8c90")
-		(property "Reference" "TP19"
+		(property "Reference" "TP18"
 			(at 31.496 161.29 0)
 			(effects
 				(font
@@ -11330,7 +11330,7 @@
 		(instances
 			(project "main_board"
 				(path "/8e1f1504-76c2-49e6-9261-3c1190503f8c/c17fbfa0-81d7-4817-8752-da6de21e6518"
-					(reference "TP19")
+					(reference "TP18")
 					(unit 1)
 				)
 			)
@@ -11909,7 +11909,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "b30afbfb-2f89-40be-b37d-58225e17a93a")
-		(property "Reference" "TP22"
+		(property "Reference" "TP21"
 			(at 119.38 68.5799 0)
 			(effects
 				(font
@@ -11996,7 +11996,7 @@
 		(instances
 			(project "main_board"
 				(path "/8e1f1504-76c2-49e6-9261-3c1190503f8c/c17fbfa0-81d7-4817-8752-da6de21e6518"
-					(reference "TP22")
+					(reference "TP21")
 					(unit 1)
 				)
 			)
@@ -12013,7 +12013,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "b4c38140-cae3-4886-9e0e-8f07fa78a82f")
-		(property "Reference" "TP23"
+		(property "Reference" "TP22"
 			(at 153.67 191.7699 0)
 			(effects
 				(font
@@ -12100,7 +12100,7 @@
 		(instances
 			(project "main_board"
 				(path "/8e1f1504-76c2-49e6-9261-3c1190503f8c/c17fbfa0-81d7-4817-8752-da6de21e6518"
-					(reference "TP23")
+					(reference "TP22")
 					(unit 1)
 				)
 			)
@@ -12287,7 +12287,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "c22ef855-563a-45ba-b758-766c79851d79")
-		(property "Reference" "TP17"
+		(property "Reference" "TP16"
 			(at 17.272 156.464 0)
 			(effects
 				(font
@@ -12374,7 +12374,7 @@
 		(instances
 			(project "main_board"
 				(path "/8e1f1504-76c2-49e6-9261-3c1190503f8c/c17fbfa0-81d7-4817-8752-da6de21e6518"
-					(reference "TP17")
+					(reference "TP16")
 					(unit 1)
 				)
 			)
@@ -13376,7 +13376,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "e30fe011-0059-4745-a412-6c76f7f40a71")
-		(property "Reference" "TP21"
+		(property "Reference" "TP20"
 			(at 111.76 151.13 0)
 			(effects
 				(font
@@ -13461,7 +13461,7 @@
 		(instances
 			(project "main_board"
 				(path "/8e1f1504-76c2-49e6-9261-3c1190503f8c/c17fbfa0-81d7-4817-8752-da6de21e6518"
-					(reference "TP21")
+					(reference "TP20")
 					(unit 1)
 				)
 			)
@@ -13817,7 +13817,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "f01a33d8-32a5-4b3c-8c75-1bfca36e9eb1")
-		(property "Reference" "TP16"
+		(property "Reference" "TP15"
 			(at 20.32 181.61 0)
 			(effects
 				(font
@@ -13902,7 +13902,7 @@
 		(instances
 			(project "main_board"
 				(path "/8e1f1504-76c2-49e6-9261-3c1190503f8c/c17fbfa0-81d7-4817-8752-da6de21e6518"
-					(reference "TP16")
+					(reference "TP15")
 					(unit 1)
 				)
 			)
@@ -14023,7 +14023,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "f67a9e69-f658-4b54-b809-dbad7762bfac")
-		(property "Reference" "TP25"
+		(property "Reference" "TP24"
 			(at 175.26 51.308 0)
 			(effects
 				(font
@@ -14108,7 +14108,7 @@
 		(instances
 			(project "main_board"
 				(path "/8e1f1504-76c2-49e6-9261-3c1190503f8c/c17fbfa0-81d7-4817-8752-da6de21e6518"
-					(reference "TP25")
+					(reference "TP24")
 					(unit 1)
 				)
 			)
