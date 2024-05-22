@@ -265,6 +265,16 @@
 	)
 	(wire
 		(pts
+			(xy 149.86 123.19) (xy 172.72 123.19)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c9a0d668-6a65-487c-81be-27d840788778")
+	)
+	(wire
+		(pts
 			(xy 207.01 54.61) (xy 217.17 54.61)
 		)
 		(stroke
@@ -315,7 +325,7 @@
 	)
 	(text "Output Board Connections"
 		(exclude_from_sim no)
-		(at 232.156 107.696 0)
+		(at 232.156 107.95 0)
 		(effects
 			(font
 				(size 1 1)
@@ -326,7 +336,7 @@
 	)
 	(text "MCU"
 		(exclude_from_sim no)
-		(at 188.468 131.064 0)
+		(at 188.468 130.81 0)
 		(effects
 			(font
 				(size 1 1)
@@ -334,6 +344,17 @@
 			(justify top)
 		)
 		(uuid "6378e0ab-1d43-4bad-b6a0-a8a617a37285")
+	)
+	(text "PSUs, Soft Power Switch"
+		(exclude_from_sim no)
+		(at 136.652 130.81 0)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify top)
+		)
+		(uuid "96c3892d-5df9-417f-a2cb-e80382d132a4")
 	)
 	(symbol
 		(lib_id "Mechanical:MountingHole")
@@ -1026,6 +1047,64 @@
 		)
 	)
 	(sheet
+		(at 123.19 119.38)
+		(size 26.67 7.62)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "afe2ed97-1c60-4e5a-9a63-45f783bd4ddb")
+		(property "Sheetname" "Power"
+			(at 123.19 118.6684 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "power.kicad_sch"
+			(at 123.19 127.5846 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "~{WAKE}" output
+			(at 123.19 123.19 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "6e3abd14-e6e5-46cc-9f86-b503e20e2671")
+		)
+		(pin "PWR_CTRL" bidirectional
+			(at 149.86 123.19 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "3a8ec153-6c62-4d85-b31e-e0b8cc058777")
+		)
+		(instances
+			(project "main_board"
+				(path "/8e1f1504-76c2-49e6-9261-3c1190503f8c"
+					(page "4")
+				)
+			)
+		)
+	)
+	(sheet
 		(at 172.72 44.45)
 		(size 34.29 82.55)
 		(fields_autoplaced yes)
@@ -1116,7 +1195,7 @@
 			(uuid "ac1b1b1c-b861-4b97-9ffc-af0b5ab418e5")
 		)
 		(pin "~{BAT_INT}" input
-			(at 172.72 115.57 180)
+			(at 172.72 111.76 180)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1196,7 +1275,7 @@
 			(uuid "b5d48f21-eb5a-4990-b9d1-1d03bc657a47")
 		)
 		(pin "SDA" bidirectional
-			(at 172.72 109.22 180)
+			(at 172.72 105.41 180)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1236,7 +1315,7 @@
 			(uuid "eadbab03-a2c5-455d-b77f-fccd201f745a")
 		)
 		(pin "SCL" output
-			(at 172.72 111.76 180)
+			(at 172.72 107.95 180)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1246,7 +1325,7 @@
 			(uuid "20af940e-604b-4165-bb7e-5792b242b4a2")
 		)
 		(pin "PWR_CTRL" bidirectional
-			(at 172.72 124.46 180)
+			(at 172.72 123.19 180)
 			(effects
 				(font
 					(size 1.27 1.27)
