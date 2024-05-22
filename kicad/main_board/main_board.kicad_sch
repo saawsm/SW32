@@ -6,7 +6,7 @@
 	(paper "A4")
 	(title_block
 		(title "SW32 - Main Board")
-		(date "2024-05-22")
+		(date "2024-05-23")
 		(rev "1")
 		(company "saawsm")
 	)
@@ -186,20 +186,20 @@
 		(uuid "6c7fb4d7-0c08-46e8-8477-dd758b9a2431")
 	)
 	(junction
-		(at 114.3 105.41)
+		(at 114.3 107.95)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "837b684d-aa6d-46c0-a52e-ba3d25f71839")
 	)
 	(junction
-		(at 111.76 107.95)
+		(at 111.76 110.49)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "c87dc372-8d8b-40a1-ad35-fb352720f8d6")
 	)
 	(wire
 		(pts
-			(xy 111.76 107.95) (xy 177.8 107.95)
+			(xy 111.76 110.49) (xy 177.8 110.49)
 		)
 		(stroke
 			(width 0)
@@ -339,7 +339,7 @@
 	)
 	(wire
 		(pts
-			(xy 114.3 85.09) (xy 114.3 105.41)
+			(xy 114.3 85.09) (xy 114.3 107.95)
 		)
 		(stroke
 			(width 0)
@@ -349,7 +349,7 @@
 	)
 	(wire
 		(pts
-			(xy 111.76 87.63) (xy 111.76 107.95)
+			(xy 111.76 87.63) (xy 111.76 110.49)
 		)
 		(stroke
 			(width 0)
@@ -389,7 +389,7 @@
 	)
 	(wire
 		(pts
-			(xy 114.3 105.41) (xy 177.8 105.41)
+			(xy 114.3 107.95) (xy 177.8 107.95)
 		)
 		(stroke
 			(width 0)
@@ -406,16 +406,6 @@
 			(type default)
 		)
 		(uuid "b73684cd-43c1-42b0-b521-aebec18b5d08")
-	)
-	(wire
-		(pts
-			(xy 104.14 111.76) (xy 177.8 111.76)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c33b84a8-8ec3-4146-88b2-216def32ec31")
 	)
 	(wire
 		(pts
@@ -489,7 +479,7 @@
 	)
 	(wire
 		(pts
-			(xy 104.14 105.41) (xy 114.3 105.41)
+			(xy 104.14 107.95) (xy 114.3 107.95)
 		)
 		(stroke
 			(width 0)
@@ -509,7 +499,7 @@
 	)
 	(wire
 		(pts
-			(xy 104.14 107.95) (xy 111.76 107.95)
+			(xy 104.14 110.49) (xy 111.76 110.49)
 		)
 		(stroke
 			(width 0)
@@ -677,7 +667,7 @@
 	)
 	(text "I2C Bus (max. 400 kHz)"
 		(exclude_from_sim no)
-		(at 142.24 104.648 0)
+		(at 142.24 107.188 0)
 		(effects
 			(font
 				(size 1 1)
@@ -1337,8 +1327,8 @@
 		)
 	)
 	(sheet
-		(at 78.74 102.87)
-		(size 25.4 24.13)
+		(at 78.74 105.41)
+		(size 25.4 21.59)
 		(fields_autoplaced yes)
 		(stroke
 			(width 0.1524)
@@ -1349,7 +1339,7 @@
 		)
 		(uuid "1076a657-0b13-48f5-b500-e72d30eb3a1f")
 		(property "Sheetname" "Charger"
-			(at 78.74 102.1584 0)
+			(at 78.74 104.6984 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1367,7 +1357,7 @@
 			)
 		)
 		(pin "SCL" input
-			(at 104.14 107.95 0)
+			(at 104.14 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1377,7 +1367,7 @@
 			(uuid "5185683c-ff5a-4969-b720-83803b05fbaf")
 		)
 		(pin "SDA" bidirectional
-			(at 104.14 105.41 0)
+			(at 104.14 107.95 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1395,16 +1385,6 @@
 				(justify right)
 			)
 			(uuid "ca910a26-584d-4f89-bf78-a1c7d7ed7ab0")
-		)
-		(pin "~{BAT_INT}" output
-			(at 104.14 111.76 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-			(uuid "4360a2f9-6f96-414f-bdb2-492a30965e9d")
 		)
 		(instances
 			(project "main_board"
@@ -1838,16 +1818,6 @@
 			)
 			(uuid "ac1b1b1c-b861-4b97-9ffc-af0b5ab418e5")
 		)
-		(pin "~{BAT_INT}" input
-			(at 177.8 111.76 180)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-			(uuid "e57dbd98-cf5f-4831-8413-ca5349ab0ebe")
-		)
 		(pin "DRV_EN" bidirectional
 			(at 212.09 96.52 0)
 			(effects
@@ -1919,7 +1889,7 @@
 			(uuid "b5d48f21-eb5a-4990-b9d1-1d03bc657a47")
 		)
 		(pin "SDA" bidirectional
-			(at 177.8 105.41 180)
+			(at 177.8 107.95 180)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1959,7 +1929,7 @@
 			(uuid "eadbab03-a2c5-455d-b77f-fccd201f745a")
 		)
 		(pin "SCL" output
-			(at 177.8 107.95 180)
+			(at 177.8 110.49 180)
 			(effects
 				(font
 					(size 1.27 1.27)

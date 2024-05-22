@@ -6,7 +6,7 @@
 	(paper "A4")
 	(title_block
 		(title "SW32 - Main Board")
-		(date "2024-05-22")
+		(date "2024-05-23")
 		(rev "1")
 		(company "saawsm")
 		(comment 2 "Gain can be controlled via firmware.")
@@ -6910,7 +6910,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "284ed938-9d89-453e-b92e-ad5651f1fd8f")
-		(property "Reference" "TP33"
+		(property "Reference" "TP32"
 			(at 82.55 171.45 90)
 			(effects
 				(font
@@ -6995,7 +6995,7 @@
 		(instances
 			(project "main_board"
 				(path "/8e1f1504-76c2-49e6-9261-3c1190503f8c/62c05929-ef0a-4f70-9eff-4dad203c33f9"
-					(reference "TP33")
+					(reference "TP32")
 					(unit 1)
 				)
 			)
@@ -7012,7 +7012,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "29fe52df-1928-40fc-a913-bc55624cdfa0")
-		(property "Reference" "TP36"
+		(property "Reference" "TP35"
 			(at 275.59 113.03 0)
 			(effects
 				(font
@@ -7097,7 +7097,7 @@
 		(instances
 			(project "main_board"
 				(path "/8e1f1504-76c2-49e6-9261-3c1190503f8c/62c05929-ef0a-4f70-9eff-4dad203c33f9"
-					(reference "TP36")
+					(reference "TP35")
 					(unit 1)
 				)
 			)
@@ -7369,7 +7369,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "3369f9ff-e383-49a5-8cd2-6c3bed3dc0ba")
-		(property "Reference" "TP32"
+		(property "Reference" "TP31"
 			(at 59.69 180.34 0)
 			(effects
 				(font
@@ -7454,7 +7454,7 @@
 		(instances
 			(project "main_board"
 				(path "/8e1f1504-76c2-49e6-9261-3c1190503f8c/62c05929-ef0a-4f70-9eff-4dad203c33f9"
-					(reference "TP32")
+					(reference "TP31")
 					(unit 1)
 				)
 			)
@@ -12306,7 +12306,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "aef4122e-672a-4d6b-a15f-33621593e233")
-		(property "Reference" "TP35"
+		(property "Reference" "TP34"
 			(at 180.34 102.87 90)
 			(effects
 				(font
@@ -12391,7 +12391,7 @@
 		(instances
 			(project "main_board"
 				(path "/8e1f1504-76c2-49e6-9261-3c1190503f8c/62c05929-ef0a-4f70-9eff-4dad203c33f9"
-					(reference "TP35")
+					(reference "TP34")
 					(unit 1)
 				)
 			)
@@ -14627,7 +14627,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "f32fcd25-9ebc-4f42-ab55-bcd0c5e7f41a")
-		(property "Reference" "TP34"
+		(property "Reference" "TP33"
 			(at 177.8 29.21 90)
 			(effects
 				(font
@@ -14712,7 +14712,7 @@
 		(instances
 			(project "main_board"
 				(path "/8e1f1504-76c2-49e6-9261-3c1190503f8c/62c05929-ef0a-4f70-9eff-4dad203c33f9"
-					(reference "TP34")
+					(reference "TP33")
 					(unit 1)
 				)
 			)
