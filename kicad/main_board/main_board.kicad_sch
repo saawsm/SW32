@@ -685,6 +685,344 @@
 			)
 		)
 	)
+	(sheet
+		(at 172.72 45.72)
+		(size 34.29 74.93)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "c17fbfa0-81d7-4817-8752-da6de21e6518")
+		(property "Sheetname" "Controller"
+			(at 172.72 45.0084 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "controller.kicad_sch"
+			(at 172.72 121.2346 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "USB_D+" bidirectional
+			(at 172.72 49.53 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "0f9169d1-fc7e-4cec-88f7-59ed44f4c5af")
+		)
+		(pin "USB_D-" bidirectional
+			(at 172.72 52.07 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "1e6b4e3c-4dfb-4e46-b88d-68083f4332f0")
+		)
+		(pin "CH4_LVL" output
+			(at 207.01 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "c669042e-a9ad-450a-96a3-4ca624d9131c")
+		)
+		(pin "CH3_LVL" output
+			(at 207.01 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "5093720e-c1aa-4681-96a0-3e54d872fb5c")
+		)
+		(pin "CH2_LVL" output
+			(at 207.01 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "d44b7b42-1c7a-4254-90e7-a2c62256d2a4")
+		)
+		(pin "CH1_LVL" output
+			(at 207.01 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "ac1b1b1c-b861-4b97-9ffc-af0b5ab418e5")
+		)
+		(pin "~{BAT_INT}" input
+			(at 172.72 107.95 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "e57dbd98-cf5f-4831-8413-ca5349ab0ebe")
+		)
+		(pin "DRV_EN" bidirectional
+			(at 207.01 101.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "861dd92b-31a7-41de-ae0c-fc8ea1fd4d04")
+		)
+		(pin "~{TRIG_B1}" bidirectional
+			(at 172.72 63.5 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "43c755f5-0e03-4ee6-9adc-4ac833830171")
+		)
+		(pin "SENSE" input
+			(at 207.01 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "4825ce30-4c14-42f9-a22a-f951e8346a8f")
+		)
+		(pin "MIC" input
+			(at 172.72 86.36 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "1a24ee89-7204-4615-8d49-e911a71c2483")
+		)
+		(pin "AUDIO_R" input
+			(at 172.72 83.82 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "c47b1a27-d2ed-44eb-a778-c91b5a244dc6")
+		)
+		(pin "AUDIO_L" input
+			(at 172.72 81.28 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "4e65d997-58ce-4be6-aa93-1a335ad471cb")
+		)
+		(pin "~{TRIG_B2}" bidirectional
+			(at 172.72 66.04 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "b5d48f21-eb5a-4990-b9d1-1d03bc657a47")
+		)
+		(pin "SDA" bidirectional
+			(at 172.72 100.33 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "8b6ef7ec-feb0-4802-be41-d47536000f0c")
+		)
+		(pin "~{TRIG_A2}" bidirectional
+			(at 172.72 60.96 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "dc9e3e1f-783e-4627-b127-2326ab1f1d18")
+		)
+		(pin "~{TRIG_A1}" bidirectional
+			(at 172.72 58.42 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "ba05a3b9-617d-4084-9691-baf210512457")
+		)
+		(pin "DISCH_EN" output
+			(at 172.72 74.93 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "eadbab03-a2c5-455d-b77f-fccd201f745a")
+		)
+		(pin "SCL" output
+			(at 172.72 102.87 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "20af940e-604b-4165-bb7e-5792b242b4a2")
+		)
+		(pin "PWR_CTRL" bidirectional
+			(at 172.72 116.84 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "fd9b7fe1-3158-4f18-8576-4cd5a0bb5e7b")
+		)
+		(pin "~{PIP_EN}" output
+			(at 172.72 88.9 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "8b409620-ca3e-48e8-a32f-1801e6eeeefd")
+		)
+		(pin "~{INT_PD}" input
+			(at 172.72 72.39 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "28f98b47-0cd8-4bf5-918e-86394673408a")
+		)
+		(pin "CH3_GA" output
+			(at 207.01 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "194156dd-ebee-4473-915f-bb65b53e4f7f")
+		)
+		(pin "CH3_GB" output
+			(at 207.01 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "68c03043-8a04-49e8-b520-9a9b11a6de58")
+		)
+		(pin "CH2_GB" output
+			(at 207.01 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "f665ebe5-bb5d-4570-a0a7-4b505ce6dc3c")
+		)
+		(pin "CH4_GA" output
+			(at 207.01 72.39 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "9e454716-4aea-4b39-ae4f-01172270be0e")
+		)
+		(pin "CH2_GA" output
+			(at 207.01 62.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "4b60e45b-c6c7-4004-990e-e2ec9f9d5e84")
+		)
+		(pin "CH1_GB" output
+			(at 207.01 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "4a3ebf56-81d4-4ac6-a1de-87d921bec06a")
+		)
+		(pin "CH4_GB" output
+			(at 207.01 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "e063f8cb-ead1-4829-87ed-c363f9655c8d")
+		)
+		(pin "CH1_GA" output
+			(at 207.01 57.15 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "fb807509-1692-43da-a5c1-5c8bf88f43c9")
+		)
+		(instances
+			(project "main_board"
+				(path "/8e1f1504-76c2-49e6-9261-3c1190503f8c"
+					(page "2")
+				)
+			)
+		)
+	)
 	(sheet_instances
 		(path "/"
 			(page "1")
