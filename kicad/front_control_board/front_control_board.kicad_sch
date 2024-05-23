@@ -10658,7 +10658,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "1062ffff-2bfc-4bc2-b655-da1b9ae9c4be")
-		(property "Reference" "#PWR041"
+		(property "Reference" "#PWR040"
 			(at 199.39 93.98 0)
 			(effects
 				(font
@@ -10708,7 +10708,7 @@
 		(instances
 			(project "front_control_board"
 				(path "/8a354ba6-ef3b-41b0-9dd3-7bbc957de37e"
-					(reference "#PWR041")
+					(reference "#PWR040")
 					(unit 1)
 				)
 			)
@@ -10829,7 +10829,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "181b61df-184b-4a8f-8895-300470ceaa3e")
-		(property "Reference" "#PWR027"
+		(property "Reference" "#PWR026"
 			(at 128.27 49.53 0)
 			(effects
 				(font
@@ -10879,7 +10879,7 @@
 		(instances
 			(project "front_control_board"
 				(path "/8a354ba6-ef3b-41b0-9dd3-7bbc957de37e"
-					(reference "#PWR027")
+					(reference "#PWR026")
 					(unit 1)
 				)
 			)
@@ -10895,7 +10895,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "1a1b45b6-cc56-4dc3-8e33-e04303ac7f08")
-		(property "Reference" "#PWR025"
+		(property "Reference" "#PWR024"
 			(at 115.57 189.23 0)
 			(effects
 				(font
@@ -10945,7 +10945,7 @@
 		(instances
 			(project "front_control_board"
 				(path "/8a354ba6-ef3b-41b0-9dd3-7bbc957de37e"
-					(reference "#PWR025")
+					(reference "#PWR024")
 					(unit 1)
 				)
 			)
@@ -11192,7 +11192,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "1eeb2a15-d590-4080-9edf-882f46b70e69")
-		(property "Reference" "#PWR040"
+		(property "Reference" "#PWR039"
 			(at 199.39 68.58 0)
 			(effects
 				(font
@@ -11242,7 +11242,7 @@
 		(instances
 			(project "front_control_board"
 				(path "/8a354ba6-ef3b-41b0-9dd3-7bbc957de37e"
-					(reference "#PWR040")
+					(reference "#PWR039")
 					(unit 1)
 				)
 			)
@@ -11322,7 +11322,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "2020a20c-3097-4352-8f8f-11810cb63f45")
-		(property "Reference" "#PWR026"
+		(property "Reference" "#PWR025"
 			(at 128.27 24.13 0)
 			(effects
 				(font
@@ -11372,7 +11372,7 @@
 		(instances
 			(project "front_control_board"
 				(path "/8a354ba6-ef3b-41b0-9dd3-7bbc957de37e"
-					(reference "#PWR026")
+					(reference "#PWR025")
 					(unit 1)
 				)
 			)
@@ -11688,7 +11688,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "21e8ee8e-3686-401b-a1da-bf1bc8ee6b80")
-		(property "Reference" "R9"
+		(property "Reference" "R16"
 			(at 202.184 125.73 0)
 			(effects
 				(font
@@ -11769,7 +11769,7 @@
 		(instances
 			(project "front_control_board"
 				(path "/8a354ba6-ef3b-41b0-9dd3-7bbc957de37e"
-					(reference "R9")
+					(reference "R16")
 					(unit 1)
 				)
 			)
@@ -12521,7 +12521,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "418d201f-0436-47c5-b7d9-85e9a1253742")
-		(property "Reference" "#PWR033"
+		(property "Reference" "#PWR032"
 			(at 161.29 186.69 0)
 			(effects
 				(font
@@ -12571,7 +12571,7 @@
 		(instances
 			(project "front_control_board"
 				(path "/8a354ba6-ef3b-41b0-9dd3-7bbc957de37e"
-					(reference "#PWR033")
+					(reference "#PWR032")
 					(unit 1)
 				)
 			)
@@ -12755,7 +12755,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "43db7caa-a24f-44d4-8dc7-ec0044090b9a")
-		(property "Reference" "#PWR036"
+		(property "Reference" "#PWR034"
 			(at 185.42 125.73 0)
 			(effects
 				(font
@@ -12805,7 +12805,7 @@
 		(instances
 			(project "front_control_board"
 				(path "/8a354ba6-ef3b-41b0-9dd3-7bbc957de37e"
-					(reference "#PWR036")
+					(reference "#PWR034")
 					(unit 1)
 				)
 			)
@@ -12950,7 +12950,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "472423e5-7618-45cb-a12d-87ab62cf5712")
-		(property "Reference" "#PWR023"
+		(property "Reference" "#PWR041"
 			(at 200.66 125.73 0)
 			(effects
 				(font
@@ -13000,7 +13000,7 @@
 		(instances
 			(project "front_control_board"
 				(path "/8a354ba6-ef3b-41b0-9dd3-7bbc957de37e"
-					(reference "#PWR023")
+					(reference "#PWR041")
 					(unit 1)
 				)
 			)
@@ -13017,7 +13017,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "479c427c-a8be-4157-a7d1-cf2afc2dfe80")
-		(property "Reference" "R15"
+		(property "Reference" "R14"
 			(at 196.85 68.5799 0)
 			(effects
 				(font
@@ -13098,7 +13098,7 @@
 		(instances
 			(project "front_control_board"
 				(path "/8a354ba6-ef3b-41b0-9dd3-7bbc957de37e"
-					(reference "R15")
+					(reference "R14")
 					(unit 1)
 				)
 			)
@@ -13244,7 +13244,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "49862584-eab5-48c7-bee8-3436f20d4831")
-		(property "Reference" "#PWR029"
+		(property "Reference" "#PWR028"
 			(at 135.89 147.32 0)
 			(effects
 				(font
@@ -13294,7 +13294,7 @@
 		(instances
 			(project "front_control_board"
 				(path "/8a354ba6-ef3b-41b0-9dd3-7bbc957de37e"
-					(reference "#PWR029")
+					(reference "#PWR028")
 					(unit 1)
 				)
 			)
@@ -14263,7 +14263,7 @@
 				)
 			)
 		)
-		(property "Footprint" "SaawLib:D6C"
+		(property "Footprint" ""
 			(at 209.55 69.85 0)
 			(effects
 				(font
@@ -14272,7 +14272,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.ckswitches.com/media/1341/d6.pdf"
+		(property "Datasheet" ""
 			(at 209.55 69.85 0)
 			(effects
 				(font
@@ -14299,7 +14299,7 @@
 				(hide yes)
 			)
 		)
-		(property "MOUSER" "611-D6C90F2LFS"
+		(property "MOUSER" ""
 			(at 209.55 74.93 0)
 			(effects
 				(font
@@ -14308,7 +14308,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN" "D6C90F2LFS "
+		(property "MPN" ""
 			(at 209.55 74.93 0)
 			(effects
 				(font
@@ -14341,7 +14341,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "6d1859b8-5633-4497-805e-caabccad724e")
-		(property "Reference" "R14"
+		(property "Reference" "R12"
 			(at 194.818 125.73 0)
 			(effects
 				(font
@@ -14431,7 +14431,7 @@
 		(instances
 			(project "front_control_board"
 				(path "/8a354ba6-ef3b-41b0-9dd3-7bbc957de37e"
-					(reference "R14")
+					(reference "R12")
 					(unit 1)
 				)
 			)
@@ -14511,7 +14511,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "6fb3dc7e-1c0a-4f94-a598-100b8e8cd616")
-		(property "Reference" "#PWR034"
+		(property "Reference" "#PWR033"
 			(at 166.37 151.13 0)
 			(effects
 				(font
@@ -14561,7 +14561,7 @@
 		(instances
 			(project "front_control_board"
 				(path "/8a354ba6-ef3b-41b0-9dd3-7bbc957de37e"
-					(reference "#PWR034")
+					(reference "#PWR033")
 					(unit 1)
 				)
 			)
@@ -14576,7 +14576,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "71d09d87-190c-4139-8f53-0871d836cc25")
-		(property "Reference" "#PWR032"
+		(property "Reference" "#PWR031"
 			(at 149.86 151.13 0)
 			(effects
 				(font
@@ -14626,7 +14626,7 @@
 		(instances
 			(project "front_control_board"
 				(path "/8a354ba6-ef3b-41b0-9dd3-7bbc957de37e"
-					(reference "#PWR032")
+					(reference "#PWR031")
 					(unit 1)
 				)
 			)
@@ -14658,7 +14658,7 @@
 				)
 			)
 		)
-		(property "Footprint" "SaawLib:D6C"
+		(property "Footprint" ""
 			(at 222.25 95.25 0)
 			(effects
 				(font
@@ -14667,7 +14667,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.ckswitches.com/media/1341/d6.pdf"
+		(property "Datasheet" ""
 			(at 222.25 95.25 0)
 			(effects
 				(font
@@ -14694,7 +14694,7 @@
 				(hide yes)
 			)
 		)
-		(property "MOUSER" "611-D6C90F2LFS"
+		(property "MOUSER" ""
 			(at 222.25 100.33 0)
 			(effects
 				(font
@@ -14703,7 +14703,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN" "D6C90F2LFS "
+		(property "MPN" ""
 			(at 222.25 100.33 0)
 			(effects
 				(font
@@ -14820,7 +14820,7 @@
 				)
 			)
 		)
-		(property "Footprint" "SaawLib:D6C"
+		(property "Footprint" ""
 			(at 209.55 95.25 0)
 			(effects
 				(font
@@ -14829,7 +14829,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.ckswitches.com/media/1341/d6.pdf"
+		(property "Datasheet" ""
 			(at 209.55 95.25 0)
 			(effects
 				(font
@@ -14856,7 +14856,7 @@
 				(hide yes)
 			)
 		)
-		(property "MOUSER" "611-D6C90F2LFS"
+		(property "MOUSER" ""
 			(at 209.55 100.33 0)
 			(effects
 				(font
@@ -14865,7 +14865,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN" "D6C90F2LFS "
+		(property "MPN" ""
 			(at 209.55 100.33 0)
 			(effects
 				(font
@@ -15133,7 +15133,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "79f7e1be-3659-4624-813b-8d0ea1e380ab")
-		(property "Reference" "#PWR038"
+		(property "Reference" "#PWR036"
 			(at 193.04 125.73 0)
 			(effects
 				(font
@@ -15183,7 +15183,7 @@
 		(instances
 			(project "front_control_board"
 				(path "/8a354ba6-ef3b-41b0-9dd3-7bbc957de37e"
-					(reference "#PWR038")
+					(reference "#PWR036")
 					(unit 1)
 				)
 			)
@@ -15483,7 +15483,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "82e0b586-3880-4015-b995-f645119563cc")
-		(property "Reference" "#PWR024"
+		(property "Reference" "#PWR023"
 			(at 115.57 179.07 0)
 			(effects
 				(font
@@ -15533,7 +15533,7 @@
 		(instances
 			(project "front_control_board"
 				(path "/8a354ba6-ef3b-41b0-9dd3-7bbc957de37e"
-					(reference "#PWR024")
+					(reference "#PWR023")
 					(unit 1)
 				)
 			)
@@ -15879,7 +15879,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "9464a547-7cec-483e-9653-bf7ac89db029")
-		(property "Reference" "#PWR039"
+		(property "Reference" "#PWR038"
 			(at 195.58 223.52 0)
 			(effects
 				(font
@@ -15929,7 +15929,7 @@
 		(instances
 			(project "front_control_board"
 				(path "/8a354ba6-ef3b-41b0-9dd3-7bbc957de37e"
-					(reference "#PWR039")
+					(reference "#PWR038")
 					(unit 1)
 				)
 			)
@@ -16833,7 +16833,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "aff77a22-8db7-4ca9-abbf-b5a41ea53c21")
-		(property "Reference" "R12"
+		(property "Reference" "R10"
 			(at 187.198 125.73 0)
 			(effects
 				(font
@@ -16923,7 +16923,7 @@
 		(instances
 			(project "front_control_board"
 				(path "/8a354ba6-ef3b-41b0-9dd3-7bbc957de37e"
-					(reference "R12")
+					(reference "R10")
 					(unit 1)
 				)
 			)
@@ -17239,7 +17239,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "b550de28-765b-4930-92b0-8460bbbcc0e7")
-		(property "Reference" "#PWR028"
+		(property "Reference" "#PWR027"
 			(at 135.89 71.12 0)
 			(effects
 				(font
@@ -17289,7 +17289,7 @@
 		(instances
 			(project "front_control_board"
 				(path "/8a354ba6-ef3b-41b0-9dd3-7bbc957de37e"
-					(reference "#PWR028")
+					(reference "#PWR027")
 					(unit 1)
 				)
 			)
@@ -17815,7 +17815,7 @@
 				)
 			)
 		)
-		(property "Footprint" "SaawLib:D6C"
+		(property "Footprint" ""
 			(at 222.25 69.85 0)
 			(effects
 				(font
@@ -17824,7 +17824,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.ckswitches.com/media/1341/d6.pdf"
+		(property "Datasheet" ""
 			(at 222.25 69.85 0)
 			(effects
 				(font
@@ -17851,7 +17851,7 @@
 				(hide yes)
 			)
 		)
-		(property "MOUSER" "611-D6C90F2LFS"
+		(property "MOUSER" ""
 			(at 222.25 74.93 0)
 			(effects
 				(font
@@ -17860,7 +17860,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN" "D6C90F2LFS "
+		(property "MPN" ""
 			(at 222.25 74.93 0)
 			(effects
 				(font
@@ -18120,7 +18120,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "cc44000d-38c8-476f-ad5c-7fa0970ca3e0")
-		(property "Reference" "R10"
+		(property "Reference" "R9"
 			(at 158.75 143.51 90)
 			(effects
 				(font
@@ -18208,7 +18208,7 @@
 		(instances
 			(project "front_control_board"
 				(path "/8a354ba6-ef3b-41b0-9dd3-7bbc957de37e"
-					(reference "R10")
+					(reference "R9")
 					(unit 1)
 				)
 			)
@@ -19140,7 +19140,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "ebaf00f4-7de4-44da-8a0d-70b97c8cbae1")
-		(property "Reference" "#PWR031"
+		(property "Reference" "#PWR030"
 			(at 135.89 191.77 0)
 			(effects
 				(font
@@ -19190,7 +19190,7 @@
 		(instances
 			(project "front_control_board"
 				(path "/8a354ba6-ef3b-41b0-9dd3-7bbc957de37e"
-					(reference "#PWR031")
+					(reference "#PWR030")
 					(unit 1)
 				)
 			)
@@ -19207,7 +19207,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ebbfdebb-9fb3-4ee4-ac4a-16bc16d80a78")
-		(property "Reference" "R16"
+		(property "Reference" "R15"
 			(at 196.85 93.9799 0)
 			(effects
 				(font
@@ -19288,7 +19288,7 @@
 		(instances
 			(project "front_control_board"
 				(path "/8a354ba6-ef3b-41b0-9dd3-7bbc957de37e"
-					(reference "R16")
+					(reference "R15")
 					(unit 1)
 				)
 			)
@@ -19902,7 +19902,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "f83f6213-bb04-4344-a4ba-40046d44555b")
-		(property "Reference" "#PWR030"
+		(property "Reference" "#PWR029"
 			(at 135.89 176.53 0)
 			(effects
 				(font
@@ -19952,7 +19952,7 @@
 		(instances
 			(project "front_control_board"
 				(path "/8a354ba6-ef3b-41b0-9dd3-7bbc957de37e"
-					(reference "#PWR030")
+					(reference "#PWR029")
 					(unit 1)
 				)
 			)
