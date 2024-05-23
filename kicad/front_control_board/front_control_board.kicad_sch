@@ -1613,7 +1613,7 @@
 				)
 			)
 		)
-		(symbol "Device:D_Schottky"
+		(symbol "Device:D"
 			(pin_numbers hide)
 			(pin_names
 				(offset 1.016) hide)
@@ -1628,7 +1628,7 @@
 					)
 				)
 			)
-			(property "Value" "D_Schottky"
+			(property "Value" "D"
 				(at 0 -2.54 0)
 				(effects
 					(font
@@ -1654,7 +1654,7 @@
 					(hide yes)
 				)
 			)
-			(property "Description" "Schottky diode"
+			(property "Description" "Diode"
 				(at 0 0 0)
 				(effects
 					(font
@@ -1663,7 +1663,25 @@
 					(hide yes)
 				)
 			)
-			(property "ki_keywords" "diode Schottky"
+			(property "Sim.Device" "D"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Sim.Pins" "1=K 2=A"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "diode"
 				(at 0 0 0)
 				(effects
 					(font
@@ -1681,7 +1699,19 @@
 					(hide yes)
 				)
 			)
-			(symbol "D_Schottky_0_1"
+			(symbol "D_0_1"
+				(polyline
+					(pts
+						(xy -1.27 1.27) (xy -1.27 -1.27)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
 				(polyline
 					(pts
 						(xy 1.27 0) (xy -1.27 0)
@@ -1706,20 +1736,8 @@
 						(type none)
 					)
 				)
-				(polyline
-					(pts
-						(xy -1.905 0.635) (xy -1.905 1.27) (xy -1.27 1.27) (xy -1.27 -1.27) (xy -0.635 -1.27) (xy -0.635 -0.635)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
 			)
-			(symbol "D_Schottky_1_1"
+			(symbol "D_1_1"
 				(pin passive line
 					(at -3.81 0 0)
 					(length 2.54)
@@ -8466,6 +8484,16 @@
 		)
 		(uuid "770aa6fa-fe4c-4a85-85c4-4c613a998786")
 	)
+	(text "10k pots"
+		(exclude_from_sim no)
+		(at 268.224 61.214 0)
+		(effects
+			(font
+				(size 1 1)
+			)
+		)
+		(uuid "a547af6f-11c6-4616-94e4-4235928c5ca3")
+	)
 	(text "Needed for \nESP-Prog auto \nprogram"
 		(exclude_from_sim no)
 		(at 84.328 84.836 0)
@@ -9394,7 +9422,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.yageo.com/upload/media/product/products/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2206010045_UNI-ROYAL-Uniroyal-Elec-0603WAF1002T5E_C25804.pdf"
 			(at 104.14 137.16 0)
 			(effects
 				(font
@@ -9412,7 +9440,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C25804"
+		(property "LCSC" ""
 			(at 104.14 137.16 0)
 			(effects
 				(font
@@ -9421,16 +9449,7 @@
 				(hide yes)
 			)
 		)
-		(property "MOUSER" "603-RC0603FR-0710KL"
-			(at 104.14 137.16 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MPN" "RC0603FR-0710KL"
+		(property "JLC" "C25804"
 			(at 104.14 137.16 0)
 			(effects
 				(font
@@ -9491,7 +9510,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.yageo.com/upload/media/product/products/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2206010045_UNI-ROYAL-Uniroyal-Elec-0603WAF1002T5E_C25804.pdf"
 			(at 95.25 137.16 0)
 			(effects
 				(font
@@ -9509,7 +9528,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C25804"
+		(property "LCSC" ""
 			(at 95.25 137.16 0)
 			(effects
 				(font
@@ -9518,16 +9537,7 @@
 				(hide yes)
 			)
 		)
-		(property "MOUSER" "603-RC0603FR-0710KL"
-			(at 95.25 137.16 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MPN" "RC0603FR-0710KL"
+		(property "JLC" "C25804"
 			(at 95.25 137.16 0)
 			(effects
 				(font
@@ -9672,6 +9682,24 @@
 				(hide yes)
 			)
 		)
+		(property "LCSC" "C492409"
+			(at 78.74 180.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLC" ""
+			(at 78.74 180.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "4"
 			(uuid "1637d6d3-99f8-469c-b7f0-a3d297f7ce32")
 		)
@@ -9758,6 +9786,24 @@
 			)
 		)
 		(property "Description" "8 Bit Port/Expander, I2C SMBUS, Interrupt output, TSSOP-16, SOIC-16"
+			(at 214.63 140.97 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" ""
+			(at 214.63 140.97 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLC" "C783615"
 			(at 214.63 140.97 0)
 			(effects
 				(font
@@ -9989,7 +10035,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2211101700_YAGEO-CC0603KRX7R9BB104_C14663.pdf"
 			(at 266.7 129.54 0)
 			(effects
 				(font
@@ -10007,7 +10053,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN" "CL10B104KB8NNNC"
+		(property "LCSC" ""
 			(at 266.7 129.54 0)
 			(effects
 				(font
@@ -10016,25 +10062,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN_ALT" ""
-			(at 266.7 129.54 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "LCSC" "C1591"
-			(at 266.7 129.54 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MOUSER" "187-CL10B104KB8NNNC"
+		(property "JLC" "C14663"
 			(at 266.7 129.54 0)
 			(effects
 				(font
@@ -10094,7 +10122,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2211101700_YAGEO-CC0603KRX7R9BB104_C14663.pdf"
 			(at 266.7 154.94 0)
 			(effects
 				(font
@@ -10112,7 +10140,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN" "CL10B104KB8NNNC"
+		(property "LCSC" ""
 			(at 266.7 154.94 0)
 			(effects
 				(font
@@ -10121,25 +10149,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN_ALT" ""
-			(at 266.7 154.94 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "LCSC" "C1591"
-			(at 266.7 154.94 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MOUSER" "187-CL10B104KB8NNNC"
+		(property "JLC" "C14663"
 			(at 266.7 154.94 0)
 			(effects
 				(font
@@ -10220,7 +10230,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C114586"
+		(property "LCSC" ""
 			(at 185.42 30.48 0)
 			(effects
 				(font
@@ -10229,16 +10239,7 @@
 				(hide yes)
 			)
 		)
-		(property "MOUSER" "485-4684"
-			(at 185.42 30.48 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MPN" "WS2812B-B/W"
+		(property "JLC" "C114586"
 			(at 185.42 30.48 0)
 			(effects
 				(font
@@ -10304,7 +10305,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.yageo.com/upload/media/product/products/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2206010045_UNI-ROYAL-Uniroyal-Elec-0603WAF1002T5E_C25804.pdf"
 			(at 64.77 38.1 0)
 			(effects
 				(font
@@ -10322,7 +10323,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C25804"
+		(property "LCSC" ""
 			(at 64.77 38.1 0)
 			(effects
 				(font
@@ -10331,16 +10332,7 @@
 				(hide yes)
 			)
 		)
-		(property "MOUSER" "603-RC0603FR-0710KL"
-			(at 64.77 38.1 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MPN" "RC0603FR-0710KL"
+		(property "JLC" "C25804"
 			(at 64.77 38.1 0)
 			(effects
 				(font
@@ -10392,7 +10384,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Connector_JST:JST_PH_B8B-PH-K_1x08_P2.00mm_Vertical"
+		(property "Footprint" "Connector_JST:JST_XH_B8B-XH-A_1x08_P2.50mm_Vertical"
 			(at 30.48 176.53 0)
 			(effects
 				(font
@@ -10419,7 +10411,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C7429638"
 			(at 30.48 176.53 0)
 			(effects
 				(font
@@ -10428,7 +10420,7 @@
 				(hide yes)
 			)
 		)
-		(property "MOUSER" ""
+		(property "JLC" ""
 			(at 30.48 176.53 0)
 			(effects
 				(font
@@ -10525,6 +10517,24 @@
 				(hide yes)
 			)
 		)
+		(property "LCSC" "C2937625"
+			(at 167.64 176.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLC" ""
+			(at 167.64 176.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "457f03de-19c5-4251-a7da-7c9a4eef7287")
 		)
@@ -10579,7 +10589,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2211101700_YAGEO-CC0603KRX7R9BB104_C14663.pdf"
 			(at 266.7 104.14 0)
 			(effects
 				(font
@@ -10597,7 +10607,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN" "CL10B104KB8NNNC"
+		(property "LCSC" ""
 			(at 266.7 104.14 0)
 			(effects
 				(font
@@ -10606,25 +10616,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN_ALT" ""
-			(at 266.7 104.14 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "LCSC" "C1591"
-			(at 266.7 104.14 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MOUSER" "187-CL10B104KB8NNNC"
+		(property "JLC" "C14663"
 			(at 266.7 104.14 0)
 			(effects
 				(font
@@ -10750,7 +10742,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_Samsung-Electro-Mechanics-CL10A106MA8NRNC_C96446.pdf"
 			(at 99.06 106.68 0)
 			(effects
 				(font
@@ -10768,7 +10760,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN" "CL10A106MA8NRNC"
+		(property "LCSC" ""
 			(at 99.06 106.68 0)
 			(effects
 				(font
@@ -10777,25 +10769,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN_ALT" ""
-			(at 99.06 106.68 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "LCSC" "C96446"
-			(at 99.06 106.68 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MOUSER" "187-CL10A106MA8NRNC"
+		(property "JLC" "C96446"
 			(at 99.06 106.68 0)
 			(effects
 				(font
@@ -10988,7 +10962,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.bourns.com/docs/Product-Datasheets/PTV09.pdf"
+		(property "Datasheet" "~"
 			(at 276.86 149.86 0)
 			(effects
 				(font
@@ -11006,7 +10980,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C6149573"
 			(at 276.86 149.86 0)
 			(effects
 				(font
@@ -11015,16 +10989,7 @@
 				(hide yes)
 			)
 		)
-		(property "MOUSER" "652-PTV09A4020SB103"
-			(at 276.86 149.86 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MPN" "PTV09A-4020S-B103"
+		(property "JLC" ""
 			(at 276.86 149.86 0)
 			(effects
 				(font
@@ -11303,6 +11268,15 @@
 				(hide yes)
 			)
 		)
+		(property "JLC" ""
+			(at 19.05 129.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(instances
 			(project "front_control_board"
 				(path "/8a354ba6-ef3b-41b0-9dd3-7bbc957de37e"
@@ -11565,7 +11539,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C114586"
+		(property "LCSC" ""
 			(at 243.84 30.48 0)
 			(effects
 				(font
@@ -11574,16 +11548,7 @@
 				(hide yes)
 			)
 		)
-		(property "MOUSER" "485-4684"
-			(at 243.84 30.48 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MPN" "WS2812B-B/W"
+		(property "JLC" "C114586"
 			(at 243.84 30.48 0)
 			(effects
 				(font
@@ -11715,7 +11680,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.yageo.com/upload/media/product/products/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2206010045_UNI-ROYAL-Uniroyal-Elec-0603WAF1002T5E_C25804.pdf"
 			(at 200.66 127 0)
 			(effects
 				(font
@@ -11733,7 +11698,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C25804"
+		(property "LCSC" ""
 			(at 200.66 127 0)
 			(effects
 				(font
@@ -11742,16 +11707,7 @@
 				(hide yes)
 			)
 		)
-		(property "MOUSER" "603-RC0603FR-0710KL"
-			(at 200.66 127 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MPN" "RC0603FR-0710KL"
+		(property "JLC" "C25804"
 			(at 200.66 127 0)
 			(effects
 				(font
@@ -12024,6 +11980,24 @@
 				(hide yes)
 			)
 		)
+		(property "LCSC" "C5372863"
+			(at 106.68 179.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLC" ""
+			(at 106.68 179.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "3"
 			(uuid "707fcb9f-5a82-4b53-9eab-5bc8ab73855a")
 		)
@@ -12173,7 +12147,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C114586"
+		(property "LCSC" ""
 			(at 100.33 30.48 0)
 			(effects
 				(font
@@ -12182,16 +12156,7 @@
 				(hide yes)
 			)
 		)
-		(property "MOUSER" "485-4684"
-			(at 100.33 30.48 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MPN" "WS2812B-B/W"
+		(property "JLC" "C114586"
 			(at 100.33 30.48 0)
 			(effects
 				(font
@@ -12268,6 +12233,15 @@
 			)
 		)
 		(property "Description" "Mounting Hole without connection"
+			(at 19.05 149.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLC" ""
 			(at 19.05 149.86 0)
 			(effects
 				(font
@@ -12452,7 +12426,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.yageo.com/upload/media/product/products/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2206010045_UNI-ROYAL-Uniroyal-Elec-0603WAF1002T5E_C25804.pdf"
 			(at 24.13 38.1 0)
 			(effects
 				(font
@@ -12470,7 +12444,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C25804"
+		(property "LCSC" ""
 			(at 24.13 38.1 0)
 			(effects
 				(font
@@ -12479,16 +12453,7 @@
 				(hide yes)
 			)
 		)
-		(property "MOUSER" "603-RC0603FR-0710KL"
-			(at 24.13 38.1 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MPN" "RC0603FR-0710KL"
+		(property "JLC" "C25804"
 			(at 24.13 38.1 0)
 			(effects
 				(font
@@ -12632,6 +12597,15 @@
 				(hide yes)
 			)
 		)
+		(property "JLC" ""
+			(at 57.15 149.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(instances
 			(project "front_control_board"
 				(path "/8a354ba6-ef3b-41b0-9dd3-7bbc957de37e"
@@ -12698,7 +12672,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C114586"
+		(property "LCSC" ""
 			(at 210.82 30.48 0)
 			(effects
 				(font
@@ -12707,16 +12681,7 @@
 				(hide yes)
 			)
 		)
-		(property "MOUSER" "485-4684"
-			(at 210.82 30.48 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MPN" "WS2812B-B/W"
+		(property "JLC" "C114586"
 			(at 210.82 30.48 0)
 			(effects
 				(font
@@ -13044,7 +13009,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.yageo.com/upload/media/product/products/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2206010045_UNI-ROYAL-Uniroyal-Elec-0603WAF1002T5E_C25804.pdf"
 			(at 199.39 69.85 0)
 			(effects
 				(font
@@ -13062,7 +13027,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C25804"
+		(property "LCSC" ""
 			(at 199.39 69.85 0)
 			(effects
 				(font
@@ -13071,16 +13036,7 @@
 				(hide yes)
 			)
 		)
-		(property "MOUSER" "603-RC0603FR-0710KL"
-			(at 199.39 69.85 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MPN" "RC0603FR-0710KL"
+		(property "JLC" "C25804"
 			(at 199.39 69.85 0)
 			(effects
 				(font
@@ -13401,7 +13357,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2211101700_YAGEO-CC0603KRX7R9BB104_C14663.pdf"
 			(at 242.57 127 0)
 			(effects
 				(font
@@ -13419,7 +13375,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN" "CL10B104KB8NNNC"
+		(property "LCSC" ""
 			(at 242.57 127 0)
 			(effects
 				(font
@@ -13428,25 +13384,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN_ALT" ""
-			(at 242.57 127 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "LCSC" "C1591"
-			(at 242.57 127 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MOUSER" "187-CL10B104KB8NNNC"
+		(property "JLC" "C14663"
 			(at 242.57 127 0)
 			(effects
 				(font
@@ -13582,6 +13520,15 @@
 			)
 		)
 		(property "Description" "Mounting Hole without connection"
+			(at 38.1 149.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLC" ""
 			(at 38.1 149.86 0)
 			(effects
 				(font
@@ -13786,7 +13733,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C114586"
+		(property "LCSC" ""
 			(at 260.35 30.48 0)
 			(effects
 				(font
@@ -13795,16 +13742,7 @@
 				(hide yes)
 			)
 		)
-		(property "MOUSER" "485-4684"
-			(at 260.35 30.48 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MPN" "WS2812B-B/W"
+		(property "JLC" "C114586"
 			(at 260.35 30.48 0)
 			(effects
 				(font
@@ -13835,7 +13773,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:D_Schottky")
+		(lib_id "Device:D")
 		(at 114.3 21.59 0)
 		(mirror x)
 		(unit 1)
@@ -13860,7 +13798,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Diode_SMD:D_SOD-523"
+		(property "Footprint" "Diode_SMD:D_SOD-323"
 			(at 114.3 21.59 0)
 			(effects
 				(font
@@ -13869,7 +13807,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.onsemi.com/pdf/datasheet/rb520s30t1-d.pdf"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_1810101110_Jiangsu-Changjing-Electronics-Technology-Co---Ltd--1N4148WS_C2128.pdf"
 			(at 114.3 21.59 0)
 			(effects
 				(font
@@ -13878,7 +13816,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Schottky diode"
+		(property "Description" "Diode"
 			(at 114.3 21.59 0)
 			(effects
 				(font
@@ -13887,7 +13825,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN" "RB520S30T5G"
+		(property "LCSC" ""
 			(at 114.3 21.59 0)
 			(effects
 				(font
@@ -13896,25 +13834,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN_ALT" ""
-			(at 114.3 21.59 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "LCSC" "C232575"
-			(at 114.3 21.59 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MOUSER" "863-RB520S30T5G"
+		(property "JLC" "C2128"
 			(at 114.3 21.59 0)
 			(effects
 				(font
@@ -14037,7 +13957,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.bourns.com/docs/Product-Datasheets/PEC11R.pdf"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2309061136_BOURNS-PEC11R-4215K-S0024_C7275025.pdf"
 			(at 50.8 45.466 0)
 			(effects
 				(font
@@ -14055,7 +13975,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C7275025"
 			(at 50.8 52.07 0)
 			(effects
 				(font
@@ -14064,16 +13984,7 @@
 				(hide yes)
 			)
 		)
-		(property "MOUSER" "652-PEC11R-4215K-S24"
-			(at 50.8 52.07 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MPN" "PEC11R-4215K-S0024"
+		(property "JLC" ""
 			(at 50.8 52.07 0)
 			(effects
 				(font
@@ -14299,16 +14210,7 @@
 				(hide yes)
 			)
 		)
-		(property "MOUSER" ""
-			(at 209.55 74.93 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MPN" ""
+		(property "JLC" ""
 			(at 209.55 74.93 0)
 			(effects
 				(font
@@ -14368,7 +14270,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.yageo.com/upload/media/product/products/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2206010230_UNI-ROYAL-Uniroyal-Elec-0603WAF2201T5E_C4190.pdf"
 			(at 193.04 127 0)
 			(effects
 				(font
@@ -14386,7 +14288,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN" "RC0603FR-072K2L"
+		(property "LCSC" ""
 			(at 193.04 127 0)
 			(effects
 				(font
@@ -14395,25 +14297,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN_ALT" ""
-			(at 193.04 127 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "LCSC" "C4190"
-			(at 193.04 127 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MOUSER" "603-RC0603FR-072K2L"
+		(property "JLC" "C4190"
 			(at 193.04 127 0)
 			(effects
 				(font
@@ -14694,16 +14578,7 @@
 				(hide yes)
 			)
 		)
-		(property "MOUSER" ""
-			(at 222.25 100.33 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MPN" ""
+		(property "JLC" ""
 			(at 222.25 100.33 0)
 			(effects
 				(font
@@ -14856,16 +14731,7 @@
 				(hide yes)
 			)
 		)
-		(property "MOUSER" ""
-			(at 209.55 100.33 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MPN" ""
+		(property "JLC" ""
 			(at 209.55 100.33 0)
 			(effects
 				(font
@@ -15011,7 +14877,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C114586"
+		(property "LCSC" ""
 			(at 144.78 30.48 0)
 			(effects
 				(font
@@ -15020,16 +14886,7 @@
 				(hide yes)
 			)
 		)
-		(property "MOUSER" "485-4684"
-			(at 144.78 30.48 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MPN" "WS2812B-B/W"
+		(property "JLC" "C114586"
 			(at 144.78 30.48 0)
 			(effects
 				(font
@@ -15308,7 +15165,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C2937625"
 			(at 276.86 27.94 0)
 			(effects
 				(font
@@ -15317,7 +15174,7 @@
 				(hide yes)
 			)
 		)
-		(property "MOUSER" ""
+		(property "JLC" ""
 			(at 276.86 27.94 0)
 			(effects
 				(font
@@ -15456,6 +15313,15 @@
 			)
 		)
 		(property "Description" "Fiducial Marker"
+			(at 46.99 129.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLC" ""
 			(at 46.99 129.54 0)
 			(effects
 				(font
@@ -15724,6 +15590,15 @@
 				(hide yes)
 			)
 		)
+		(property "JLC" ""
+			(at 60.96 106.68 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "e4e01c05-d30e-4a37-9524-0c02afe57f67")
 		)
@@ -15972,7 +15847,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.bourns.com/docs/Product-Datasheets/PTV09.pdf"
+		(property "Datasheet" "~"
 			(at 276.86 73.66 0)
 			(effects
 				(font
@@ -15990,7 +15865,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C6149573"
 			(at 276.86 73.66 0)
 			(effects
 				(font
@@ -15999,16 +15874,7 @@
 				(hide yes)
 			)
 		)
-		(property "MOUSER" "652-PTV09A4020SB103"
-			(at 276.86 73.66 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MPN" "PTV09A-4020S-B103"
+		(property "JLC" ""
 			(at 276.86 73.66 0)
 			(effects
 				(font
@@ -16222,7 +16088,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C114586"
+		(property "LCSC" ""
 			(at 128.27 30.48 0)
 			(effects
 				(font
@@ -16231,16 +16097,7 @@
 				(hide yes)
 			)
 		)
-		(property "MOUSER" "485-4684"
-			(at 128.27 30.48 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MPN" "WS2812B-B/W"
+		(property "JLC" "C114586"
 			(at 128.27 30.48 0)
 			(effects
 				(font
@@ -16325,6 +16182,15 @@
 				(hide yes)
 			)
 		)
+		(property "JLC" ""
+			(at 19.05 140.97 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(instances
 			(project "front_control_board"
 				(path "/8a354ba6-ef3b-41b0-9dd3-7bbc957de37e"
@@ -16370,7 +16236,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.yageo.com/upload/media/product/products/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2206010045_UNI-ROYAL-Uniroyal-Elec-0603WAF1002T5E_C25804.pdf"
 			(at 40.64 111.76 0)
 			(effects
 				(font
@@ -16388,7 +16254,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C25804"
+		(property "LCSC" ""
 			(at 40.64 111.76 0)
 			(effects
 				(font
@@ -16397,16 +16263,7 @@
 				(hide yes)
 			)
 		)
-		(property "MOUSER" "603-RC0603FR-0710KL"
-			(at 40.64 111.76 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MPN" "RC0603FR-0710KL"
+		(property "JLC" "C25804"
 			(at 40.64 111.76 0)
 			(effects
 				(font
@@ -16485,7 +16342,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C2691448"
 			(at 142.24 176.53 0)
 			(effects
 				(font
@@ -16494,7 +16351,7 @@
 				(hide yes)
 			)
 		)
-		(property "MOUSER" ""
+		(property "JLC" ""
 			(at 142.24 176.53 0)
 			(effects
 				(font
@@ -16626,7 +16483,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2211101700_YAGEO-CC0603KRX7R9BB104_C14663.pdf"
 			(at 86.36 106.68 0)
 			(effects
 				(font
@@ -16644,7 +16501,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN" "CL10B104KB8NNNC"
+		(property "LCSC" ""
 			(at 86.36 106.68 0)
 			(effects
 				(font
@@ -16653,25 +16510,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN_ALT" ""
-			(at 86.36 106.68 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "LCSC" "C1591"
-			(at 86.36 106.68 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MOUSER" "187-CL10B104KB8NNNC"
+		(property "JLC" "C14663"
 			(at 86.36 106.68 0)
 			(effects
 				(font
@@ -16815,6 +16654,15 @@
 				(hide yes)
 			)
 		)
+		(property "JLC" ""
+			(at 33.02 129.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(instances
 			(project "front_control_board"
 				(path "/8a354ba6-ef3b-41b0-9dd3-7bbc957de37e"
@@ -16860,7 +16708,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.yageo.com/upload/media/product/products/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2206010230_UNI-ROYAL-Uniroyal-Elec-0603WAF2201T5E_C4190.pdf"
 			(at 185.42 127 0)
 			(effects
 				(font
@@ -16878,7 +16726,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN" "RC0603FR-072K2L"
+		(property "LCSC" ""
 			(at 185.42 127 0)
 			(effects
 				(font
@@ -16887,25 +16735,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN_ALT" ""
-			(at 185.42 127 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "LCSC" "C4190"
-			(at 185.42 127 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MOUSER" "603-RC0603FR-072K2L"
+		(property "JLC" "C4190"
 			(at 185.42 127 0)
 			(effects
 				(font
@@ -16965,7 +16795,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.yageo.com/upload/media/product/products/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2206010045_UNI-ROYAL-Uniroyal-Elec-0603WAF1002T5E_C25804.pdf"
 			(at 34.29 38.1 0)
 			(effects
 				(font
@@ -16983,7 +16813,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C25804"
+		(property "LCSC" ""
 			(at 34.29 38.1 0)
 			(effects
 				(font
@@ -16992,16 +16822,7 @@
 				(hide yes)
 			)
 		)
-		(property "MOUSER" "603-RC0603FR-0710KL"
-			(at 34.29 38.1 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MPN" "RC0603FR-0710KL"
+		(property "JLC" "C25804"
 			(at 34.29 38.1 0)
 			(effects
 				(font
@@ -17062,7 +16883,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.bourns.com/docs/Product-Datasheets/PTV09.pdf"
+		(property "Datasheet" "~"
 			(at 276.86 124.46 0)
 			(effects
 				(font
@@ -17080,7 +16901,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C6149573"
 			(at 276.86 124.46 0)
 			(effects
 				(font
@@ -17089,16 +16910,7 @@
 				(hide yes)
 			)
 		)
-		(property "MOUSER" "652-PTV09A4020SB103"
-			(at 276.86 124.46 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MPN" "PTV09A-4020S-B103"
+		(property "JLC" ""
 			(at 276.86 124.46 0)
 			(effects
 				(font
@@ -17161,7 +16973,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2211101700_YAGEO-CC0603KRX7R9BB104_C14663.pdf"
 			(at 266.7 78.74 0)
 			(effects
 				(font
@@ -17179,7 +16991,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN" "CL10B104KB8NNNC"
+		(property "LCSC" ""
 			(at 266.7 78.74 0)
 			(effects
 				(font
@@ -17188,25 +17000,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN_ALT" ""
-			(at 266.7 78.74 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "LCSC" "C1591"
-			(at 266.7 78.74 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MOUSER" "187-CL10B104KB8NNNC"
+		(property "JLC" "C14663"
 			(at 266.7 78.74 0)
 			(effects
 				(font
@@ -17332,7 +17126,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.yageo.com/upload/media/product/products/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2206010045_UNI-ROYAL-Uniroyal-Elec-0603WAF1002T5E_C25804.pdf"
 			(at 232.41 95.25 0)
 			(effects
 				(font
@@ -17350,7 +17144,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C25804"
+		(property "LCSC" ""
 			(at 232.41 95.25 0)
 			(effects
 				(font
@@ -17359,16 +17153,7 @@
 				(hide yes)
 			)
 		)
-		(property "MOUSER" "603-RC0603FR-0710KL"
-			(at 232.41 95.25 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MPN" "RC0603FR-0710KL"
+		(property "JLC" "C25804"
 			(at 232.41 95.25 0)
 			(effects
 				(font
@@ -17558,7 +17343,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2211101700_YAGEO-CC0603KRX7R9BB104_C14663.pdf"
 			(at 99.06 78.74 0)
 			(effects
 				(font
@@ -17576,7 +17361,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN" "CL10B104KB8NNNC"
+		(property "LCSC" ""
 			(at 99.06 78.74 0)
 			(effects
 				(font
@@ -17585,25 +17370,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN_ALT" ""
-			(at 99.06 78.74 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "LCSC" "C1591"
-			(at 99.06 78.74 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MOUSER" "187-CL10B104KB8NNNC"
+		(property "JLC" "C14663"
 			(at 99.06 78.74 0)
 			(effects
 				(font
@@ -17664,7 +17431,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.yageo.com/upload/media/product/products/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2206010045_UNI-ROYAL-Uniroyal-Elec-0603WAF1002T5E_C25804.pdf"
 			(at 232.41 69.85 0)
 			(effects
 				(font
@@ -17682,7 +17449,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C25804"
+		(property "LCSC" ""
 			(at 232.41 69.85 0)
 			(effects
 				(font
@@ -17691,16 +17458,7 @@
 				(hide yes)
 			)
 		)
-		(property "MOUSER" "603-RC0603FR-0710KL"
-			(at 232.41 69.85 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MPN" "RC0603FR-0710KL"
+		(property "JLC" "C25804"
 			(at 232.41 69.85 0)
 			(effects
 				(font
@@ -17851,16 +17609,7 @@
 				(hide yes)
 			)
 		)
-		(property "MOUSER" ""
-			(at 222.25 74.93 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MPN" ""
+		(property "JLC" ""
 			(at 222.25 74.93 0)
 			(effects
 				(font
@@ -17986,7 +17735,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.yageo.com/upload/media/product/products/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2206010045_UNI-ROYAL-Uniroyal-Elec-0603WAF1002T5E_C25804.pdf"
 			(at 194.31 153.67 0)
 			(effects
 				(font
@@ -18004,7 +17753,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C25804"
+		(property "LCSC" ""
 			(at 194.31 153.67 0)
 			(effects
 				(font
@@ -18013,16 +17762,7 @@
 				(hide yes)
 			)
 		)
-		(property "MOUSER" "603-RC0603FR-0710KL"
-			(at 194.31 153.67 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MPN" "RC0603FR-0710KL"
+		(property "JLC" "C25804"
 			(at 194.31 153.67 0)
 			(effects
 				(font
@@ -18145,7 +17885,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.yageo.com/upload/media/product/products/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2206010130_UNI-ROYAL-Uniroyal-Elec-0603WAF1001T5E_C21190.pdf"
 			(at 158.75 148.59 0)
 			(effects
 				(font
@@ -18163,7 +17903,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN" "RC0603FR-071KL"
+		(property "LCSC" ""
 			(at 158.75 148.59 0)
 			(effects
 				(font
@@ -18172,25 +17912,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN_ALT" ""
-			(at 158.75 148.59 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "LCSC" "C21190"
-			(at 158.75 148.59 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MOUSER" "603-RC0603FR-071KL"
+		(property "JLC" "C21190"
 			(at 158.75 148.59 0)
 			(effects
 				(font
@@ -18334,6 +18056,15 @@
 				(hide yes)
 			)
 		)
+		(property "JLC" ""
+			(at 38.1 140.97 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(instances
 			(project "front_control_board"
 				(path "/8a354ba6-ef3b-41b0-9dd3-7bbc957de37e"
@@ -18444,7 +18175,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.yageo.com/upload/media/product/products/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2206010045_UNI-ROYAL-Uniroyal-Elec-0603WAF1002T5E_C25804.pdf"
 			(at 99.06 67.31 0)
 			(effects
 				(font
@@ -18462,7 +18193,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C25804"
+		(property "LCSC" ""
 			(at 99.06 67.31 0)
 			(effects
 				(font
@@ -18471,16 +18202,7 @@
 				(hide yes)
 			)
 		)
-		(property "MOUSER" "603-RC0603FR-0710KL"
-			(at 99.06 67.31 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MPN" "RC0603FR-0710KL"
+		(property "JLC" "C25804"
 			(at 99.06 67.31 0)
 			(effects
 				(font
@@ -18670,7 +18392,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_Samsung-Electro-Mechanics-CL10A106MA8NRNC_C96446.pdf"
 			(at 242.57 151.13 0)
 			(effects
 				(font
@@ -18688,7 +18410,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN" "CL10A106MA8NRNC"
+		(property "LCSC" ""
 			(at 242.57 151.13 0)
 			(effects
 				(font
@@ -18697,25 +18419,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN_ALT" ""
-			(at 242.57 151.13 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "LCSC" "C96446"
-			(at 242.57 151.13 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MOUSER" "187-CL10A106MA8NRNC"
+		(property "JLC" "C96446"
 			(at 242.57 151.13 0)
 			(effects
 				(font
@@ -18841,7 +18545,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.yageo.com/upload/media/product/products/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2206010045_UNI-ROYAL-Uniroyal-Elec-0603WAF1002T5E_C25804.pdf"
 			(at 185.42 153.67 0)
 			(effects
 				(font
@@ -18859,7 +18563,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C25804"
+		(property "LCSC" ""
 			(at 185.42 153.67 0)
 			(effects
 				(font
@@ -18868,16 +18572,7 @@
 				(hide yes)
 			)
 		)
-		(property "MOUSER" "603-RC0603FR-0710KL"
-			(at 185.42 153.67 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MPN" "RC0603FR-0710KL"
+		(property "JLC" "C25804"
 			(at 185.42 153.67 0)
 			(effects
 				(font
@@ -19068,7 +18763,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.bourns.com/docs/Product-Datasheets/PTV09.pdf"
+		(property "Datasheet" "~"
 			(at 276.86 99.06 0)
 			(effects
 				(font
@@ -19086,7 +18781,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C6149573"
 			(at 276.86 99.06 0)
 			(effects
 				(font
@@ -19095,16 +18790,7 @@
 				(hide yes)
 			)
 		)
-		(property "MOUSER" "652-PTV09A4020SB103"
-			(at 276.86 99.06 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MPN" "PTV09A-4020S-B103"
+		(property "JLC" ""
 			(at 276.86 99.06 0)
 			(effects
 				(font
@@ -19234,7 +18920,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.yageo.com/upload/media/product/products/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2206010045_UNI-ROYAL-Uniroyal-Elec-0603WAF1002T5E_C25804.pdf"
 			(at 199.39 95.25 0)
 			(effects
 				(font
@@ -19252,7 +18938,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C25804"
+		(property "LCSC" ""
 			(at 199.39 95.25 0)
 			(effects
 				(font
@@ -19261,16 +18947,7 @@
 				(hide yes)
 			)
 		)
-		(property "MOUSER" "603-RC0603FR-0710KL"
-			(at 199.39 95.25 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MPN" "RC0603FR-0710KL"
+		(property "JLC" "C25804"
 			(at 199.39 95.25 0)
 			(effects
 				(font
@@ -19416,7 +19093,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C114586"
+		(property "LCSC" ""
 			(at 227.33 30.48 0)
 			(effects
 				(font
@@ -19425,16 +19102,7 @@
 				(hide yes)
 			)
 		)
-		(property "MOUSER" "485-4684"
-			(at 227.33 30.48 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MPN" "WS2812B-B/W"
+		(property "JLC" "C114586"
 			(at 227.33 30.48 0)
 			(effects
 				(font
@@ -19584,15 +19252,6 @@
 				(hide yes)
 			)
 		)
-		(property "MPN" "IE122303-1"
-			(at 59.69 90.17 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
 		(property "LCSC" "C3812136"
 			(at 59.69 90.17 0)
 			(effects
@@ -19602,7 +19261,7 @@
 				(hide yes)
 			)
 		)
-		(property "MOUSER" " 497-IE122303-1"
+		(property "JLC" ""
 			(at 59.69 90.17 0)
 			(effects
 				(font
@@ -19748,7 +19407,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C114586"
+		(property "LCSC" ""
 			(at 168.91 30.48 0)
 			(effects
 				(font
@@ -19757,16 +19416,7 @@
 				(hide yes)
 			)
 		)
-		(property "MOUSER" "485-4684"
-			(at 168.91 30.48 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MPN" "WS2812B-B/W"
+		(property "JLC" "C114586"
 			(at 168.91 30.48 0)
 			(effects
 				(font
@@ -19833,7 +19483,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.yageo.com/upload/media/product/products/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2206010045_UNI-ROYAL-Uniroyal-Elec-0603WAF1002T5E_C25804.pdf"
 			(at 86.36 137.16 0)
 			(effects
 				(font
@@ -19851,7 +19501,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C25804"
+		(property "LCSC" ""
 			(at 86.36 137.16 0)
 			(effects
 				(font
@@ -19860,16 +19510,7 @@
 				(hide yes)
 			)
 		)
-		(property "MOUSER" "603-RC0603FR-0710KL"
-			(at 86.36 137.16 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MPN" "RC0603FR-0710KL"
+		(property "JLC" "C25804"
 			(at 86.36 137.16 0)
 			(effects
 				(font
@@ -20041,7 +19682,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "DMN63D8LW"
+		(property "Value" "AO3401A"
 			(at 53.848 100.838 0)
 			(effects
 				(font
@@ -20050,7 +19691,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Package_TO_SOT_SMD:SOT-323_SC-70"
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
 			(at 58.42 104.14 0)
 			(effects
 				(font
@@ -20059,7 +19700,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.diodes.com/assets/Datasheets/DMN63D8LW.pdf"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_1810171817_Alpha---Omega-Semicon-AO3401A_C15127.pdf"
 			(at 53.34 106.68 0)
 			(effects
 				(font
@@ -20068,7 +19709,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "380mA Id, 30V Vds, N-Channel MOSFET, 3.8 Ohm Ron, SOT-323"
+		(property "Description" "-4A Id, -30V Vds, P-Channel MOSFET, 85mOhm Ron, SOT-23"
 			(at 53.34 106.68 0)
 			(effects
 				(font
@@ -20077,7 +19718,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C151057"
+		(property "LCSC" ""
 			(at 53.34 106.68 0)
 			(effects
 				(font
@@ -20086,16 +19727,7 @@
 				(hide yes)
 			)
 		)
-		(property "MOUSER" "621-DMN63D8LW-7"
-			(at 53.34 106.68 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MPN" "DMN63D8LW-7"
+		(property "JLC" "C15127"
 			(at 53.34 106.68 0)
 			(effects
 				(font
@@ -20176,7 +19808,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN" "ESP32-WROOM-32UE-N16"
+		(property "LCSC" ""
 			(at 135.89 104.14 0)
 			(effects
 				(font
@@ -20185,16 +19817,7 @@
 				(hide yes)
 			)
 		)
-		(property "MOUSER" "356-ESP32WRM32UE28UH"
-			(at 135.89 104.14 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "LCSC" "C701346"
+		(property "JLC" "C701346"
 			(at 135.89 104.14 0)
 			(effects
 				(font
@@ -20373,6 +19996,15 @@
 			)
 		)
 		(property "Description" "3-pole Solder Jumper, pins 1+2 closed/bridged"
+			(at 55.88 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLC" ""
 			(at 55.88 80.01 0)
 			(effects
 				(font

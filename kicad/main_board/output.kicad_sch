@@ -2504,7 +2504,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN" ""
+		(property "LCSC" "C492401"
 			(at 198.12 104.14 0)
 			(effects
 				(font
@@ -2513,25 +2513,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN_ALT" ""
-			(at 198.12 104.14 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "LCSC" ""
-			(at 198.12 104.14 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MOUSER" ""
+		(property "JLC" ""
 			(at 198.12 104.14 0)
 			(effects
 				(font
@@ -2610,7 +2592,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN" ""
+		(property "LCSC" "C2897376"
 			(at 118.11 71.12 0)
 			(effects
 				(font
@@ -2619,25 +2601,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN_ALT" ""
-			(at 118.11 71.12 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "LCSC" ""
-			(at 118.11 71.12 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MOUSER" ""
+		(property "JLC" ""
 			(at 118.11 71.12 0)
 			(effects
 				(font
@@ -2749,7 +2713,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN" ""
+		(property "LCSC" "C2897376"
 			(at 118.11 123.19 0)
 			(effects
 				(font
@@ -2758,25 +2722,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN_ALT" ""
-			(at 118.11 123.19 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "LCSC" ""
-			(at 118.11 123.19 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MOUSER" ""
+		(property "JLC" ""
 			(at 118.11 123.19 0)
 			(effects
 				(font
@@ -3015,7 +2961,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN" ""
+		(property "LCSC" "C492401"
 			(at 198.12 129.54 0)
 			(effects
 				(font
@@ -3024,25 +2970,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN_ALT" ""
-			(at 198.12 129.54 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "LCSC" ""
-			(at 198.12 129.54 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MOUSER" ""
+		(property "JLC" ""
 			(at 198.12 129.54 0)
 			(effects
 				(font
@@ -3095,7 +3023,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "SaawLib:STX-3100-5N"
+		(property "Footprint" "SaawLib:PJ-3062-CO"
 			(at 212.09 127 0)
 			(effects
 				(font
@@ -3104,7 +3032,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.kycon.com/Pub_Eng_Draw/STX-3100-5N.pdf"
+		(property "Datasheet" "~"
 			(at 212.09 127 0)
 			(effects
 				(font
@@ -3122,7 +3050,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN" "STX-3100-5N"
+		(property "LCSC" "C319113"
 			(at 212.09 127 0)
 			(effects
 				(font
@@ -3131,25 +3059,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN_ALT" ""
-			(at 212.09 127 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "LCSC" ""
-			(at 212.09 127 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MOUSER" "806-STX-3100-5N"
+		(property "JLC" ""
 			(at 212.09 127 0)
 			(effects
 				(font
@@ -3219,7 +3129,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.yageo.com/upload/media/product/products/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2206010130_UNI-ROYAL-Uniroyal-Elec-0603WAF1004T5E_C22935.pdf"
 			(at 92.71 63.5 0)
 			(effects
 				(font
@@ -3237,7 +3147,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN" "RC0603FR-071ML"
+		(property "LCSC" ""
 			(at 92.71 63.5 0)
 			(effects
 				(font
@@ -3246,25 +3156,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN_ALT" ""
-			(at 92.71 63.5 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "LCSC" "C22935"
-			(at 92.71 63.5 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MOUSER" "603-RC0603FR-071ML"
+		(property "JLC" "C22935"
 			(at 92.71 63.5 0)
 			(effects
 				(font
@@ -3342,7 +3234,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN" ""
+		(property "LCSC" "C2897376"
 			(at 179.07 92.71 0)
 			(effects
 				(font
@@ -3351,25 +3243,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN_ALT" ""
-			(at 179.07 92.71 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "LCSC" ""
-			(at 179.07 92.71 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MOUSER" ""
+		(property "JLC" ""
 			(at 179.07 92.71 0)
 			(effects
 				(font
@@ -3543,7 +3417,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN" ""
+		(property "LCSC" "C492401"
 			(at 198.12 55.88 0)
 			(effects
 				(font
@@ -3552,25 +3426,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN_ALT" ""
-			(at 198.12 55.88 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "LCSC" ""
-			(at 198.12 55.88 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MOUSER" ""
+		(property "JLC" ""
 			(at 198.12 55.88 0)
 			(effects
 				(font
@@ -3688,7 +3544,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "SaawLib:STX-3100-5N"
+		(property "Footprint" "SaawLib:PJ-3062-CO"
 			(at 212.09 53.34 0)
 			(effects
 				(font
@@ -3697,7 +3553,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.kycon.com/Pub_Eng_Draw/STX-3100-5N.pdf"
+		(property "Datasheet" "~"
 			(at 212.09 53.34 0)
 			(effects
 				(font
@@ -3715,7 +3571,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN" "STX-3100-5N"
+		(property "LCSC" "C319113"
 			(at 212.09 53.34 0)
 			(effects
 				(font
@@ -3724,25 +3580,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN_ALT" ""
-			(at 212.09 53.34 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "LCSC" ""
-			(at 212.09 53.34 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MOUSER" "806-STX-3100-5N"
+		(property "JLC" ""
 			(at 212.09 53.34 0)
 			(effects
 				(font
@@ -3827,7 +3665,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN" ""
+		(property "LCSC" "C492401"
 			(at 198.12 80.01 0)
 			(effects
 				(font
@@ -3836,25 +3674,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN_ALT" ""
-			(at 198.12 80.01 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "LCSC" ""
-			(at 198.12 80.01 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MOUSER" ""
+		(property "JLC" ""
 			(at 198.12 80.01 0)
 			(effects
 				(font
@@ -3907,7 +3727,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "SaawLib:STX-3100-5N"
+		(property "Footprint" "SaawLib:PJ-3062-CO"
 			(at 212.09 77.47 0)
 			(effects
 				(font
@@ -3916,7 +3736,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.kycon.com/Pub_Eng_Draw/STX-3100-5N.pdf"
+		(property "Datasheet" "~"
 			(at 212.09 77.47 0)
 			(effects
 				(font
@@ -3934,7 +3754,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN" "STX-3100-5N"
+		(property "LCSC" "C319113"
 			(at 212.09 77.47 0)
 			(effects
 				(font
@@ -3943,25 +3763,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN_ALT" ""
-			(at 212.09 77.47 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "LCSC" ""
-			(at 212.09 77.47 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MOUSER" "806-STX-3100-5N"
+		(property "JLC" ""
 			(at 212.09 77.47 0)
 			(effects
 				(font
@@ -4088,7 +3890,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "SaawLib:STX-3100-5N"
+		(property "Footprint" "SaawLib:PJ-3062-CO"
 			(at 212.09 101.6 0)
 			(effects
 				(font
@@ -4097,7 +3899,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.kycon.com/Pub_Eng_Draw/STX-3100-5N.pdf"
+		(property "Datasheet" "~"
 			(at 212.09 101.6 0)
 			(effects
 				(font
@@ -4115,7 +3917,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN" "STX-3100-5N"
+		(property "LCSC" "C319113"
 			(at 212.09 101.6 0)
 			(effects
 				(font
@@ -4124,25 +3926,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN_ALT" ""
-			(at 212.09 101.6 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "LCSC" ""
-			(at 212.09 101.6 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MOUSER" "806-STX-3100-5N"
+		(property "JLC" ""
 			(at 212.09 101.6 0)
 			(effects
 				(font

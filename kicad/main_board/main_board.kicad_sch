@@ -731,6 +731,15 @@
 				(hide yes)
 			)
 		)
+		(property "JLC" ""
+			(at 96.52 189.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(instances
 			(project "main_board"
 				(path "/8e1f1504-76c2-49e6-9261-3c1190503f8c"
@@ -787,6 +796,15 @@
 			)
 		)
 		(property "Description" "Fiducial Marker"
+			(at 34.29 180.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLC" ""
 			(at 34.29 180.34 0)
 			(effects
 				(font
@@ -859,6 +877,15 @@
 				(hide yes)
 			)
 		)
+		(property "JLC" ""
+			(at 48.26 180.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(instances
 			(project "main_board"
 				(path "/8e1f1504-76c2-49e6-9261-3c1190503f8c"
@@ -915,6 +942,15 @@
 			)
 		)
 		(property "Description" "Mounting Hole without connection"
+			(at 39.37 189.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLC" ""
 			(at 39.37 189.23 0)
 			(effects
 				(font
@@ -987,6 +1023,15 @@
 				(hide yes)
 			)
 		)
+		(property "JLC" ""
+			(at 20.32 189.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(instances
 			(project "main_board"
 				(path "/8e1f1504-76c2-49e6-9261-3c1190503f8c"
@@ -1043,6 +1088,15 @@
 			)
 		)
 		(property "Description" "Mounting Hole without connection"
+			(at 58.42 189.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLC" ""
 			(at 58.42 189.23 0)
 			(effects
 				(font
@@ -1115,6 +1169,15 @@
 				(hide yes)
 			)
 		)
+		(property "JLC" ""
+			(at 77.47 189.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(instances
 			(project "main_board"
 				(path "/8e1f1504-76c2-49e6-9261-3c1190503f8c"
@@ -1171,6 +1234,15 @@
 			)
 		)
 		(property "Description" "Fiducial Marker"
+			(at 20.32 180.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLC" ""
 			(at 20.32 180.34 0)
 			(effects
 				(font

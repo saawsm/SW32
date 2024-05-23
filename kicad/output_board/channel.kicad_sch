@@ -11,6 +11,395 @@
 		(company "saawsm")
 	)
 	(lib_symbols
+		(symbol "Amplifier_Operational:LM324"
+			(pin_names
+				(offset 0.127)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "U"
+				(at 0 5.08 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Value" "LM324"
+				(at 0 -5.08 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Footprint" ""
+				(at -1.27 2.54 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "http://www.ti.com/lit/ds/symlink/lm2902-n.pdf"
+				(at 1.27 5.08 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Low-Power, Quad-Operational Amplifiers, DIP-14/SOIC-14/SSOP-14"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_locked" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "quad opamp"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "SOIC*3.9x8.7mm*P1.27mm* DIP*W7.62mm* TSSOP*4.4x5mm*P0.65mm* SSOP*5.3x6.2mm*P0.65mm* MSOP*3x3mm*P0.5mm*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "LM324_1_1"
+				(polyline
+					(pts
+						(xy -5.08 5.08) (xy 5.08 0) (xy -5.08 -5.08) (xy -5.08 5.08)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(pin output line
+					(at 7.62 0 180)
+					(length 2.54)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -7.62 -2.54 0)
+					(length 2.54)
+					(name "-"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -7.62 2.54 0)
+					(length 2.54)
+					(name "+"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(symbol "LM324_2_1"
+				(polyline
+					(pts
+						(xy -5.08 5.08) (xy 5.08 0) (xy -5.08 -5.08) (xy -5.08 5.08)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(pin input line
+					(at -7.62 2.54 0)
+					(length 2.54)
+					(name "+"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "5"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -7.62 -2.54 0)
+					(length 2.54)
+					(name "-"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "6"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin output line
+					(at 7.62 0 180)
+					(length 2.54)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "7"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(symbol "LM324_3_1"
+				(polyline
+					(pts
+						(xy -5.08 5.08) (xy 5.08 0) (xy -5.08 -5.08) (xy -5.08 5.08)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(pin input line
+					(at -7.62 2.54 0)
+					(length 2.54)
+					(name "+"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "10"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin output line
+					(at 7.62 0 180)
+					(length 2.54)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "8"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -7.62 -2.54 0)
+					(length 2.54)
+					(name "-"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "9"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(symbol "LM324_4_1"
+				(polyline
+					(pts
+						(xy -5.08 5.08) (xy 5.08 0) (xy -5.08 -5.08) (xy -5.08 5.08)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(pin input line
+					(at -7.62 2.54 0)
+					(length 2.54)
+					(name "+"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "12"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -7.62 -2.54 0)
+					(length 2.54)
+					(name "-"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "13"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin output line
+					(at 7.62 0 180)
+					(length 2.54)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "14"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(symbol "LM324_5_1"
+				(pin power_in line
+					(at -2.54 -7.62 90)
+					(length 3.81)
+					(name "V-"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "11"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at -2.54 7.62 270)
+					(length 3.81)
+					(name "V+"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+		)
 		(symbol "Device:C"
 			(pin_numbers hide)
 			(pin_names
@@ -586,292 +975,6 @@
 						)
 					)
 					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-		)
-		(symbol "Device:Opamp_Dual"
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "U"
-				(at 0 5.08 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Value" "Opamp_Dual"
-				(at 0 -5.08 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "~"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Dual operational amplifier"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Sim.Library" "${KICAD7_SYMBOL_DIR}/Simulation_SPICE.sp"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Sim.Name" "kicad_builtin_opamp_dual"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Sim.Device" "SUBCKT"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Sim.Pins" "1=out1 2=in1- 3=in1+ 4=vee 5=in2+ 6=in2- 7=out2 8=vcc"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_locked" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "ki_keywords" "dual opamp"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "SOIC*3.9x4.9mm*P1.27mm* DIP*W7.62mm* MSOP*3x3mm*P0.65mm* SSOP*2.95x2.8mm*P0.65mm* TSSOP*3x3mm*P0.65mm* VSSOP*P0.5mm* TO?99*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "Opamp_Dual_1_1"
-				(polyline
-					(pts
-						(xy -5.08 5.08) (xy 5.08 0) (xy -5.08 -5.08) (xy -5.08 5.08)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type background)
-					)
-				)
-				(pin output line
-					(at 7.62 0 180)
-					(length 2.54)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at -7.62 -2.54 0)
-					(length 2.54)
-					(name "-"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at -7.62 2.54 0)
-					(length 2.54)
-					(name "+"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(symbol "Opamp_Dual_2_1"
-				(polyline
-					(pts
-						(xy -5.08 5.08) (xy 5.08 0) (xy -5.08 -5.08) (xy -5.08 5.08)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type background)
-					)
-				)
-				(pin input line
-					(at -7.62 2.54 0)
-					(length 2.54)
-					(name "+"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "5"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at -7.62 -2.54 0)
-					(length 2.54)
-					(name "-"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "6"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin output line
-					(at 7.62 0 180)
-					(length 2.54)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "7"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(symbol "Opamp_Dual_3_1"
-				(pin power_in line
-					(at -2.54 -7.62 90)
-					(length 3.81)
-					(name "V-"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "4"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin power_in line
-					(at -2.54 7.62 270)
-					(length 3.81)
-					(name "V+"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "8"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -3085,7 +3188,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.yageo.com/upload/media/product/products/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2206010130_UNI-ROYAL-Uniroyal-Elec-0603WAF1000T5E_C22775.pdf"
 			(at 218.44 96.52 0)
 			(effects
 				(font
@@ -3103,7 +3206,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22775"
+		(property "LCSC" ""
 			(at 218.44 96.52 0)
 			(effects
 				(font
@@ -3112,16 +3215,7 @@
 				(hide yes)
 			)
 		)
-		(property "MOUSER" "603-RC0603FR-13100RL"
-			(at 218.44 96.52 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MPN" "RC0603FR-07100RL"
+		(property "JLC" "C22775"
 			(at 218.44 96.52 0)
 			(effects
 				(font
@@ -3193,7 +3287,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.yageo.com/upload/media/product/products/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2206010130_UNI-ROYAL-Uniroyal-Elec-0603WAF1001T5E_C21190.pdf"
 			(at 97.79 82.55 0)
 			(effects
 				(font
@@ -3211,7 +3305,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C21190"
+		(property "LCSC" ""
 			(at 97.79 82.55 0)
 			(effects
 				(font
@@ -3220,16 +3314,7 @@
 				(hide yes)
 			)
 		)
-		(property "MOUSER" "603-RC0603FR-071KL"
-			(at 97.79 82.55 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MPN" "RC0603FR-071KL"
+		(property "JLC" "C21190"
 			(at 97.79 82.55 0)
 			(effects
 				(font
@@ -3301,7 +3386,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.yageo.com/upload/media/product/products/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2206010045_UNI-ROYAL-Uniroyal-Elec-0603WAF1002T5E_C25804.pdf"
 			(at 60.96 135.89 0)
 			(effects
 				(font
@@ -3319,7 +3404,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C25804"
+		(property "LCSC" ""
 			(at 60.96 135.89 0)
 			(effects
 				(font
@@ -3328,16 +3413,7 @@
 				(hide yes)
 			)
 		)
-		(property "MOUSER" "603-RC0603FR-0710KL"
-			(at 60.96 135.89 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MPN" "RC0603FR-0710KL"
+		(property "JLC" "C25804"
 			(at 60.96 135.89 0)
 			(effects
 				(font
@@ -3427,6 +3503,15 @@
 				(hide yes)
 			)
 		)
+		(property "JLC" ""
+			(at 121.92 66.04 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "f83bd42c-a423-467f-8cfe-99ec4cd08857")
 		)
@@ -3493,7 +3578,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.yageo.com/upload/media/product/products/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2206010130_UNI-ROYAL-Uniroyal-Elec-0603WAF1001T5E_C21190.pdf"
 			(at 133.35 69.85 0)
 			(effects
 				(font
@@ -3511,7 +3596,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C21190"
+		(property "LCSC" ""
 			(at 133.35 69.85 0)
 			(effects
 				(font
@@ -3520,16 +3605,7 @@
 				(hide yes)
 			)
 		)
-		(property "MOUSER" "603-RC0603FR-071KL"
-			(at 133.35 69.85 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MPN" "RC0603FR-071KL"
+		(property "JLC" "C21190"
 			(at 133.35 69.85 0)
 			(effects
 				(font
@@ -3697,6 +3773,15 @@
 				(hide yes)
 			)
 		)
+		(property "JLC" ""
+			(at 228.6 96.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "3"
 			(uuid "38eaf7c9-2855-4c96-a673-44c6b137b4a1")
 		)
@@ -3763,7 +3848,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.yageo.com/upload/media/product/products/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2206010045_UNI-ROYAL-Uniroyal-Elec-0603WAF1002T5E_C25804.pdf"
 			(at 181.61 123.19 0)
 			(effects
 				(font
@@ -3781,7 +3866,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C25804"
+		(property "LCSC" ""
 			(at 181.61 123.19 0)
 			(effects
 				(font
@@ -3790,16 +3875,7 @@
 				(hide yes)
 			)
 		)
-		(property "MOUSER" "603-RC0603FR-0710KL"
-			(at 181.61 123.19 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MPN" "RC0603FR-0710KL"
+		(property "JLC" "C25804"
 			(at 181.61 123.19 0)
 			(effects
 				(font
@@ -3830,104 +3906,6 @@
 				)
 				(path "/01334e4c-8cca-432b-91da-03bd5fdff467/1e63bddd-84c8-43db-b869-9e49fd6bc3cb"
 					(reference "R34")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:Opamp_Dual")
-		(at 72.39 121.92 0)
-		(unit 2)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "6b227053-1154-4100-9e70-b2276f357958")
-		(property "Reference" "U2"
-			(at 72.39 111.76 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "LM358"
-			(at 72.39 114.3 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Package_SO:TSSOP-8_4.4x3mm_P0.65mm"
-			(at 72.39 121.92 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 72.39 121.92 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Dual operational amplifier"
-			(at 72.39 121.92 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "4"
-			(uuid "9e9233df-74b2-4d27-a6ee-8c2273d733a2")
-		)
-		(pin "2"
-			(uuid "b96b4916-52a8-4421-b802-408bfac5028b")
-		)
-		(pin "6"
-			(uuid "22ccbd90-6897-4db8-af4b-ea1d8441f907")
-		)
-		(pin "7"
-			(uuid "80e503d6-01c0-4947-94fe-5d73e48a78ef")
-		)
-		(pin "8"
-			(uuid "047eb45d-528a-4348-a3a3-8c3f8563a439")
-		)
-		(pin "5"
-			(uuid "60d91dc8-9a96-4dad-9a36-b23398768288")
-		)
-		(pin "3"
-			(uuid "b9a07e4c-cb75-44d4-b951-94749d77fa20")
-		)
-		(pin "1"
-			(uuid "ea7ac5df-f771-4d44-81d0-1149522b4205")
-		)
-		(instances
-			(project "output_board"
-				(path "/01334e4c-8cca-432b-91da-03bd5fdff467/784654d4-1031-4021-98e1-83b5de00916b"
-					(reference "U2")
-					(unit 2)
-				)
-				(path "/01334e4c-8cca-432b-91da-03bd5fdff467/7bfb3c86-2006-4e5a-a97d-386e3815f948"
-					(reference "U3")
-					(unit 1)
-				)
-				(path "/01334e4c-8cca-432b-91da-03bd5fdff467/1e63bddd-84c8-43db-b869-9e49fd6bc3cb"
-					(reference "U3")
-					(unit 2)
-				)
-				(path "/01334e4c-8cca-432b-91da-03bd5fdff467/997bb8f5-28c2-4cea-b91d-e0193d46d379"
-					(reference "U2")
 					(unit 1)
 				)
 			)
@@ -3977,6 +3955,15 @@
 			)
 		)
 		(property "Description" ""
+			(at 246.38 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLC" ""
 			(at 246.38 63.5 0)
 			(effects
 				(font
@@ -4233,6 +4220,15 @@
 				(hide yes)
 			)
 		)
+		(property "JLC" ""
+			(at 198.12 116.84 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "3"
 			(uuid "2a7248aa-25c2-4589-b13a-e819a31bb423")
 		)
@@ -4453,7 +4449,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.yageo.com/upload/media/product/products/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2206010045_UNI-ROYAL-Uniroyal-Elec-0603WAF1002T5E_C25804.pdf"
 			(at 212.09 101.6 0)
 			(effects
 				(font
@@ -4471,7 +4467,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C25804"
+		(property "LCSC" ""
 			(at 212.09 101.6 0)
 			(effects
 				(font
@@ -4480,16 +4476,7 @@
 				(hide yes)
 			)
 		)
-		(property "MOUSER" "603-RC0603FR-0710KL"
-			(at 212.09 101.6 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MPN" "RC0603FR-0710KL"
+		(property "JLC" "C25804"
 			(at 212.09 101.6 0)
 			(effects
 				(font
@@ -4543,7 +4530,7 @@
 				)
 			)
 		)
-		(property "Value" "D_Schottky"
+		(property "Value" "40V"
 			(at 191.4525 54.61 0)
 			(effects
 				(font
@@ -4551,7 +4538,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Diode_SMD:D_SOD-323"
 			(at 191.77 58.42 0)
 			(effects
 				(font
@@ -4560,7 +4547,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2204281430_Guangdong-Hottech-1N5819WS_C191023.pdf"
 			(at 191.77 58.42 0)
 			(effects
 				(font
@@ -4570,6 +4557,24 @@
 			)
 		)
 		(property "Description" "Schottky diode"
+			(at 191.77 58.42 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" ""
+			(at 191.77 58.42 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLC" "C191023"
 			(at 191.77 58.42 0)
 			(effects
 				(font
@@ -4639,7 +4644,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.yageo.com/upload/media/product/products/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2206010045_UNI-ROYAL-Uniroyal-Elec-0603WAF1002T5E_C25804.pdf"
 			(at 71.12 105.41 0)
 			(effects
 				(font
@@ -4657,7 +4662,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C25804"
+		(property "LCSC" ""
 			(at 71.12 105.41 0)
 			(effects
 				(font
@@ -4666,16 +4671,7 @@
 				(hide yes)
 			)
 		)
-		(property "MOUSER" "603-RC0603FR-0710KL"
-			(at 71.12 105.41 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MPN" "RC0603FR-0710KL"
+		(property "JLC" "C25804"
 			(at 71.12 105.41 0)
 			(effects
 				(font
@@ -4721,7 +4717,7 @@
 		(dnp yes)
 		(fields_autoplaced yes)
 		(uuid "bd3e5790-528d-4ccd-9628-01200f122395")
-		(property "Reference" "C10"
+		(property "Reference" "C8"
 			(at 147.32 68.5799 0)
 			(effects
 				(font
@@ -4748,7 +4744,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2211101700_YAGEO-CC0603KRX7R9BB104_C14663.pdf"
 			(at 143.51 69.85 0)
 			(effects
 				(font
@@ -4766,7 +4762,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C1591"
+		(property "LCSC" ""
 			(at 143.51 69.85 0)
 			(effects
 				(font
@@ -4775,16 +4771,7 @@
 				(hide yes)
 			)
 		)
-		(property "MOUSER" "187-CL10B104KB8NNNC"
-			(at 143.51 69.85 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MPN" "CL10B104KB8NNNC"
+		(property "JLC" "C14663"
 			(at 143.51 69.85 0)
 			(effects
 				(font
@@ -4802,19 +4789,19 @@
 		(instances
 			(project "output_board"
 				(path "/01334e4c-8cca-432b-91da-03bd5fdff467/784654d4-1031-4021-98e1-83b5de00916b"
-					(reference "C10")
+					(reference "C8")
 					(unit 1)
 				)
 				(path "/01334e4c-8cca-432b-91da-03bd5fdff467/7bfb3c86-2006-4e5a-a97d-386e3815f948"
-					(reference "C13")
+					(reference "C11")
 					(unit 1)
 				)
 				(path "/01334e4c-8cca-432b-91da-03bd5fdff467/1e63bddd-84c8-43db-b869-9e49fd6bc3cb"
-					(reference "C16")
+					(reference "C14")
 					(unit 1)
 				)
 				(path "/01334e4c-8cca-432b-91da-03bd5fdff467/997bb8f5-28c2-4cea-b91d-e0193d46d379"
-					(reference "C7")
+					(reference "C5")
 					(unit 1)
 				)
 			)
@@ -4854,7 +4841,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.yageo.com/upload/media/product/products/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2206010130_UNI-ROYAL-Uniroyal-Elec-0603WAF1000T5E_C22775.pdf"
 			(at 187.96 116.84 0)
 			(effects
 				(font
@@ -4872,7 +4859,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22775"
+		(property "LCSC" ""
 			(at 187.96 116.84 0)
 			(effects
 				(font
@@ -4881,16 +4868,7 @@
 				(hide yes)
 			)
 		)
-		(property "MOUSER" "603-RC0603FR-13100RL"
-			(at 187.96 116.84 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MPN" "RC0603FR-07100RL"
+		(property "JLC" "C22775"
 			(at 187.96 116.84 0)
 			(effects
 				(font
@@ -4962,7 +4940,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.yageo.com/upload/media/product/products/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2206010145_UNI-ROYAL-Uniroyal-Elec-1206W4F2001T5E_C17944.pdf"
 			(at 97.79 69.85 0)
 			(effects
 				(font
@@ -4972,6 +4950,24 @@
 			)
 		)
 		(property "Description" "Resistor"
+			(at 97.79 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" ""
+			(at 97.79 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLC" "C17944"
 			(at 97.79 69.85 0)
 			(effects
 				(font
@@ -5060,6 +5056,15 @@
 				(hide yes)
 			)
 		)
+		(property "JLC" ""
+			(at 175.26 58.42 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "a209d9d9-b627-4ceb-b7af-79137ae52e5d")
 		)
@@ -5096,7 +5101,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "e05b3764-c890-4def-9a12-3cf68e445be0")
-		(property "Reference" "C8"
+		(property "Reference" "C6"
 			(at 48.768 67.31 0)
 			(effects
 				(font
@@ -5141,6 +5146,15 @@
 				(hide yes)
 			)
 		)
+		(property "JLC" ""
+			(at 45.72 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "813f8073-4e70-4ec2-87b1-26c328cc0edd")
 		)
@@ -5150,19 +5164,19 @@
 		(instances
 			(project "output_board"
 				(path "/01334e4c-8cca-432b-91da-03bd5fdff467/784654d4-1031-4021-98e1-83b5de00916b"
-					(reference "C8")
+					(reference "C6")
 					(unit 1)
 				)
 				(path "/01334e4c-8cca-432b-91da-03bd5fdff467/7bfb3c86-2006-4e5a-a97d-386e3815f948"
-					(reference "C11")
+					(reference "C9")
 					(unit 1)
 				)
 				(path "/01334e4c-8cca-432b-91da-03bd5fdff467/1e63bddd-84c8-43db-b869-9e49fd6bc3cb"
-					(reference "C14")
+					(reference "C12")
 					(unit 1)
 				)
 				(path "/01334e4c-8cca-432b-91da-03bd5fdff467/997bb8f5-28c2-4cea-b91d-e0193d46d379"
-					(reference "C5")
+					(reference "C3")
 					(unit 1)
 				)
 			)
@@ -5178,7 +5192,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "e43b741e-b84c-4fa9-a292-bc8dc5ae5372")
-		(property "Reference" "C6"
+		(property "Reference" "C4"
 			(at 113.03 68.5799 0)
 			(effects
 				(font
@@ -5205,7 +5219,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2211101700_YAGEO-CC0603KRX7R9BB104_C14663.pdf"
 			(at 109.22 69.85 0)
 			(effects
 				(font
@@ -5223,7 +5237,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C1591"
+		(property "LCSC" ""
 			(at 109.22 69.85 0)
 			(effects
 				(font
@@ -5232,16 +5246,7 @@
 				(hide yes)
 			)
 		)
-		(property "MOUSER" "187-CL10B104KB8NNNC"
-			(at 109.22 69.85 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MPN" "CL10B104KB8NNNC"
+		(property "JLC" "C14663"
 			(at 109.22 69.85 0)
 			(effects
 				(font
@@ -5259,20 +5264,154 @@
 		(instances
 			(project "output_board"
 				(path "/01334e4c-8cca-432b-91da-03bd5fdff467/997bb8f5-28c2-4cea-b91d-e0193d46d379"
-					(reference "C6")
+					(reference "C4")
 					(unit 1)
 				)
 				(path "/01334e4c-8cca-432b-91da-03bd5fdff467/784654d4-1031-4021-98e1-83b5de00916b"
-					(reference "C9")
+					(reference "C7")
 					(unit 1)
 				)
 				(path "/01334e4c-8cca-432b-91da-03bd5fdff467/7bfb3c86-2006-4e5a-a97d-386e3815f948"
-					(reference "C12")
+					(reference "C10")
 					(unit 1)
 				)
 				(path "/01334e4c-8cca-432b-91da-03bd5fdff467/1e63bddd-84c8-43db-b869-9e49fd6bc3cb"
-					(reference "C15")
+					(reference "C13")
 					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Amplifier_Operational:LM324")
+		(at 72.39 121.92 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "e98af3dc-4e76-4c41-a0fe-2ddd6ba2bbf2")
+		(property "Reference" "U2"
+			(at 72.39 111.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "LM324DT"
+			(at 72.39 114.3 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm"
+			(at 71.12 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_1809051220_STMicroelectronics-LM324DT_C71035.pdf"
+			(at 73.66 116.84 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Low-Power, Quad-Operational Amplifiers, DIP-14/SOIC-14/SSOP-14"
+			(at 72.39 121.92 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" ""
+			(at 72.39 121.92 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLC" "C71035"
+			(at 72.39 121.92 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "13"
+			(uuid "8c6642bb-7e89-4dc1-a87a-db295bd6a68a")
+		)
+		(pin "9"
+			(uuid "0f39ebb9-a5ce-4ffd-b20d-30f00d1686dc")
+		)
+		(pin "5"
+			(uuid "989c0b20-36fb-4f64-a316-143ca72a9753")
+		)
+		(pin "4"
+			(uuid "15b9131d-87d0-487a-87f8-b16550fb84b5")
+		)
+		(pin "2"
+			(uuid "f03a9fe6-944c-497e-84b1-63e349c31490")
+		)
+		(pin "10"
+			(uuid "0f89d967-3552-462f-bffd-8c1e026a8dcd")
+		)
+		(pin "1"
+			(uuid "c1a76c34-b353-4bae-a3e0-caf657778482")
+		)
+		(pin "11"
+			(uuid "de3c6cab-c6f3-4b1d-b85f-00c6284191fb")
+		)
+		(pin "3"
+			(uuid "ba7f0cb8-09ed-4c2b-93bc-e9398802af8a")
+		)
+		(pin "12"
+			(uuid "7cc160a9-0482-431c-b2d4-29123c1fd259")
+		)
+		(pin "6"
+			(uuid "c155b19d-a494-47bd-a8fe-9c2779aa2160")
+		)
+		(pin "8"
+			(uuid "b520b329-9b0f-4e95-9672-70016668b246")
+		)
+		(pin "14"
+			(uuid "7f5fe03c-6b8c-433c-b6d5-a088da8617ab")
+		)
+		(pin "7"
+			(uuid "9d21c501-b054-4001-b8d9-047792af1adc")
+		)
+		(instances
+			(project "output_board"
+				(path "/01334e4c-8cca-432b-91da-03bd5fdff467/997bb8f5-28c2-4cea-b91d-e0193d46d379"
+					(reference "U2")
+					(unit 1)
+				)
+				(path "/01334e4c-8cca-432b-91da-03bd5fdff467/784654d4-1031-4021-98e1-83b5de00916b"
+					(reference "U2")
+					(unit 2)
+				)
+				(path "/01334e4c-8cca-432b-91da-03bd5fdff467/7bfb3c86-2006-4e5a-a97d-386e3815f948"
+					(reference "U2")
+					(unit 3)
+				)
+				(path "/01334e4c-8cca-432b-91da-03bd5fdff467/1e63bddd-84c8-43db-b869-9e49fd6bc3cb"
+					(reference "U2")
+					(unit 4)
 				)
 			)
 		)
@@ -5372,7 +5511,7 @@
 				)
 			)
 		)
-		(property "Value" "D_Schottky"
+		(property "Value" "40V"
 			(at 191.4525 74.93 0)
 			(effects
 				(font
@@ -5380,7 +5519,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Diode_SMD:D_SOD-323"
 			(at 191.77 68.58 0)
 			(effects
 				(font
@@ -5389,7 +5528,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2204281430_Guangdong-Hottech-1N5819WS_C191023.pdf"
 			(at 191.77 68.58 0)
 			(effects
 				(font
@@ -5399,6 +5538,24 @@
 			)
 		)
 		(property "Description" "Schottky diode"
+			(at 191.77 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" ""
+			(at 191.77 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLC" "C191023"
 			(at 191.77 68.58 0)
 			(effects
 				(font
