@@ -315,10 +315,10 @@
           "group_by": false,
           "label": "Datasheet",
           "name": "Datasheet",
-          "show": true
+          "show": false
         },
         {
-          "group_by": false,
+          "group_by": true,
           "label": "Footprint",
           "name": "Footprint",
           "show": true
@@ -333,7 +333,7 @@
           "group_by": true,
           "label": "DNP",
           "name": "${DNP}",
-          "show": true
+          "show": false
         },
         {
           "group_by": false,
@@ -346,13 +346,37 @@
           "label": "Description",
           "name": "Description",
           "show": false
+        },
+        {
+          "group_by": true,
+          "label": "MPN",
+          "name": "MPN",
+          "show": true
+        },
+        {
+          "group_by": false,
+          "label": "MPN_ALT",
+          "name": "MPN_ALT",
+          "show": true
+        },
+        {
+          "group_by": false,
+          "label": "MOUSER",
+          "name": "MOUSER",
+          "show": true
+        },
+        {
+          "group_by": false,
+          "label": "LCSC",
+          "name": "LCSC",
+          "show": true
         }
       ],
       "filter_string": "",
       "group_symbols": true,
       "name": "",
-      "sort_asc": true,
-      "sort_field": "Reference"
+      "sort_asc": false,
+      "sort_field": "${QUANTITY}"
     },
     "connection_grid_size": 50.0,
     "drawing": {
@@ -397,6 +421,22 @@
     [
       "01334e4c-8cca-432b-91da-03bd5fdff467",
       "Root"
+    ],
+    [
+      "997bb8f5-28c2-4cea-b91d-e0193d46d379",
+      "Channel 1"
+    ],
+    [
+      "784654d4-1031-4021-98e1-83b5de00916b",
+      "Channel 2"
+    ],
+    [
+      "7bfb3c86-2006-4e5a-a97d-386e3815f948",
+      "Channel 3"
+    ],
+    [
+      "1e63bddd-84c8-43db-b869-9e49fd6bc3cb",
+      "Channel 4"
     ]
   ],
   "text_variables": {}
