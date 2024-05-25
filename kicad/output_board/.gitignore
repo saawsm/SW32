@@ -29,6 +29,10 @@ fp-info-cache
 # Generated BOM files
 *.xml
 *.csv
+*ibom.html
 
 # Generated Schematic Files
 *.pdf
+
+# Generated Gerbers
+gerbers/

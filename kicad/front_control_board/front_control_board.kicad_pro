@@ -336,9 +336,9 @@
           "show": true
         },
         {
-          "group_by": true,
-          "label": "JLC",
-          "name": "JLC",
+          "group_by": false,
+          "label": "Service",
+          "name": "Service",
           "show": true
         },
         {

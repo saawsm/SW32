@@ -731,7 +731,7 @@
 				(hide yes)
 			)
 		)
-		(property "JLC" ""
+		(property "Service" "PCBA;HandAssembly"
 			(at 96.52 189.23 0)
 			(effects
 				(font
@@ -804,7 +804,7 @@
 				(hide yes)
 			)
 		)
-		(property "JLC" ""
+		(property "Service" "PCBA;HandAssembly"
 			(at 34.29 180.34 0)
 			(effects
 				(font
@@ -877,7 +877,7 @@
 				(hide yes)
 			)
 		)
-		(property "JLC" ""
+		(property "Service" "PCBA;HandAssembly"
 			(at 48.26 180.34 0)
 			(effects
 				(font
@@ -950,7 +950,7 @@
 				(hide yes)
 			)
 		)
-		(property "JLC" ""
+		(property "Service" "PCBA;HandAssembly"
 			(at 39.37 189.23 0)
 			(effects
 				(font
@@ -1023,7 +1023,7 @@
 				(hide yes)
 			)
 		)
-		(property "JLC" ""
+		(property "Service" "PCBA;HandAssembly"
 			(at 20.32 189.23 0)
 			(effects
 				(font
@@ -1096,7 +1096,7 @@
 				(hide yes)
 			)
 		)
-		(property "JLC" ""
+		(property "Service" "PCBA;HandAssembly"
 			(at 58.42 189.23 0)
 			(effects
 				(font
@@ -1169,7 +1169,7 @@
 				(hide yes)
 			)
 		)
-		(property "JLC" ""
+		(property "Service" "PCBA;HandAssembly"
 			(at 77.47 189.23 0)
 			(effects
 				(font
@@ -1242,7 +1242,7 @@
 				(hide yes)
 			)
 		)
-		(property "JLC" ""
+		(property "Service" "PCBA;HandAssembly"
 			(at 20.32 180.34 0)
 			(effects
 				(font

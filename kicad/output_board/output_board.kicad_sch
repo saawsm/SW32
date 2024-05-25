@@ -3352,7 +3352,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C71035"
 			(at 275.59 149.86 0)
 			(effects
 				(font
@@ -3361,7 +3361,7 @@
 				(hide yes)
 			)
 		)
-		(property "JLC" "C71035"
+		(property "Service" "PCBA"
 			(at 275.59 149.86 0)
 			(effects
 				(font
@@ -3476,7 +3476,7 @@
 				(hide yes)
 			)
 		)
-		(property "JLC" ""
+		(property "Service" "PCBA;HandAssembly"
 			(at 35.56 189.23 0)
 			(effects
 				(font
@@ -3550,7 +3550,7 @@
 				(hide yes)
 			)
 		)
-		(property "JLC" ""
+		(property "Service" "PCBA;HandAssembly"
 			(at 226.06 114.3 0)
 			(effects
 				(font
@@ -3629,7 +3629,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C14663"
 			(at 260.35 149.86 0)
 			(effects
 				(font
@@ -3638,7 +3638,7 @@
 				(hide yes)
 			)
 		)
-		(property "JLC" "C14663"
+		(property "Service" "PCBA"
 			(at 260.35 149.86 0)
 			(effects
 				(font
@@ -3726,7 +3726,7 @@
 				(hide yes)
 			)
 		)
-		(property "JLC" ""
+		(property "Service" "HandAssembly"
 			(at 128.27 152.4 0)
 			(effects
 				(font
@@ -3838,7 +3838,7 @@
 				(hide yes)
 			)
 		)
-		(property "JLC" ""
+		(property "Service" "PCBA;HandAssembly"
 			(at 21.59 189.23 0)
 			(effects
 				(font
@@ -4105,7 +4105,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C15849"
 			(at 250.19 149.86 0)
 			(effects
 				(font
@@ -4114,7 +4114,7 @@
 				(hide yes)
 			)
 		)
-		(property "JLC" "C15849"
+		(property "Service" "PCBA"
 			(at 250.19 149.86 0)
 			(effects
 				(font
@@ -4323,7 +4323,7 @@
 				(hide yes)
 			)
 		)
-		(property "JLC" ""
+		(property "Service" "PCBA;HandAssembly"
 			(at 49.53 189.23 0)
 			(effects
 				(font
@@ -4405,7 +4405,7 @@
 				(hide yes)
 			)
 		)
-		(property "JLC" ""
+		(property "Service" "HandAssembly"
 			(at 86.36 152.4 0)
 			(effects
 				(font
@@ -4581,7 +4581,7 @@
 				(hide yes)
 			)
 		)
-		(property "JLC" ""
+		(property "Service" "PCBA"
 			(at 226.06 123.19 0)
 			(effects
 				(font
@@ -4669,7 +4669,7 @@
 				(hide yes)
 			)
 		)
-		(property "JLC" ""
+		(property "Service" "HandAssembly"
 			(at 274.32 67.31 0)
 			(effects
 				(font
@@ -4779,7 +4779,7 @@
 				(hide yes)
 			)
 		)
-		(property "JLC" ""
+		(property "Service" "PCBA"
 			(at 114.3 53.34 0)
 			(effects
 				(font

@@ -3206,7 +3206,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C22775"
 			(at 218.44 96.52 0)
 			(effects
 				(font
@@ -3215,7 +3215,7 @@
 				(hide yes)
 			)
 		)
-		(property "JLC" "C22775"
+		(property "Service" "PCBA"
 			(at 218.44 96.52 0)
 			(effects
 				(font
@@ -3305,7 +3305,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C21190"
 			(at 97.79 82.55 0)
 			(effects
 				(font
@@ -3314,7 +3314,7 @@
 				(hide yes)
 			)
 		)
-		(property "JLC" "C21190"
+		(property "Service" "PCBA"
 			(at 97.79 82.55 0)
 			(effects
 				(font
@@ -3404,7 +3404,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C25804"
 			(at 60.96 135.89 0)
 			(effects
 				(font
@@ -3413,7 +3413,7 @@
 				(hide yes)
 			)
 		)
-		(property "JLC" "C25804"
+		(property "Service" "PCBA"
 			(at 60.96 135.89 0)
 			(effects
 				(font
@@ -3503,7 +3503,7 @@
 				(hide yes)
 			)
 		)
-		(property "JLC" ""
+		(property "Service" "PCBA"
 			(at 121.92 66.04 0)
 			(effects
 				(font
@@ -3596,7 +3596,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C21190"
 			(at 133.35 69.85 0)
 			(effects
 				(font
@@ -3605,7 +3605,7 @@
 				(hide yes)
 			)
 		)
-		(property "JLC" "C21190"
+		(property "Service" "PCBA"
 			(at 133.35 69.85 0)
 			(effects
 				(font
@@ -3773,7 +3773,7 @@
 				(hide yes)
 			)
 		)
-		(property "JLC" ""
+		(property "Service" "PCBA"
 			(at 228.6 96.52 0)
 			(effects
 				(font
@@ -3866,7 +3866,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C25804"
 			(at 181.61 123.19 0)
 			(effects
 				(font
@@ -3875,7 +3875,7 @@
 				(hide yes)
 			)
 		)
-		(property "JLC" "C25804"
+		(property "Service" "PCBA"
 			(at 181.61 123.19 0)
 			(effects
 				(font
@@ -3963,7 +3963,7 @@
 				(hide yes)
 			)
 		)
-		(property "JLC" ""
+		(property "Service" "HandAssembly"
 			(at 246.38 63.5 0)
 			(effects
 				(font
@@ -4220,7 +4220,7 @@
 				(hide yes)
 			)
 		)
-		(property "JLC" ""
+		(property "Service" "PCBA"
 			(at 198.12 116.84 0)
 			(effects
 				(font
@@ -4467,7 +4467,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C25804"
 			(at 212.09 101.6 0)
 			(effects
 				(font
@@ -4476,7 +4476,7 @@
 				(hide yes)
 			)
 		)
-		(property "JLC" "C25804"
+		(property "Service" "PCBA"
 			(at 212.09 101.6 0)
 			(effects
 				(font
@@ -4565,7 +4565,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C191023"
 			(at 191.77 58.42 0)
 			(effects
 				(font
@@ -4574,7 +4574,7 @@
 				(hide yes)
 			)
 		)
-		(property "JLC" "C191023"
+		(property "Service" "PCBA"
 			(at 191.77 58.42 0)
 			(effects
 				(font
@@ -4662,7 +4662,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C25804"
 			(at 71.12 105.41 0)
 			(effects
 				(font
@@ -4671,7 +4671,7 @@
 				(hide yes)
 			)
 		)
-		(property "JLC" "C25804"
+		(property "Service" "PCBA"
 			(at 71.12 105.41 0)
 			(effects
 				(font
@@ -4762,7 +4762,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C14663"
 			(at 143.51 69.85 0)
 			(effects
 				(font
@@ -4771,7 +4771,7 @@
 				(hide yes)
 			)
 		)
-		(property "JLC" "C14663"
+		(property "Service" "PCBA"
 			(at 143.51 69.85 0)
 			(effects
 				(font
@@ -4859,7 +4859,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C22775"
 			(at 187.96 116.84 0)
 			(effects
 				(font
@@ -4868,7 +4868,7 @@
 				(hide yes)
 			)
 		)
-		(property "JLC" "C22775"
+		(property "Service" "PCBA"
 			(at 187.96 116.84 0)
 			(effects
 				(font
@@ -4958,7 +4958,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C17944"
 			(at 97.79 69.85 0)
 			(effects
 				(font
@@ -4967,7 +4967,7 @@
 				(hide yes)
 			)
 		)
-		(property "JLC" "C17944"
+		(property "Service" "PCBA"
 			(at 97.79 69.85 0)
 			(effects
 				(font
@@ -5056,7 +5056,7 @@
 				(hide yes)
 			)
 		)
-		(property "JLC" ""
+		(property "Service" "PCBA"
 			(at 175.26 58.42 0)
 			(effects
 				(font
@@ -5146,7 +5146,7 @@
 				(hide yes)
 			)
 		)
-		(property "JLC" ""
+		(property "Service" ""
 			(at 45.72 68.58 0)
 			(effects
 				(font
@@ -5237,7 +5237,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C14663"
 			(at 109.22 69.85 0)
 			(effects
 				(font
@@ -5246,7 +5246,7 @@
 				(hide yes)
 			)
 		)
-		(property "JLC" "C14663"
+		(property "Service" "PCBA"
 			(at 109.22 69.85 0)
 			(effects
 				(font
@@ -5335,7 +5335,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C71035"
 			(at 72.39 121.92 0)
 			(effects
 				(font
@@ -5344,7 +5344,7 @@
 				(hide yes)
 			)
 		)
-		(property "JLC" "C71035"
+		(property "Service" "PCBA"
 			(at 72.39 121.92 0)
 			(effects
 				(font
@@ -5546,7 +5546,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C191023"
 			(at 191.77 68.58 0)
 			(effects
 				(font
@@ -5555,7 +5555,7 @@
 				(hide yes)
 			)
 		)
-		(property "JLC" "C191023"
+		(property "Service" "PCBA"
 			(at 191.77 68.58 0)
 			(effects
 				(font
