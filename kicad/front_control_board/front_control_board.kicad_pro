@@ -337,14 +337,14 @@
         },
         {
           "group_by": false,
-          "label": "Service",
-          "name": "Service",
+          "label": "Qty",
+          "name": "${QUANTITY}",
           "show": true
         },
         {
           "group_by": false,
-          "label": "Qty",
-          "name": "${QUANTITY}",
+          "label": "Service",
+          "name": "Service",
           "show": true
         },
         {

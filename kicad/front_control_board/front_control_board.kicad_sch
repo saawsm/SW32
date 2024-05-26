@@ -6,7 +6,7 @@
 	(paper "A4")
 	(title_block
 		(title "SW32 - Front Control Board")
-		(date "2024-05-23")
+		(date "2024-05-26")
 		(rev "1")
 		(company "saawsm")
 		(comment 1 "Buttons and encoder are firmware debounced.")
@@ -10211,7 +10211,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2006151006_Worldsemi-WS2812B-B-W_C114586.pdf"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2106062036_Worldsemi-WS2812B-B-T_C2761795.pdf"
 			(at 187.96 40.005 0)
 			(effects
 				(font
@@ -10230,7 +10230,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C114586"
+		(property "LCSC" "C2761795"
 			(at 185.42 30.48 0)
 			(effects
 				(font
@@ -11520,7 +11520,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2006151006_Worldsemi-WS2812B-B-W_C114586.pdf"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2106062036_Worldsemi-WS2812B-B-T_C2761795.pdf"
 			(at 246.38 40.005 0)
 			(effects
 				(font
@@ -11539,7 +11539,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C114586"
+		(property "LCSC" "C2761795"
 			(at 243.84 30.48 0)
 			(effects
 				(font
@@ -12128,7 +12128,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2006151006_Worldsemi-WS2812B-B-W_C114586.pdf"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2106062036_Worldsemi-WS2812B-B-T_C2761795.pdf"
 			(at 102.87 40.005 0)
 			(effects
 				(font
@@ -12147,7 +12147,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C114586"
+		(property "LCSC" "C2761795"
 			(at 100.33 30.48 0)
 			(effects
 				(font
@@ -12653,7 +12653,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2006151006_Worldsemi-WS2812B-B-W_C114586.pdf"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2106062036_Worldsemi-WS2812B-B-T_C2761795.pdf"
 			(at 213.36 40.005 0)
 			(effects
 				(font
@@ -12672,7 +12672,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C114586"
+		(property "LCSC" "C2761795"
 			(at 210.82 30.48 0)
 			(effects
 				(font
@@ -13714,7 +13714,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2006151006_Worldsemi-WS2812B-B-W_C114586.pdf"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2106062036_Worldsemi-WS2812B-B-T_C2761795.pdf"
 			(at 262.89 40.005 0)
 			(effects
 				(font
@@ -13733,7 +13733,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C114586"
+		(property "LCSC" "C2761795"
 			(at 260.35 30.48 0)
 			(effects
 				(font
@@ -14858,7 +14858,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2006151006_Worldsemi-WS2812B-B-W_C114586.pdf"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2106062036_Worldsemi-WS2812B-B-T_C2761795.pdf"
 			(at 147.32 40.005 0)
 			(effects
 				(font
@@ -14877,7 +14877,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C114586"
+		(property "LCSC" "C2761795"
 			(at 144.78 30.48 0)
 			(effects
 				(font
@@ -16069,7 +16069,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2006151006_Worldsemi-WS2812B-B-W_C114586.pdf"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2106062036_Worldsemi-WS2812B-B-T_C2761795.pdf"
 			(at 130.81 40.005 0)
 			(effects
 				(font
@@ -16088,7 +16088,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C114586"
+		(property "LCSC" "C2761795"
 			(at 128.27 30.48 0)
 			(effects
 				(font
@@ -19074,7 +19074,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2006151006_Worldsemi-WS2812B-B-W_C114586.pdf"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2106062036_Worldsemi-WS2812B-B-T_C2761795.pdf"
 			(at 229.87 40.005 0)
 			(effects
 				(font
@@ -19093,7 +19093,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C114586"
+		(property "LCSC" "C2761795"
 			(at 227.33 30.48 0)
 			(effects
 				(font
@@ -19252,7 +19252,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C3812136"
+		(property "LCSC" "C409834"
 			(at 59.69 90.17 0)
 			(effects
 				(font
@@ -19388,7 +19388,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2006151006_Worldsemi-WS2812B-B-W_C114586.pdf"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2106062036_Worldsemi-WS2812B-B-T_C2761795.pdf"
 			(at 171.45 40.005 0)
 			(effects
 				(font
@@ -19407,7 +19407,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C114586"
+		(property "LCSC" "C2761795"
 			(at 168.91 30.48 0)
 			(effects
 				(font
