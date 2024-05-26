@@ -3489,7 +3489,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_1809192211_Infineon-Technologies-IRF9Z24NPBF_C2576.pdf"
 			(at 121.92 66.04 0)
 			(effects
 				(font
@@ -3507,7 +3507,7 @@
 				(hide yes)
 			)
 		)
-		(property "Service" "PCBA"
+		(property "Service" "HandAssembly"
 			(at 121.92 66.04 0)
 			(effects
 				(font
@@ -3850,7 +3850,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "Q_NMOS_GSD"
+		(property "Value" "AO3400A"
 			(at 234.95 97.7899 0)
 			(effects
 				(font
@@ -3868,7 +3868,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_1811081213_Alpha---Omega-Semicon-AO3400A_C20917.pdf"
 			(at 228.6 96.52 0)
 			(effects
 				(font
@@ -3887,6 +3887,15 @@
 			)
 		)
 		(property "Service" "PCBA"
+			(at 228.6 96.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C20917"
 			(at 228.6 96.52 0)
 			(effects
 				(font
@@ -3959,7 +3968,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "https://www.mouser.com/datasheet/2/449/Yuetone_XC-600127-1212403.pdf"
 			(at 246.38 63.5 0)
 			(effects
 				(font
@@ -4198,7 +4207,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "Q_NMOS_GSD"
+		(property "Value" "AO3400A"
 			(at 204.47 118.1099 0)
 			(effects
 				(font
@@ -4216,7 +4225,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_1811081213_Alpha---Omega-Semicon-AO3400A_C20917.pdf"
 			(at 198.12 116.84 0)
 			(effects
 				(font
@@ -4235,6 +4244,15 @@
 			)
 		)
 		(property "Service" "PCBA"
+			(at 198.12 116.84 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C20917"
 			(at 198.12 116.84 0)
 			(effects
 				(font
@@ -4562,7 +4580,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_Diodes-Incorporated-SMAJ13A-13-F_C110519.pdf"
 			(at 175.26 58.42 0)
 			(effects
 				(font
@@ -4857,7 +4875,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2210210130_onsemi-BAV23CLT1G_C232533.pdf"
 			(at 194.31 55.88 0)
 			(effects
 				(font
@@ -5056,7 +5074,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2206010145_UNI-ROYAL-Uniroyal-Elec-1206W4F2001T5E_C17944.pdf"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2206010116_UNI-ROYAL-Uniroyal-Elec-0603WAF2001T5E_C22975.pdf"
 			(at 97.79 69.85 0)
 			(effects
 				(font
@@ -5074,7 +5092,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C17944"
+		(property "LCSC" "C22975"
 			(at 97.79 69.85 0)
 			(effects
 				(font
@@ -5154,7 +5172,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2210210130_onsemi-BAV23CLT1G_C232533.pdf"
 			(at 194.31 66.04 0)
 			(effects
 				(font
