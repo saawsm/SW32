@@ -124,11 +124,11 @@ Get-ChildItem -Path $boards -Recurse -Include '*.kicad_sch' | Where-Object { $_.
     $gerbers = Join-Path -Path $_.Directory -ChildPath "gerbers"
     if (Test-Path -Path $pcb_file) {       
         New-Item -Force -ItemType Directory -Path $gerbers
+        $generated_items += $gerbers
        
         # TODO: Run a DRC before generating gerbers
         # kicad-cli pcb drc --exit-code-violations --schematic-parity --severity-error --severity-warning "$pcb_file"
-				
-        # TODO: Use "Service" column of bom for iBOM variant control - output 
+		
         # Generate the interactive BOM
         Write-Host "Generating iBOM..."
             
@@ -136,19 +136,19 @@ Get-ChildItem -Path $boards -Recurse -Include '*.kicad_sch' | Where-Object { $_.
         $arguments = """$ibom"" --no-browser --extra-fields LCSC --include-nets --include-tracks --variant-field Service --variants-blacklist HandAssembly --name-format ""%f-pcba-ibom"" --dest-dir ./ --extra-data-file ""$pcb_file"" ""$pcb_file"""
         Start-Process -Wait -NoNewWindow -FilePath "python" -ArgumentList $arguments
 
-			  $ibom_pcba = Join-Path -Path $_.Directory -ChildPath "$name-pcba-ibom.html"
-				if (Test-Path -Path $ibom_pcba) {
-					$boards_bundle += $ibom_pcba
+        $ibom_pcba = Join-Path -Path $_.Directory -ChildPath "$name-pcba-ibom.html"
+        if (Test-Path -Path $ibom_pcba) {
+            $boards_bundle += $ibom_pcba
         }
         
-				# Generate full iBOM for BOMs bundle
+        # Generate full iBOM for BOMs bundle
         $arguments = """$ibom"" --no-browser --extra-fields LCSC,Service,`${DNP} --include-nets --include-tracks --variant-field Service --name-format ""%f-ibom"" --dest-dir ./ --extra-data-file ""$pcb_file"" ""$pcb_file"""
         Start-Process -Wait -NoNewWindow -FilePath "python" -ArgumentList $arguments
 
-				$ibom_full = Join-Path -Path $_.Directory -ChildPath "$name-ibom.html"
-				if (Test-Path -Path $ibom_full) {
-					$boms_bundle += $ibom_full
-				}
+        $ibom_full = Join-Path -Path $_.Directory -ChildPath "$name-ibom.html"
+        if (Test-Path -Path $ibom_full) {
+            $boms_bundle += $ibom_full
+        }
 
         # Generate gerbers
         Write-Host "Generating gerbers..."
@@ -173,25 +173,26 @@ Get-ChildItem -Path $boards -Recurse -Include '*.kicad_sch' | Where-Object { $_.
 
         # Make POS file compliant with JLCSMT
         $CSV = Get-Content -Path $pos
-				if($CSV.Count -gt 1) {
-					$CSV[0] = '"Designator","Val","Package","MidX","MidY","Rotation","Layer"'
-					$CSV | Out-File -FilePath $pos
-				}
+        if ($CSV.Count -gt 1) {
+            $CSV[0] = '"Designator","Val","Package","MidX","MidY","Rotation","Layer"'
+            $CSV | Out-File -FilePath $pos
+        }
 				
         # Add gerber files to zip (including pos and drill files)
         $boards_bundle += (Get-ChildItem -Path "$gerbers/*")
     }
 
     # Track generated files
-    $generated_items += , $boards_bundle
+    $generated_items += $boards_bundle
+    $generated_items += $boms_bundle
 
     Write-Host "Zipping board assets..."
     $board_bundle = Join-Path -Path $_.Directory -ChildPath "$name.zip"    
-    $generated_items += , $board_bundle
+    $generated_items += $board_bundle
 
     $boards_bundle | Compress-Archive -Force -DestinationPath $board_bundle
    
-    $pcbs_bundle += , $board_bundle   
+    $pcbs_bundle += $board_bundle   
 
 }
 
@@ -204,8 +205,10 @@ $boms_bundle | Compress-Archive -Force -DestinationPath "$package_name-BOMs.zip"
 
 # Delete generated files
 Write-Host "Cleaning up..."
-$generated_items | Select-Object -Unique | ForEach-Object { if (Test-Path -Path $_) { Remove-Item $_ } }
-$boms_bundle | Select-Object -Unique | ForEach-Object { if (Test-Path -Path $_) { Remove-Item $_ } }
+$generated_items | Sort-Object -Unique -Descending | ForEach-Object { 
+    Write-Host "  - '$($_)'"
+    if (Test-Path -Path $_) { Remove-Item $_ }
+}
 
 
 Write-Host ""
