@@ -100,8 +100,8 @@ Get-ChildItem -Path $boards -Recurse -Include '*.kicad_sch' | Where-Object { $_.
     Start-Process -Wait -NoNewWindow -FilePath $kicad_cli -ArgumentList $arguments
     Write-Host "Generated to '$($raw_bom)'."
 
-    # Include raw bom in BOMs and board bundle
-    $boms_bundle += $raw_bom
+    # Track generated raw bom file
+    $generated_items += $raw_bom
 
     $CSV = Import-Csv -Path $raw_bom
     
