@@ -5043,7 +5043,7 @@
 				)
 			)
 		)
-		(property "Footprint" "SaawLib:L_FNR6028S"
+		(property "Footprint" "Inductor_SMD:L_Sunlord_SWPA6020S"
 			(at 246.38 129.54 0)
 			(effects
 				(font
@@ -5052,7 +5052,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_cjiang--Changjiang-Microelectronics-Tech-FNR6028S120MT_C168035.pdf"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2310251551_Sunlord-SWPA6020S120MT_C96927.pdf"
 			(at 246.38 129.54 0)
 			(effects
 				(font
@@ -5070,7 +5070,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C168035"
+		(property "LCSC" "C96927"
 			(at 246.38 129.54 0)
 			(effects
 				(font
@@ -7146,7 +7146,7 @@
 				)
 			)
 		)
-		(property "Footprint" "SaawLib:L_FNR6028S"
+		(property "Footprint" "Inductor_SMD:L_Sunlord_SWPA6020S"
 			(at 245.11 50.8 0)
 			(effects
 				(font
@@ -7155,7 +7155,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_cjiang--Changjiang-Microelectronics-Tech-FNR6028S120MT_C168035.pdf"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2310251551_Sunlord-SWPA6020S120MT_C96927.pdf"
 			(at 245.11 50.8 0)
 			(effects
 				(font
@@ -7173,7 +7173,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C168035"
+		(property "LCSC" "C96927"
 			(at 245.11 50.8 0)
 			(effects
 				(font
