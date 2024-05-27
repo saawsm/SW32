@@ -5043,7 +5043,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "SaawLib:L_FNR6028S"
 			(at 246.38 129.54 0)
 			(effects
 				(font
@@ -7146,7 +7146,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "SaawLib:L_FNR6028S"
 			(at 245.11 50.8 0)
 			(effects
 				(font
