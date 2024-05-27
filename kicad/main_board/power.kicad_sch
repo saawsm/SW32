@@ -9629,7 +9629,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "SW_Push"
+		(property "Value" "PWR"
 			(at 88.9 114.2999 90)
 			(effects
 				(font

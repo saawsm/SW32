@@ -10941,7 +10941,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Diode_SMD:ST_QFN-2L_1.6x1.0mm"
 			(at 21.59 96.52 0)
 			(effects
 				(font
@@ -10950,7 +10950,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2201300300_STMicroelectronics-ESDA25P35-1U1M_C1974707.pdf"
 			(at 21.59 96.52 0)
 			(effects
 				(font
@@ -10968,7 +10968,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C1974707"
 			(at 21.59 96.52 0)
 			(effects
 				(font
