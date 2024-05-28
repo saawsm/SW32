@@ -13052,7 +13052,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Sensor_Audio:CUI_CMC-4013-SMT"
 			(at 38.1 179.07 90)
 			(effects
 				(font

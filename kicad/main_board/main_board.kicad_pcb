@@ -12037,7 +12037,7 @@
 		(path "/c17fbfa0-81d7-4817-8752-da6de21e6518/00ec66a9-e7a2-4262-b7e6-e5b43dd3eb49")
 		(sheetname "Controller")
 		(sheetfile "controller.kicad_sch")
-		(attr through_hole exclude_from_bom dnp)
+		(attr through_hole dnp)
 		(fp_line
 			(start -1.33 -1.33)
 			(end 0 -1.33)
@@ -44542,7 +44542,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.cuidevices.com/product/resource/cmc-4013-2-smt-tr.pdf"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2209081730_Goertek-B4013AM423-092_C5160218.pdf"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -44566,7 +44566,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C3273723"
+		(property "LCSC" "C5160218"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -53414,7 +53414,7 @@
 		(path "/c17fbfa0-81d7-4817-8752-da6de21e6518/d949b67d-74a7-4251-9edf-c871ddbb0ff6")
 		(sheetname "Controller")
 		(sheetfile "controller.kicad_sch")
-		(attr through_hole exclude_from_bom dnp)
+		(attr through_hole dnp)
 		(fp_line
 			(start -1.33 -1.33)
 			(end 0 -1.33)
@@ -55608,7 +55608,7 @@
 		(path "/c17fbfa0-81d7-4817-8752-da6de21e6518/2d7748d2-49ad-4edd-a8bc-51a59a1457c2")
 		(sheetname "Controller")
 		(sheetfile "controller.kicad_sch")
-		(attr through_hole exclude_from_bom dnp)
+		(attr through_hole dnp)
 		(fp_line
 			(start 1.33 1.27)
 			(end 1.33 3.87)
