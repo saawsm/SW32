@@ -6,7 +6,7 @@
 	(paper "A4")
 	(title_block
 		(title "SW32 - Main Board")
-		(date "2024-05-23")
+		(date "2024-05-29")
 		(rev "1")
 		(company "saawsm")
 		(comment 4 "System power supplies and soft latching power switch.")
