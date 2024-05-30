@@ -4,9 +4,9 @@
 	(constraint track_width (min 5mil))
 	(condition "A.Type == 'track'"))
 
-(rule "Minimum Trace Spacing"
-	(constraint clearance (min 5mil))
-	(condition "A.Type == 'track' && B.Type == A.Type"))
+#(rule "Minimum Trace Spacing"
+#	(constraint clearance (min 0.2mm))
+#	(condition "A.Type == 'track' && B.Type == A.Type"))
 
 (rule "Minimum Text"
 	(constraint text_thickness (min 0.15mm))
@@ -30,11 +30,11 @@
 	(constraint hole_size (min 0.2mm) (max 6.3mm)))
 
 (rule "Minimum Via Hole Size"
-	(constraint hole_size (min 0.2mm))
+	(constraint hole_size (min 0.3mm))
 	(condition "A.Type == 'via'"))
 
 (rule "Minimum Via Diameter"
-	(constraint via_diameter (min 0.35mm))
+	(constraint via_diameter (min 0.45mm))
 	(condition "A.Type == 'via'"))
 
 (rule "PTH Hole Size"

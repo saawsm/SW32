@@ -9,7 +9,7 @@
 	(paper "A4")
 	(title_block
 		(title "SW32 - Front Panel")
-		(date "2024-05-27")
+		(date "2024-05-31")
 		(rev "1")
 		(company "saawsm")
 	)
@@ -125,4 +125,15 @@
 		)
 	)
 	(net 0 "")
+	(gr_rect
+		(start 48.26 60.96)
+		(end 251.46 127)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill none)
+		(layer "Edge.Cuts")
+		(uuid "2c8d9d44-89c3-4afd-95c5-dbd455010c4d")
+	)
 )
