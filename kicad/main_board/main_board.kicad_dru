@@ -4,9 +4,9 @@
 	(constraint track_width (min 5mil))
 	(condition "A.Type == 'track'"))
 
-(rule "Minimum Trace Spacing"
-	(constraint clearance (min 5mil))
-	(condition "A.Type == 'track' && B.Type == A.Type"))
+#(rule "Minimum Trace Spacing"
+#	(constraint clearance (min 5mil))
+#	(condition "A.Type == 'track' && B.Type == A.Type"))
 
 (rule "Minimum Text"
 	(constraint text_thickness (min 0.15mm))
