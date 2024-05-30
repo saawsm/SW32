@@ -13675,10 +13675,9 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "76cfc5ce-9f58-4c39-baf2-bc90bcd15ca4")
 		(property "Reference" "D5"
-			(at 154.5941 21.59 0)
+			(at 154.686 21.844 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13686,8 +13685,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "LINE"
-			(at 154.5941 24.13 0)
+		(property "Value" "MIC"
+			(at 154.686 24.384 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14997,10 +14996,9 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "995dfd56-463a-4a4c-808f-005f6fb802d2")
 		(property "Reference" "D4"
-			(at 138.0841 21.59 0)
+			(at 136.906 21.844 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15008,8 +15006,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "MIC"
-			(at 138.0841 24.13 0)
+		(property "Value" "LINE"
+			(at 136.906 24.384 0)
 			(effects
 				(font
 					(size 1.27 1.27)
