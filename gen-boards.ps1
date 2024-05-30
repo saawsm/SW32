@@ -166,7 +166,7 @@ Get-ChildItem -Path $boards -Recurse -Include '*.kicad_sch' | Where-Object { $_.
         
         # Generate POS...
         Write-Host "Generating pos..."
-        $pos = Join-Path -Path $gerbers -ChildPath "$name.pos"
+        $pos = Join-Path -Path $gerbers -ChildPath "$name.pos.csv"
         $arguments = "pcb export pos --output ""$pos"" --side front --format csv --units mm --smd-only --exclude-dnp ""$pcb_file"""
         Start-Process -Wait -NoNewWindow -FilePath $kicad_cli -ArgumentList $arguments
         Write-Host "Generated to '$($pos)'." 
