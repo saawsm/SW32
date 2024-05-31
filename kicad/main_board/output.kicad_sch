@@ -6,7 +6,7 @@
 	(paper "A4")
 	(title_block
 		(title "SW32 - Main Board")
-		(date "2024-05-29")
+		(date "2024-05-31")
 		(rev "1")
 		(company "saawsm")
 		(comment 4 "Connectors between the output and main board.")
@@ -3102,7 +3102,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "87fbf5b9-5b51-45d1-b480-60982231f982")
-		(property "Reference" "R82"
+		(property "Reference" "R87"
 			(at 95.25 62.2299 0)
 			(effects
 				(font
@@ -3174,7 +3174,7 @@
 		(instances
 			(project "main_board"
 				(path "/8e1f1504-76c2-49e6-9261-3c1190503f8c/1327ee6b-7a00-44f7-81fe-b42319e4569a"
-					(reference "R82")
+					(reference "R87")
 					(unit 1)
 				)
 			)

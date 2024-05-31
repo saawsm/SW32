@@ -6,7 +6,7 @@
 	(paper "A4")
 	(title_block
 		(title "SW32 - Main Board")
-		(date "2024-05-29")
+		(date "2024-05-31")
 		(rev "1")
 		(company "saawsm")
 		(comment 4 "USB-PD control and external input triggers.")

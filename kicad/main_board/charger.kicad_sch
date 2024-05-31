@@ -6,7 +6,7 @@
 	(paper "A4")
 	(title_block
 		(title "SW32 - Main Board")
-		(date "2024-05-29")
+		(date "2024-05-31")
 		(rev "1")
 		(company "saawsm")
 		(comment 2 "BAT_LINK connector for smart BMS")
@@ -6648,6 +6648,71 @@
 		)
 	)
 	(symbol
+		(lib_id "power:VBUS")
+		(at 114.3 64.77 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "0dfbdd05-c7d5-4beb-b129-f7ab2e9cc34e")
+		(property "Reference" "#PWR046"
+			(at 114.3 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "VBUS"
+			(at 114.3 60.96 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 114.3 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 114.3 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"VBUS\""
+			(at 114.3 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "fb9b7b1b-ac6a-4e98-8744-f0323c508028")
+		)
+		(instances
+			(project "main_board"
+				(path "/8e1f1504-76c2-49e6-9261-3c1190503f8c/1076a657-0b13-48f5-b500-e72d30eb3a1f"
+					(reference "#PWR046")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:C")
 		(at 246.38 27.94 0)
 		(unit 1)
@@ -6744,7 +6809,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "219bf98a-122f-47a8-bf2a-11ca56314892")
-		(property "Reference" "R18"
+		(property "Reference" "R19"
 			(at 33.274 113.03 0)
 			(effects
 				(font
@@ -6816,7 +6881,7 @@
 		(instances
 			(project "main_board"
 				(path "/8e1f1504-76c2-49e6-9261-3c1190503f8c/1076a657-0b13-48f5-b500-e72d30eb3a1f"
-					(reference "R18")
+					(reference "R19")
 					(unit 1)
 				)
 			)
@@ -7487,7 +7552,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "3430e660-db46-42b2-badf-b19042d44281")
-		(property "Reference" "R28"
+		(property "Reference" "R30"
 			(at 143.764 179.07 0)
 			(effects
 				(font
@@ -7559,7 +7624,7 @@
 		(instances
 			(project "main_board"
 				(path "/8e1f1504-76c2-49e6-9261-3c1190503f8c/1076a657-0b13-48f5-b500-e72d30eb3a1f"
-					(reference "R28")
+					(reference "R30")
 					(unit 1)
 				)
 			)
@@ -7661,7 +7726,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "37a5372f-6cef-4361-a306-70ca2908ef24")
-		(property "Reference" "R85"
+		(property "Reference" "R18"
 			(at 33.274 105.41 0)
 			(effects
 				(font
@@ -7733,7 +7798,7 @@
 		(instances
 			(project "main_board"
 				(path "/8e1f1504-76c2-49e6-9261-3c1190503f8c/1076a657-0b13-48f5-b500-e72d30eb3a1f"
-					(reference "R85")
+					(reference "R18")
 					(unit 1)
 				)
 			)
@@ -7965,7 +8030,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "41cd0f6e-cce2-4939-bfdf-50e4df2fb354")
-		(property "Reference" "R19"
+		(property "Reference" "R21"
 			(at 33.274 152.4 0)
 			(effects
 				(font
@@ -8037,7 +8102,7 @@
 		(instances
 			(project "main_board"
 				(path "/8e1f1504-76c2-49e6-9261-3c1190503f8c/1076a657-0b13-48f5-b500-e72d30eb3a1f"
-					(reference "R19")
+					(reference "R21")
 					(unit 1)
 				)
 			)
@@ -8139,7 +8204,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "44742532-f543-4f35-8d1f-dba98691c64c")
-		(property "Reference" "R35"
+		(property "Reference" "R39"
 			(at 258.064 128.27 0)
 			(effects
 				(font
@@ -8211,7 +8276,7 @@
 		(instances
 			(project "main_board"
 				(path "/8e1f1504-76c2-49e6-9261-3c1190503f8c/1076a657-0b13-48f5-b500-e72d30eb3a1f"
-					(reference "R35")
+					(reference "R39")
 					(unit 1)
 				)
 			)
@@ -8406,7 +8471,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "4e432abd-9e57-48cf-b39d-6861f829d327")
-		(property "Reference" "R31"
+		(property "Reference" "R35"
 			(at 236.22 50.292 90)
 			(effects
 				(font
@@ -8476,7 +8541,7 @@
 		(instances
 			(project "main_board"
 				(path "/8e1f1504-76c2-49e6-9261-3c1190503f8c/1076a657-0b13-48f5-b500-e72d30eb3a1f"
-					(reference "R31")
+					(reference "R35")
 					(unit 1)
 				)
 			)
@@ -9347,7 +9412,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "6ba78483-3bbb-4b1d-aaf0-7b8feb984380")
-		(property "Reference" "R30"
+		(property "Reference" "R34"
 			(at 232.918 78.74 0)
 			(effects
 				(font
@@ -9419,7 +9484,7 @@
 		(instances
 			(project "main_board"
 				(path "/8e1f1504-76c2-49e6-9261-3c1190503f8c/1076a657-0b13-48f5-b500-e72d30eb3a1f"
-					(reference "R30")
+					(reference "R34")
 					(unit 1)
 				)
 			)
@@ -9521,7 +9586,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "6d36d7be-8feb-4f3f-bbde-ef4d3abef7f9")
-		(property "Reference" "R86"
+		(property "Reference" "R33"
 			(at 223.774 151.13 0)
 			(effects
 				(font
@@ -9593,7 +9658,7 @@
 		(instances
 			(project "main_board"
 				(path "/8e1f1504-76c2-49e6-9261-3c1190503f8c/1076a657-0b13-48f5-b500-e72d30eb3a1f"
-					(reference "R86")
+					(reference "R33")
 					(unit 1)
 				)
 			)
@@ -9790,7 +9855,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "7362302f-5d80-48c2-b85d-4010c86b75a2")
-		(property "Reference" "R25"
+		(property "Reference" "R27"
 			(at 87.884 60.96 0)
 			(effects
 				(font
@@ -9862,7 +9927,7 @@
 		(instances
 			(project "main_board"
 				(path "/8e1f1504-76c2-49e6-9261-3c1190503f8c/1076a657-0b13-48f5-b500-e72d30eb3a1f"
-					(reference "R25")
+					(reference "R27")
 					(unit 1)
 				)
 			)
@@ -9877,7 +9942,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "7420caa1-4252-4d8c-bf55-c1a7335328d6")
-		(property "Reference" "R29"
+		(property "Reference" "R31"
 			(at 223.774 135.89 0)
 			(effects
 				(font
@@ -9949,7 +10014,7 @@
 		(instances
 			(project "main_board"
 				(path "/8e1f1504-76c2-49e6-9261-3c1190503f8c/1076a657-0b13-48f5-b500-e72d30eb3a1f"
-					(reference "R29")
+					(reference "R31")
 					(unit 1)
 				)
 			)
@@ -10285,7 +10350,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "7cfbe16b-06cb-4c6f-b4a8-b1c59a7a391d")
-		(property "Reference" "R23"
+		(property "Reference" "R25"
 			(at 80.01 50.292 90)
 			(effects
 				(font
@@ -10355,7 +10420,7 @@
 		(instances
 			(project "main_board"
 				(path "/8e1f1504-76c2-49e6-9261-3c1190503f8c/1076a657-0b13-48f5-b500-e72d30eb3a1f"
-					(reference "R23")
+					(reference "R25")
 					(unit 1)
 				)
 			)
@@ -10523,7 +10588,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "8c1736ab-20ea-40dc-b789-389b3ef758da")
-		(property "Reference" "R33"
+		(property "Reference" "R37"
 			(at 258.064 107.95 0)
 			(effects
 				(font
@@ -10595,7 +10660,7 @@
 		(instances
 			(project "main_board"
 				(path "/8e1f1504-76c2-49e6-9261-3c1190503f8c/1076a657-0b13-48f5-b500-e72d30eb3a1f"
-					(reference "R33")
+					(reference "R37")
 					(unit 1)
 				)
 			)
@@ -10832,71 +10897,6 @@
 			(project "main_board"
 				(path "/8e1f1504-76c2-49e6-9261-3c1190503f8c/1076a657-0b13-48f5-b500-e72d30eb3a1f"
 					(reference "C29")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:VBUS")
-		(at 114.3 64.77 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "989fa298-3956-4b39-a77a-926d66bd75d1")
-		(property "Reference" "#PWR046"
-			(at 114.3 68.58 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "VCHRG"
-			(at 114.3 60.96 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 114.3 64.77 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 114.3 64.77 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"VCHG_IN\""
-			(at 114.3 64.77 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "7b4896e1-ecd6-4ee8-aa81-6b76d7c9ac30")
-		)
-		(instances
-			(project "main_board"
-				(path "/8e1f1504-76c2-49e6-9261-3c1190503f8c/1076a657-0b13-48f5-b500-e72d30eb3a1f"
-					(reference "#PWR046")
 					(unit 1)
 				)
 			)
@@ -11194,7 +11194,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "a243321b-e908-4357-9043-0876d56fd177")
-		(property "Reference" "R21"
+		(property "Reference" "R23"
 			(at 49.784 107.95 0)
 			(effects
 				(font
@@ -11266,7 +11266,7 @@
 		(instances
 			(project "main_board"
 				(path "/8e1f1504-76c2-49e6-9261-3c1190503f8c/1076a657-0b13-48f5-b500-e72d30eb3a1f"
-					(reference "R21")
+					(reference "R23")
 					(unit 1)
 				)
 			)
@@ -11694,7 +11694,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "aab155d7-33f6-43b0-8e40-9eceb6f04274")
-		(property "Reference" "R22"
+		(property "Reference" "R24"
 			(at 75.184 60.96 0)
 			(effects
 				(font
@@ -11766,7 +11766,7 @@
 		(instances
 			(project "main_board"
 				(path "/8e1f1504-76c2-49e6-9261-3c1190503f8c/1076a657-0b13-48f5-b500-e72d30eb3a1f"
-					(reference "R22")
+					(reference "R24")
 					(unit 1)
 				)
 			)
@@ -11868,7 +11868,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "af15cac2-931d-427a-8243-1ee1093e038f")
-		(property "Reference" "R34"
+		(property "Reference" "R38"
 			(at 258.064 118.11 0)
 			(effects
 				(font
@@ -11940,7 +11940,7 @@
 		(instances
 			(project "main_board"
 				(path "/8e1f1504-76c2-49e6-9261-3c1190503f8c/1076a657-0b13-48f5-b500-e72d30eb3a1f"
-					(reference "R34")
+					(reference "R38")
 					(unit 1)
 				)
 			)
@@ -12215,7 +12215,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "b9f31949-1b97-45ba-ae1e-091833cbcc00")
-		(property "Reference" "R27"
+		(property "Reference" "R29"
 			(at 119.634 180.34 0)
 			(effects
 				(font
@@ -12287,7 +12287,7 @@
 		(instances
 			(project "main_board"
 				(path "/8e1f1504-76c2-49e6-9261-3c1190503f8c/1076a657-0b13-48f5-b500-e72d30eb3a1f"
-					(reference "R27")
+					(reference "R29")
 					(unit 1)
 				)
 			)
@@ -13024,7 +13024,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "ce4e96a8-f940-4220-a632-58ad9233dd09")
-		(property "Reference" "R20"
+		(property "Reference" "R22"
 			(at 33.274 162.56 0)
 			(effects
 				(font
@@ -13096,7 +13096,7 @@
 		(instances
 			(project "main_board"
 				(path "/8e1f1504-76c2-49e6-9261-3c1190503f8c/1076a657-0b13-48f5-b500-e72d30eb3a1f"
-					(reference "R20")
+					(reference "R22")
 					(unit 1)
 				)
 			)
@@ -13654,7 +13654,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "daa17d22-6822-49c9-bff2-e56251a24614")
-		(property "Reference" "R24"
+		(property "Reference" "R26"
 			(at 80.01 111.76 90)
 			(effects
 				(font
@@ -13724,7 +13724,7 @@
 		(instances
 			(project "main_board"
 				(path "/8e1f1504-76c2-49e6-9261-3c1190503f8c/1076a657-0b13-48f5-b500-e72d30eb3a1f"
-					(reference "R24")
+					(reference "R26")
 					(unit 1)
 				)
 			)
@@ -13982,7 +13982,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "e1410807-144a-44ac-bd9d-c5971cc449da")
-		(property "Reference" "R26"
+		(property "Reference" "R28"
 			(at 116.078 68.58 0)
 			(effects
 				(font
@@ -14054,7 +14054,7 @@
 		(instances
 			(project "main_board"
 				(path "/8e1f1504-76c2-49e6-9261-3c1190503f8c/1076a657-0b13-48f5-b500-e72d30eb3a1f"
-					(reference "R26")
+					(reference "R28")
 					(unit 1)
 				)
 			)
@@ -14069,7 +14069,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "e1a54d60-c444-4b91-8983-fc648282d55a")
-		(property "Reference" "R32"
+		(property "Reference" "R36"
 			(at 243.078 78.74 0)
 			(effects
 				(font
@@ -14141,7 +14141,7 @@
 		(instances
 			(project "main_board"
 				(path "/8e1f1504-76c2-49e6-9261-3c1190503f8c/1076a657-0b13-48f5-b500-e72d30eb3a1f"
-					(reference "R32")
+					(reference "R36")
 					(unit 1)
 				)
 			)
@@ -14244,7 +14244,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "e35caccd-35d4-44ef-8ef5-260fb6b898dc")
-		(property "Reference" "R84"
+		(property "Reference" "R20"
 			(at 33.782 144.78 0)
 			(effects
 				(font
@@ -14316,7 +14316,7 @@
 		(instances
 			(project "main_board"
 				(path "/8e1f1504-76c2-49e6-9261-3c1190503f8c/1076a657-0b13-48f5-b500-e72d30eb3a1f"
-					(reference "R84")
+					(reference "R20")
 					(unit 1)
 				)
 			)
@@ -14570,7 +14570,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "ee5b36b5-8789-473f-ac3d-ad27c209abc9")
-		(property "Reference" "R87"
+		(property "Reference" "R32"
 			(at 223.774 143.51 0)
 			(effects
 				(font
@@ -14642,7 +14642,7 @@
 		(instances
 			(project "main_board"
 				(path "/8e1f1504-76c2-49e6-9261-3c1190503f8c/1076a657-0b13-48f5-b500-e72d30eb3a1f"
-					(reference "R87")
+					(reference "R32")
 					(unit 1)
 				)
 			)
