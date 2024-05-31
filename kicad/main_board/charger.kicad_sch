@@ -13831,7 +13831,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2306191413_Megastar-ZX-XH2-54-4PZZ_C7429634.pdf"
 			(at 274.32 87.63 0)
 			(effects
 				(font

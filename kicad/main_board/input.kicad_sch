@@ -6057,7 +6057,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2110151630_XKB-Connection-PJ-3062-CO_C319113.pdf"
 			(at 31.75 177.8 0)
 			(effects
 				(font
@@ -8205,7 +8205,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2110151630_XKB-Connection-PJ-3062-CO_C319113.pdf"
 			(at 31.75 135.89 0)
 			(effects
 				(font

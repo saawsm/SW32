@@ -7821,7 +7821,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2110151630_XKB-Connection-PJ-3062-CO_C319113.pdf"
 			(at 21.59 161.29 0)
 			(effects
 				(font
@@ -12731,7 +12731,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_XFCN-PZ254V-11-04P_C2691448.pdf"
 			(at 105.41 52.07 0)
 			(effects
 				(font
@@ -13362,7 +13362,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2110151630_XKB-Connection-PJ-3062-CO_C319113.pdf"
 			(at 109.22 67.31 0)
 			(effects
 				(font
