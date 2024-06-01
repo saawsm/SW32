@@ -9,7 +9,7 @@
 	(paper "A4")
 	(title_block
 		(title "SW32 - Front Control Board")
-		(date "2024-05-30")
+		(date "2024-06-02")
 		(rev "1")
 		(company "saawsm")
 	)
@@ -2450,7 +2450,7 @@
 			)
 		)
 		(property "Value" "PEC11R-4215K-S00xx"
-			(at -0.575 9.725 0)
+			(at 0 5.484 0)
 			(layer "F.Fab")
 			(uuid "f275eff6-ff16-4569-9770-ca49f1b7d31a")
 			(effects
@@ -2947,7 +2947,7 @@
 			)
 		)
 		(property "Value" "MountingHole"
-			(at 118.7 16.699 0)
+			(at 0 3.175 0)
 			(layer "F.Fab")
 			(uuid "51d27f4d-e0d9-499e-8087-dcba4e5461ef")
 			(effects
@@ -3434,7 +3434,7 @@
 			)
 		)
 		(property "Value" "100nF"
-			(at 0 1.43 -90)
+			(at 0.013 1.143 -90)
 			(layer "F.Fab")
 			(uuid "e33591b3-72ff-40e1-9fc8-f3e652ba360e")
 			(effects
@@ -4567,7 +4567,7 @@
 			)
 		)
 		(property "Value" "100nF"
-			(at 0 1.43 -90)
+			(at 0 1.27 -90)
 			(layer "F.Fab")
 			(uuid "59e6d445-4a37-4055-8e46-308f327fd3a6")
 			(effects
@@ -7736,7 +7736,7 @@
 			)
 		)
 		(property "Value" "10k"
-			(at 0 1.43 0)
+			(at 0 1.27 0)
 			(layer "F.Fab")
 			(uuid "8a35c9f8-bafc-4881-b6ce-50b20fb1b3cb")
 			(effects
@@ -8719,7 +8719,7 @@
 			)
 		)
 		(property "Value" "10k"
-			(at 0 1.43 -90)
+			(at 0 1.27 -90)
 			(layer "F.Fab")
 			(uuid "dd003ebd-9034-494a-9858-6a019f8366c1")
 			(effects
@@ -9195,7 +9195,7 @@
 			)
 		)
 		(property "Value" "10k"
-			(at 0 1.43 -90)
+			(at -0.041 -1.27 -90)
 			(layer "F.Fab")
 			(uuid "70718932-f7e0-440a-a5dd-d59626c6b3b9")
 			(effects
@@ -9433,7 +9433,7 @@
 			)
 		)
 		(property "Value" "10k"
-			(at 0 1.43 -90)
+			(at 0 1.27 -90)
 			(layer "F.Fab")
 			(uuid "55ea8149-fd2c-439b-8e0d-8622a2c2dce2")
 			(effects
@@ -11695,7 +11695,7 @@
 			)
 		)
 		(property "Value" "10k"
-			(at 0 1.43 -90)
+			(at 0 1.27 -90)
 			(layer "F.Fab")
 			(uuid "c1106ae3-2d17-41e7-b8c8-667a31d073d3")
 			(effects
@@ -13999,7 +13999,7 @@
 			)
 		)
 		(property "Value" "10k"
-			(at 0 1.43 0)
+			(at 0 1.27 0)
 			(layer "F.Fab")
 			(uuid "9165d5b2-8675-4193-9bd8-27680440c136")
 			(effects
@@ -14620,7 +14620,7 @@
 			)
 		)
 		(property "Value" "AO3400A"
-			(at 0 2.4 -90)
+			(at 2.413 0 180)
 			(layer "F.Fab")
 			(uuid "c32c012a-c891-441c-be83-4be035e0878f")
 			(effects
@@ -16458,7 +16458,7 @@
 			)
 		)
 		(property "Value" "100nF"
-			(at 0 1.43 90)
+			(at 0 1.27 90)
 			(layer "F.Fab")
 			(uuid "cf9645c2-4d36-4971-8655-76a7add2b7cf")
 			(effects
@@ -16696,7 +16696,7 @@
 			)
 		)
 		(property "Value" "Buzzer"
-			(at 3.8 -7.4 -90)
+			(at 5.682 -0.007013 180)
 			(layer "B.Fab")
 			(uuid "59c52cf4-2532-4459-8fe7-042b6ba66e93")
 			(effects
