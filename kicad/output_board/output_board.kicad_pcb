@@ -32476,6 +32476,20 @@
 			)
 		)
 	)
+	(gr_text "SW32\n${PROJECTNAME}\nrev${REVISION} ${hash}"
+		(locked yes)
+		(at 115.316032 91.674197 0)
+		(layer "F.SilkS")
+		(uuid "f0fdb80b-804a-44f3-b265-3877b5f15a52")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+	)
 	(segment
 		(start 119.275032 82.298197)
 		(end 119.903917 82.927082)
