@@ -3585,7 +3585,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "326cdcda-616f-4462-9d11-fcd14be6fae7")
-		(property "Reference" "#PWR0176"
+		(property "Reference" "#PWR0177"
 			(at 91.44 139.7 0)
 			(effects
 				(font
@@ -3635,7 +3635,7 @@
 		(instances
 			(project "main_board"
 				(path "/8e1f1504-76c2-49e6-9261-3c1190503f8c/1327ee6b-7a00-44f7-81fe-b42319e4569a"
-					(reference "#PWR0176")
+					(reference "#PWR0177")
 					(unit 1)
 				)
 			)
@@ -3729,7 +3729,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "5d7f60d6-fd02-490d-86cf-2bc995acf92e")
-		(property "Reference" "#PWR0175"
+		(property "Reference" "#PWR0176"
 			(at 82.55 118.11 0)
 			(effects
 				(font
@@ -3779,7 +3779,7 @@
 		(instances
 			(project "main_board"
 				(path "/8e1f1504-76c2-49e6-9261-3c1190503f8c/1327ee6b-7a00-44f7-81fe-b42319e4569a"
-					(reference "#PWR0175")
+					(reference "#PWR0176")
 					(unit 1)
 				)
 			)
@@ -4182,7 +4182,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "930f17f4-d7af-4c85-aa7b-b60902ef54f0")
-		(property "Reference" "#PWR0174"
+		(property "Reference" "#PWR0175"
 			(at 62.23 124.46 0)
 			(effects
 				(font
@@ -4232,7 +4232,7 @@
 		(instances
 			(project "main_board"
 				(path "/8e1f1504-76c2-49e6-9261-3c1190503f8c/1327ee6b-7a00-44f7-81fe-b42319e4569a"
-					(reference "#PWR0174")
+					(reference "#PWR0175")
 					(unit 1)
 				)
 			)
@@ -4332,7 +4332,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "b33ca653-f138-4e9f-814d-3119fc8f9b6e")
-		(property "Reference" "#PWR0178"
+		(property "Reference" "#PWR0179"
 			(at 100.33 46.99 0)
 			(effects
 				(font
@@ -4382,7 +4382,7 @@
 		(instances
 			(project "main_board"
 				(path "/8e1f1504-76c2-49e6-9261-3c1190503f8c/1327ee6b-7a00-44f7-81fe-b42319e4569a"
-					(reference "#PWR0178")
+					(reference "#PWR0179")
 					(unit 1)
 				)
 			)
@@ -4678,7 +4678,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "d6390ac4-632e-44f5-a6ce-927230973530")
-		(property "Reference" "#PWR0179"
+		(property "Reference" "#PWR0180"
 			(at 111.76 62.23 0)
 			(effects
 				(font
@@ -4728,7 +4728,7 @@
 		(instances
 			(project "main_board"
 				(path "/8e1f1504-76c2-49e6-9261-3c1190503f8c/1327ee6b-7a00-44f7-81fe-b42319e4569a"
-					(reference "#PWR0179")
+					(reference "#PWR0180")
 					(unit 1)
 				)
 			)
@@ -4830,7 +4830,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "f0e7c2c6-3847-49b6-986e-bd39a8a5af65")
-		(property "Reference" "#PWR0177"
+		(property "Reference" "#PWR0178"
 			(at 97.79 88.9 0)
 			(effects
 				(font
@@ -4880,7 +4880,7 @@
 		(instances
 			(project "main_board"
 				(path "/8e1f1504-76c2-49e6-9261-3c1190503f8c/1327ee6b-7a00-44f7-81fe-b42319e4569a"
-					(reference "#PWR0177")
+					(reference "#PWR0178")
 					(unit 1)
 				)
 			)
