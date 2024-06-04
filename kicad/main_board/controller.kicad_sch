@@ -3077,27 +3077,27 @@
 				)
 			)
 		)
-		(symbol "Memory_Flash:W25Q32JVZP"
+		(symbol "Memory_Flash:W25Q128JVS"
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
 			(property "Reference" "U"
-				(at -6.35 11.43 0)
+				(at -8.89 8.89 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
 				)
 			)
-			(property "Value" "W25Q32JVZP"
-				(at 7.62 11.43 0)
+			(property "Value" "W25Q128JVS"
+				(at 7.62 8.89 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
 				)
 			)
-			(property "Footprint" "Package_SON:WSON-8-1EP_6x5mm_P1.27mm_EP3.4x4.3mm"
+			(property "Footprint" "Package_SO:SOIC-8_5.23x5.23mm_P1.27mm"
 				(at 0 0 0)
 				(effects
 					(font
@@ -3106,16 +3106,7 @@
 					(hide yes)
 				)
 			)
-			(property "Datasheet" "http://www.winbond.com/resource-files/w25q32jv%20revg%2003272018%20plus.pdf"
-				(at 0 -2.54 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "32Mb Serial Flash Memory, Standard/Dual/Quad SPI, DFN-8"
+			(property "Datasheet" "http://www.winbond.com/resource-files/w25q128jv_dtr%20revc%2003272018%20plus.pdf"
 				(at 0 0 0)
 				(effects
 					(font
@@ -3124,7 +3115,7 @@
 					(hide yes)
 				)
 			)
-			(property "ki_keywords" "flash memory SPI"
+			(property "Description" "128Mb Serial Flash Memory, Standard/Dual/Quad SPI, SOIC-8"
 				(at 0 0 0)
 				(effects
 					(font
@@ -3133,7 +3124,7 @@
 					(hide yes)
 				)
 			)
-			(property "ki_fp_filters" "WSON*1EP*6x5mm*P1.27mm*"
+			(property "ki_keywords" "flash memory SPI QPI DTR"
 				(at 0 0 0)
 				(effects
 					(font
@@ -3142,7 +3133,16 @@
 					(hide yes)
 				)
 			)
-			(symbol "W25Q32JVZP_0_1"
+			(property "ki_fp_filters" "SOIC*5.23x5.23mm*P1.27mm*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "W25Q128JVS_0_1"
 				(rectangle
 					(start -7.62 10.16)
 					(end 7.62 -10.16)
@@ -3155,7 +3155,7 @@
 					)
 				)
 			)
-			(symbol "W25Q32JVZP_1_1"
+			(symbol "W25Q128JVS_1_1"
 				(pin input line
 					(at -10.16 7.62 0)
 					(length 2.54)
@@ -3293,24 +3293,6 @@
 						)
 					)
 					(number "8"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 2.54 -12.7 90)
-					(length 2.54)
-					(name "EP"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "9"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -3926,10 +3908,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "f4835f56-ba9f-4b94-b236-3a5dbad9c7bf")
-	)
-	(no_connect
-		(at 255.27 106.68)
-		(uuid "e4437582-c179-47e5-8572-a2300354d19d")
 	)
 	(wire
 		(pts
@@ -9945,7 +9923,7 @@
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(fields_autoplaced yes)
 		(uuid "70dc9eb2-eee0-4fee-903d-09700cd7184e")
 		(property "Reference" "R61"
@@ -11138,7 +11116,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Memory_Flash:W25Q32JVZP")
+		(lib_id "Memory_Flash:W25Q128JVS")
 		(at 257.81 93.98 0)
 		(mirror y)
 		(unit 1)
@@ -11157,7 +11135,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "W25Q128JVP"
+		(property "Value" "W25Q128JVS"
 			(at 248.92 95.2499 0)
 			(effects
 				(font
@@ -11166,7 +11144,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Package_SON:WSON-8-1EP_6x5mm_P1.27mm_EP3.4x4.3mm"
+		(property "Footprint" "Package_SO:SOIC-8_5.23x5.23mm_P1.27mm"
 			(at 257.81 93.98 0)
 			(effects
 				(font
@@ -11175,7 +11153,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_Winbond-Elec-W25Q128JVPIQ_C190862.pdf"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_1811142111_Winbond-Elec-W25Q128JVSIQ_C97521.pdf"
 			(at 257.81 96.52 0)
 			(effects
 				(font
@@ -11184,7 +11162,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "128Mb Serial Flash Memory, Standard/Dual/Quad SPI, WSON-8"
+		(property "Description" "128Mb Serial Flash Memory, Standard/Dual/Quad SPI, SOIC-8"
 			(at 257.81 93.98 0)
 			(effects
 				(font
@@ -11193,7 +11171,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C190862"
+		(property "LCSC" "C97521"
 			(at 257.81 93.98 0)
 			(effects
 				(font
@@ -11222,9 +11200,6 @@
 		)
 		(pin "8"
 			(uuid "a1ee33a3-f0ea-46ea-80c9-a55da16bed81")
-		)
-		(pin "9"
-			(uuid "2921d232-05b7-44b8-8f1d-f631dc360041")
 		)
 		(pin "7"
 			(uuid "bfc034bb-d8dd-4cdd-8f13-12d9257ce99c")
