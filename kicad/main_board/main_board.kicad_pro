@@ -38,8 +38,8 @@
         "other_text_upright": false,
         "pads": {
           "drill": 0.0,
-          "height": 0.42,
-          "width": 0.7
+          "height": 3.35,
+          "width": 1.225
         },
         "silk_line_width": 0.1,
         "silk_text_italic": false,
@@ -58,7 +58,13 @@
           "width": 0.0
         }
       ],
-      "drc_exclusions": [],
+      "drc_exclusions": [
+        "hole_clearance|85850000|121370000|dee8f920-273b-4c73-bdbe-5fc0189d685d|147b5112-3fe0-47c1-b749-edc8a95984a0",
+        "hole_clearance|85850000|121370000|dee8f920-273b-4c73-bdbe-5fc0189d685d|ac4eb284-9b31-40cc-bc38-c6807438a3f7",
+        "hole_clearance|91950000|121370000|8442bace-aaa6-4640-9203-8a6bdc940d75|97c6e204-4b2e-4ecc-bef7-b5281d450b66",
+        "hole_clearance|91950000|121370000|8442bace-aaa6-4640-9203-8a6bdc940d75|ede1ed0b-4d0d-4b56-a8c9-e676baf98abd",
+        "unresolved_variable|223647000|88646000|7fb874af-48b6-484e-bcd1-e9f24eb40a08|00000000-0000-0000-0000-000000000000"
+      ],
       "meta": {
         "version": 2
       },
@@ -214,16 +220,12 @@
           "drill": 0.0
         },
         {
-          "diameter": 0.4,
+          "diameter": 0.46,
           "drill": 0.2
         },
         {
           "diameter": 0.6,
           "drill": 0.3
-        },
-        {
-          "diameter": 0.8,
-          "drill": 0.4
         }
       ],
       "zones_allow_external_fillets": false
@@ -479,6 +481,23 @@
         "via_diameter": 0.6,
         "via_drill": 0.3,
         "wire_width": 6
+      },
+      {
+        "bus_width": 12,
+        "clearance": 0.2,
+        "diff_pair_gap": 0.2,
+        "diff_pair_via_gap": 0.25,
+        "diff_pair_width": 0.2644,
+        "line_style": 0,
+        "microvia_diameter": 0.3,
+        "microvia_drill": 0.1,
+        "name": "USB",
+        "pcb_color": "rgba(0, 0, 0, 0.000)",
+        "schematic_color": "rgba(0, 0, 0, 0.000)",
+        "track_width": 0.2,
+        "via_diameter": 0.6,
+        "via_drill": 0.3,
+        "wire_width": 6
       }
     ],
     "meta": {
@@ -486,7 +505,12 @@
     },
     "net_colors": null,
     "netclass_assignments": null,
-    "netclass_patterns": []
+    "netclass_patterns": [
+      {
+        "netclass": "USB",
+        "pattern": "*/USB_D*"
+      }
+    ]
   },
   "pcbnew": {
     "last_paths": {
@@ -573,11 +597,11 @@
           "show": false
         }
       ],
-      "filter_string": "",
+      "filter_string": "C*",
       "group_symbols": true,
       "name": "",
-      "sort_asc": false,
-      "sort_field": "${QUANTITY}"
+      "sort_asc": true,
+      "sort_field": "Value"
     },
     "connection_grid_size": 50.0,
     "drawing": {

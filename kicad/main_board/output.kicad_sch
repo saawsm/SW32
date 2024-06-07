@@ -6,7 +6,7 @@
 	(paper "A4")
 	(title_block
 		(title "SW32 - Main Board")
-		(date "2024-05-31")
+		(date "2024-06-09")
 		(rev "1")
 		(company "saawsm")
 		(comment 4 "Connectors between the output and main board.")
@@ -2101,10 +2101,16 @@
 		(uuid "71f1d492-28ae-44c6-881c-67a0cfde51d6")
 	)
 	(junction
-		(at 97.79 72.39)
+		(at 93.98 74.93)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "a6dc2be6-5cac-40ba-8d75-451c81eb14ad")
+	)
+	(junction
+		(at 99.06 67.31)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "fa7608e6-4d3a-4f9b-a810-5848e3134102")
 	)
 	(no_connect
 		(at 207.01 129.54)
@@ -2144,6 +2150,16 @@
 	)
 	(wire
 		(pts
+			(xy 93.98 67.31) (xy 93.98 68.58)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "01e7ea54-795b-4db7-a2ce-e5d05ab64ff7")
+	)
+	(wire
+		(pts
 			(xy 107.95 113.03) (xy 105.41 113.03)
 		)
 		(stroke
@@ -2171,6 +2187,16 @@
 			(type default)
 		)
 		(uuid "04bf514e-2d54-478f-8189-0e4a4850a9ad")
+	)
+	(wire
+		(pts
+			(xy 99.06 74.93) (xy 93.98 74.93)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "04c41204-aa8b-40c0-86db-282f20a665a1")
 	)
 	(wire
 		(pts
@@ -2254,7 +2280,7 @@
 	)
 	(wire
 		(pts
-			(xy 97.79 81.28) (xy 97.79 82.55)
+			(xy 93.98 83.82) (xy 93.98 85.09)
 		)
 		(stroke
 			(width 0)
@@ -2564,7 +2590,7 @@
 	)
 	(wire
 		(pts
-			(xy 97.79 73.66) (xy 97.79 72.39)
+			(xy 93.98 76.2) (xy 93.98 74.93)
 		)
 		(stroke
 			(width 0)
@@ -2581,6 +2607,16 @@
 			(type default)
 		)
 		(uuid "701b2c6a-9b29-43e9-855d-440beb45232e")
+	)
+	(wire
+		(pts
+			(xy 99.06 73.66) (xy 99.06 74.93)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "754a4de9-392d-413d-834a-8960d4f412c8")
 	)
 	(wire
 		(pts
@@ -2654,6 +2690,16 @@
 	)
 	(wire
 		(pts
+			(xy 99.06 67.31) (xy 99.06 68.58)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "93cfd387-239c-4e8c-a7f8-06d02785f628")
+	)
+	(wire
+		(pts
 			(xy 185.42 50.8) (xy 185.42 77.47)
 		)
 		(stroke
@@ -2714,16 +2760,6 @@
 	)
 	(wire
 		(pts
-			(xy 97.79 63.5) (xy 97.79 66.04)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "a462ed78-637f-4cec-83b7-f345ed52dd3d")
-	)
-	(wire
-		(pts
 			(xy 109.22 54.61) (xy 113.03 54.61)
 		)
 		(stroke
@@ -2734,7 +2770,7 @@
 	)
 	(wire
 		(pts
-			(xy 90.17 72.39) (xy 97.79 72.39)
+			(xy 86.36 74.93) (xy 93.98 74.93)
 		)
 		(stroke
 			(width 0)
@@ -2784,7 +2820,7 @@
 	)
 	(wire
 		(pts
-			(xy 97.79 72.39) (xy 97.79 71.12)
+			(xy 93.98 74.93) (xy 93.98 73.66)
 		)
 		(stroke
 			(width 0)
@@ -2954,6 +2990,16 @@
 	)
 	(wire
 		(pts
+			(xy 99.06 67.31) (xy 93.98 67.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ddb7c893-b948-436c-9bbb-765ebd8838f5")
+	)
+	(wire
+		(pts
 			(xy 193.04 90.17) (xy 184.15 90.17)
 		)
 		(stroke
@@ -2994,7 +3040,7 @@
 	)
 	(wire
 		(pts
-			(xy 97.79 63.5) (xy 102.87 63.5)
+			(xy 99.06 67.31) (xy 105.41 67.31)
 		)
 		(stroke
 			(width 0)
@@ -3089,7 +3135,7 @@
 		(uuid "19bf610b-42ae-46a8-8283-9e7975195a18")
 	)
 	(label "PGND"
-		(at 102.87 63.5 180)
+		(at 105.41 67.31 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3257,7 +3303,7 @@
 	)
 	(hierarchical_label "SENSE"
 		(shape output)
-		(at 90.17 72.39 180)
+		(at 86.36 74.93 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3585,7 +3631,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "326cdcda-616f-4462-9d11-fcd14be6fae7")
-		(property "Reference" "#PWR0177"
+		(property "Reference" "#PWR0173"
 			(at 91.44 139.7 0)
 			(effects
 				(font
@@ -3635,7 +3681,7 @@
 		(instances
 			(project "main_board"
 				(path "/8e1f1504-76c2-49e6-9261-3c1190503f8c/1327ee6b-7a00-44f7-81fe-b42319e4569a"
-					(reference "#PWR0177")
+					(reference "#PWR0173")
 					(unit 1)
 				)
 			)
@@ -3643,7 +3689,7 @@
 	)
 	(symbol
 		(lib_id "Device:NetTie_2")
-		(at 97.79 68.58 90)
+		(at 93.98 71.12 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom no)
@@ -3651,7 +3697,7 @@
 		(dnp no)
 		(uuid "5b395404-187c-4524-9c39-0daf67cdc112")
 		(property "Reference" "NT1"
-			(at 98.298 68.834 90)
+			(at 94.488 71.374 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3660,7 +3706,7 @@
 			)
 		)
 		(property "Value" "~"
-			(at 99.06 69.8499 90)
+			(at 95.25 72.3899 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3670,7 +3716,7 @@
 			)
 		)
 		(property "Footprint" "NetTie:NetTie-2_SMD_Pad2.0mm"
-			(at 97.79 68.58 0)
+			(at 93.98 71.12 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3679,7 +3725,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 97.79 68.58 0)
+			(at 93.98 71.12 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3688,7 +3734,7 @@
 			)
 		)
 		(property "Description" "Net tie, 2 pins"
-			(at 97.79 68.58 0)
+			(at 93.98 71.12 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3697,7 +3743,7 @@
 			)
 		)
 		(property "Service" "PCBA;HandAssembly"
-			(at 97.79 68.58 0)
+			(at 93.98 71.12 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3729,7 +3775,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "5d7f60d6-fd02-490d-86cf-2bc995acf92e")
-		(property "Reference" "#PWR0176"
+		(property "Reference" "#PWR0172"
 			(at 82.55 118.11 0)
 			(effects
 				(font
@@ -3779,7 +3825,7 @@
 		(instances
 			(project "main_board"
 				(path "/8e1f1504-76c2-49e6-9261-3c1190503f8c/1327ee6b-7a00-44f7-81fe-b42319e4569a"
-					(reference "#PWR0176")
+					(reference "#PWR0172")
 					(unit 1)
 				)
 			)
@@ -3978,7 +4024,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "87fbf5b9-5b51-45d1-b480-60982231f982")
-		(property "Reference" "R87"
+		(property "Reference" "R86"
 			(at 64.77 124.4599 0)
 			(effects
 				(font
@@ -4050,7 +4096,7 @@
 		(instances
 			(project "main_board"
 				(path "/8e1f1504-76c2-49e6-9261-3c1190503f8c/1327ee6b-7a00-44f7-81fe-b42319e4569a"
-					(reference "R87")
+					(reference "R86")
 					(unit 1)
 				)
 			)
@@ -4182,7 +4228,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "930f17f4-d7af-4c85-aa7b-b60902ef54f0")
-		(property "Reference" "#PWR0175"
+		(property "Reference" "#PWR0171"
 			(at 62.23 124.46 0)
 			(effects
 				(font
@@ -4232,7 +4278,7 @@
 		(instances
 			(project "main_board"
 				(path "/8e1f1504-76c2-49e6-9261-3c1190503f8c/1327ee6b-7a00-44f7-81fe-b42319e4569a"
-					(reference "#PWR0175")
+					(reference "#PWR0171")
 					(unit 1)
 				)
 			)
@@ -4324,6 +4370,85 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:NetTie_2")
+		(at 99.06 71.12 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(uuid "ab26f184-d658-4a9c-8df4-a26b7f4654a6")
+		(property "Reference" "NT2"
+			(at 99.568 71.374 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "~"
+			(at 100.33 72.3899 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+		(property "Footprint" "NetTie:NetTie-2_SMD_Pad2.0mm"
+			(at 99.06 71.12 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 99.06 71.12 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Net tie, 2 pins"
+			(at 99.06 71.12 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Service" "PCBA;HandAssembly"
+			(at 99.06 71.12 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "1d32897e-6449-44f3-bd3c-b6c25e8f9dbf")
+		)
+		(pin "2"
+			(uuid "5d1913fd-24ea-4cda-a5c0-199a7ca19244")
+		)
+		(instances
+			(project "main_board"
+				(path "/8e1f1504-76c2-49e6-9261-3c1190503f8c/1327ee6b-7a00-44f7-81fe-b42319e4569a"
+					(reference "NT2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:+3.3V")
 		(at 100.33 43.18 0)
 		(unit 1)
@@ -4332,7 +4457,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "b33ca653-f138-4e9f-814d-3119fc8f9b6e")
-		(property "Reference" "#PWR0179"
+		(property "Reference" "#PWR0175"
 			(at 100.33 46.99 0)
 			(effects
 				(font
@@ -4382,7 +4507,7 @@
 		(instances
 			(project "main_board"
 				(path "/8e1f1504-76c2-49e6-9261-3c1190503f8c/1327ee6b-7a00-44f7-81fe-b42319e4569a"
-					(reference "#PWR0179")
+					(reference "#PWR0175")
 					(unit 1)
 				)
 			)
@@ -4678,7 +4803,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "d6390ac4-632e-44f5-a6ce-927230973530")
-		(property "Reference" "#PWR0180"
+		(property "Reference" "#PWR0176"
 			(at 111.76 62.23 0)
 			(effects
 				(font
@@ -4728,7 +4853,7 @@
 		(instances
 			(project "main_board"
 				(path "/8e1f1504-76c2-49e6-9261-3c1190503f8c/1327ee6b-7a00-44f7-81fe-b42319e4569a"
-					(reference "#PWR0180")
+					(reference "#PWR0176")
 					(unit 1)
 				)
 			)
@@ -4736,15 +4861,15 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 97.79 77.47 180)
+		(at 93.98 80.01 180)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(uuid "dca51fad-5852-4eaa-8afb-f0cf629584c7")
-		(property "Reference" "R88"
-			(at 99.568 76.2 0)
+		(property "Reference" "R87"
+			(at 95.758 78.74 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4753,7 +4878,7 @@
 			)
 		)
 		(property "Value" "0.1"
-			(at 99.568 78.74 0)
+			(at 95.758 81.28 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4762,7 +4887,7 @@
 			)
 		)
 		(property "Footprint" "Resistor_SMD:R_2512_6332Metric"
-			(at 99.568 77.47 90)
+			(at 95.758 80.01 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4771,7 +4896,7 @@
 			)
 		)
 		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_1810271822_YAGEO-PE2512FKE7W0R1L_C165698.pdf"
-			(at 97.79 77.47 0)
+			(at 93.98 80.01 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4780,7 +4905,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 97.79 77.47 0)
+			(at 93.98 80.01 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4789,7 +4914,7 @@
 			)
 		)
 		(property "Service" "PCBA"
-			(at 97.79 77.47 0)
+			(at 93.98 80.01 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4798,7 +4923,7 @@
 			)
 		)
 		(property "LCSC" "C165698"
-			(at 97.79 77.47 0)
+			(at 93.98 80.01 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4815,7 +4940,7 @@
 		(instances
 			(project "main_board"
 				(path "/8e1f1504-76c2-49e6-9261-3c1190503f8c/1327ee6b-7a00-44f7-81fe-b42319e4569a"
-					(reference "R88")
+					(reference "R87")
 					(unit 1)
 				)
 			)
@@ -4823,15 +4948,15 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 97.79 82.55 0)
+		(at 93.98 85.09 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(uuid "f0e7c2c6-3847-49b6-986e-bd39a8a5af65")
-		(property "Reference" "#PWR0178"
-			(at 97.79 88.9 0)
+		(property "Reference" "#PWR0174"
+			(at 93.98 91.44 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4840,7 +4965,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 97.79 86.36 0)
+			(at 93.98 88.9 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4848,7 +4973,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 97.79 82.55 0)
+			(at 93.98 85.09 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4857,7 +4982,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 97.79 82.55 0)
+			(at 93.98 85.09 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4866,7 +4991,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 97.79 82.55 0)
+			(at 93.98 85.09 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4880,7 +5005,7 @@
 		(instances
 			(project "main_board"
 				(path "/8e1f1504-76c2-49e6-9261-3c1190503f8c/1327ee6b-7a00-44f7-81fe-b42319e4569a"
-					(reference "#PWR0178")
+					(reference "#PWR0174")
 					(unit 1)
 				)
 			)
