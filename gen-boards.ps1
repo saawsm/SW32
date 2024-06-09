@@ -70,11 +70,7 @@ Get-ChildItem -Path $boards -Recurse -Include '*.kicad_sch' | Where-Object { $_.
 
     $name = $_.Basename
 
-    $config = (Get-Content -Raw -Path (Join-Path -Path $_.Directory -ChildPath $boards_config_name) | ConvertFrom-Json)
-
     Write-Host "Processing $name..."
-    Write-Host "  - Type: $($config.type)"
-    Write-Host "  - Extra Layers: $($config.extra_layers)"
     Write-Host ""
 	
     # TODO: Run an ERC before generating Schematics
@@ -152,7 +148,17 @@ Get-ChildItem -Path $boards -Recurse -Include '*.kicad_sch' | Where-Object { $_.
 
         # Generate gerbers
         Write-Host "Generating gerbers..."
-        $layers = "F.Cu,B.Cu,F.Paste,B.Paste,F.Silkscreen,B.Silkscreen,F.Mask,B.Mask,Edge.Cuts,$($config.extra_layers)"
+	
+				# Include inner layers "In*.Cu" if found in kicad_pcb file
+        $extra_layers = ""				
+				$groups = (Select-String -Path $pcb_file -Pattern '\(\d{1,2}\s\"(?<name>In\d{1,2}\.Cu)\"\s\w+\)').Matches.Groups
+
+				if($groups -ne $null) {
+						$extra_layers = ($groups | Where-Object { ($_.Name -eq 'name') } | Select -expand Value) -join ","				
+				}
+	
+				Write-Host "Extra Layers: '$($extra_layers)'"
+        $layers = "F.Cu,B.Cu,F.Paste,B.Paste,F.Silkscreen,B.Silkscreen,F.Mask,B.Mask,Edge.Cuts,$($extra_layers)"
 
         $arguments = "pcb export gerbers --output ""$gerbers"" --disable-aperture-macros --no-x2 --subtract-soldermask -D hash=$repo_hash --layers ""$layers"" ""$pcb_file"""
         Start-Process -Wait -NoNewWindow -FilePath $kicad_cli -ArgumentList $arguments
