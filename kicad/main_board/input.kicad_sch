@@ -6,7 +6,7 @@
 	(paper "A4")
 	(title_block
 		(title "SW32 - Main Board")
-		(date "2024-06-09")
+		(date "2024-06-11")
 		(rev "1")
 		(company "saawsm")
 		(comment 4 "USB-PD control and external input triggers.")
@@ -5855,7 +5855,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Package_SON:Diodes_PowerDI3333-8"
+		(property "Footprint" "SaawLib:Diodes_PowerDI3333-8_ThermalVias"
 			(at 226.695 34.29 0)
 			(effects
 				(font

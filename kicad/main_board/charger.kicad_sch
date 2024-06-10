@@ -6,7 +6,7 @@
 	(paper "A4")
 	(title_block
 		(title "SW32 - Main Board")
-		(date "2024-06-09")
+		(date "2024-06-11")
 		(rev "1")
 		(company "saawsm")
 		(comment 2 "BAT_LINK connector for smart BMS")
@@ -8157,7 +8157,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Package_SON:VSON-8_3.3x3.3mm_P0.65mm_NexFET"
+		(property "Footprint" "SaawLib:VSON-8_3.3x3.3mm_P0.65mm_NexFET_ThermalVias"
 			(at 140.97 59.69 0)
 			(effects
 				(font
@@ -8771,7 +8771,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Package_SON:VSON-8_3.3x3.3mm_P0.65mm_NexFET"
+		(property "Footprint" "SaawLib:VSON-8_3.3x3.3mm_P0.65mm_NexFET_ThermalVias"
 			(at 207.391 28.067 0)
 			(effects
 				(font
@@ -9541,7 +9541,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Package_SON:VSON-8_3.3x3.3mm_P0.65mm_NexFET"
+		(property "Footprint" "SaawLib:VSON-8_3.3x3.3mm_P0.65mm_NexFET_ThermalVias"
 			(at 123.19 53.34 0)
 			(effects
 				(font
@@ -12082,7 +12082,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Package_SON:VSON-8_3.3x3.3mm_P0.65mm_NexFET"
+		(property "Footprint" "SaawLib:VSON-8_3.3x3.3mm_P0.65mm_NexFET_ThermalVias"
 			(at 173.99 59.69 0)
 			(effects
 				(font
@@ -14351,7 +14351,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Package_SON:VSON-8_3.3x3.3mm_P0.65mm_NexFET"
+		(property "Footprint" "SaawLib:VSON-8_3.3x3.3mm_P0.65mm_NexFET_ThermalVias"
 			(at 191.77 53.34 0)
 			(effects
 				(font

@@ -6,7 +6,7 @@
 	(paper "A4")
 	(title_block
 		(title "SW32 - Main Board")
-		(date "2024-06-09")
+		(date "2024-06-11")
 		(rev "1")
 		(company "saawsm")
 		(comment 4 "Main board controller.")
@@ -10030,7 +10030,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Package_DFN_QFN:QFN-56-1EP_7x7mm_P0.4mm_EP3.2x3.2mm"
+		(property "Footprint" "SaawLib:QFN-56-1EP_7x7mm_P0.4mm_EP3.2x3.2mm_ThermalVias"
 			(at 154.94 107.95 0)
 			(effects
 				(font

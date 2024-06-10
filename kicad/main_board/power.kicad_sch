@@ -6,7 +6,7 @@
 	(paper "A4")
 	(title_block
 		(title "SW32 - Main Board")
-		(date "2024-06-09")
+		(date "2024-06-11")
 		(rev "1")
 		(company "saawsm")
 		(comment 4 "System power supplies and soft latching power switch.")
@@ -4461,7 +4461,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Package_SON:Diodes_PowerDI3333-8"
+		(property "Footprint" "SaawLib:Diodes_PowerDI3333-8_ThermalVias"
 			(at 116.205 53.34 0)
 			(effects
 				(font

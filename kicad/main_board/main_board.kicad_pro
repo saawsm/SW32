@@ -38,8 +38,8 @@
         "other_text_upright": false,
         "pads": {
           "drill": 0.0,
-          "height": 3.35,
-          "width": 1.225
+          "height": 2.37,
+          "width": 1.71
         },
         "silk_line_width": 0.1,
         "silk_text_italic": false,
@@ -672,11 +672,11 @@
           "show": false
         }
       ],
-      "filter_string": "C*",
+      "filter_string": "",
       "group_symbols": true,
       "name": "",
-      "sort_asc": true,
-      "sort_field": "Value"
+      "sort_asc": false,
+      "sort_field": "${QUANTITY}"
     },
     "connection_grid_size": 50.0,
     "drawing": {

@@ -6,7 +6,7 @@
 	(paper "A4")
 	(title_block
 		(title "SW32 - Main Board")
-		(date "2024-06-09")
+		(date "2024-06-11")
 		(rev "1")
 		(company "saawsm")
 		(comment 2 "Gain can be controlled via firmware.")
