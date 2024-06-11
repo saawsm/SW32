@@ -9,7 +9,7 @@
 	(paper "A4")
 	(title_block
 		(title "SW32 - Front Panel")
-		(date "2024-06-11")
+		(date "2024-06-12")
 		(rev "1")
 		(company "saawsm")
 	)
@@ -1069,6 +1069,16 @@
 		(uuid "283a3be1-acbd-4a28-8f20-e13a984ed84a")
 	)
 	(gr_line
+		(start 87.63 97.536)
+		(end 90.805 97.536)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "34ef30a9-ad64-488b-aed5-367c3096fe35")
+	)
+	(gr_line
 		(start 250.19 81.745)
 		(end 250.19 85.555)
 		(locked yes)
@@ -1155,6 +1165,16 @@
 		)
 		(layer "F.SilkS")
 		(uuid "94d0e64d-b7cc-4926-bd5c-a1dd78202efe")
+	)
+	(gr_line
+		(start 74.295 97.536)
+		(end 77.47 97.536)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "971bf0d6-71cd-41bc-9688-0262d0b4df83")
 	)
 	(gr_line
 		(start 63.5 100.02925)
@@ -2245,6 +2265,19 @@
 				(size 1.5 1.5)
 				(thickness 0.3)
 			)
+		)
+	)
+	(gr_text "SW32"
+		(at 82.55 98.425 0)
+		(layer "F.SilkS")
+		(uuid "5be90d43-85f3-49e5-948d-05da2450da71")
+		(effects
+			(font
+				(size 1.5 1.5)
+				(thickness 0.3)
+				(bold yes)
+			)
+			(justify bottom)
 		)
 	)
 	(gr_text "TRIG1"
