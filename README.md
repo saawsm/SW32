@@ -38,11 +38,6 @@ The reason for having a separate output board is primarily for flexibility, spac
 
 ## Building
 
-This build is mostly SMT with THT for front panel components. Components are mostly 0603 or larger (MCU decoupling caps are 0402).
-Requires a reflow oven or hot air reflow, since some packages have thermal pads.
+This build is mostly SMT with THT for connectors and front panel components. PCBs have been designed specifically for JLCPCB fabrication and assembly.
 
-### [Schematics / Gerbers / POS / BOMs](https://github.com/saawsm/SW32/releases)
-
-"Ready for manufacture" versions of SW32 are available from the [releases](https://github.com/saawsm/SW32/releases) page.
-
-Anything else must be generated from the project files directly.
+Generated board files (schematics, gerbers, BoM, etc) can be found on the [releases](https://github.com/saawsm/SW32/releases) page.
