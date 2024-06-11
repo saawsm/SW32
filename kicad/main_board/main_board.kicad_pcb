@@ -17905,7 +17905,7 @@
 			(zone_connect 2)
 			(uuid "05971f8b-7adf-46d7-9b1d-f4588c517105")
 		)
-		(model "${KICAD8_3DMODEL_DIR}/Package_SON.3dshapes/Diodes_PowerDI3333-8.wrl"
+		(model "${KICAD8_3DMODEL_DIR}/Package_SON.3dshapes/VSON-8_3.3x3.3mm_P0.65mm_NexFET.wrl"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -24682,7 +24682,7 @@
 			(zone_connect 2)
 			(uuid "7b7886e4-427e-4e89-b86a-9f3b1507baed")
 		)
-		(model "${KICAD8_3DMODEL_DIR}/Package_SON.3dshapes/Diodes_PowerDI3333-8.wrl"
+		(model "${KICAD8_3DMODEL_DIR}/Package_SON.3dshapes/VSON-8_3.3x3.3mm_P0.65mm_NexFET.wrl"
 			(offset
 				(xyz 0 0 0)
 			)
