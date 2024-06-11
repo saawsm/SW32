@@ -9,7 +9,7 @@
 	(paper "A4")
 	(title_block
 		(title "SW32 - Front Control Board")
-		(date "2024-06-10")
+		(date "2024-06-11")
 		(rev "1")
 		(company "saawsm")
 	)
@@ -6816,7 +6816,7 @@
 				)
 			)
 		)
-		(property "Value" "LINE"
+		(property "Value" "MIC"
 			(at 0.00034 3.620248 180)
 			(layer "F.SilkS")
 			(uuid "8e897628-90f9-4937-a9f3-fe8edbbf2527")
@@ -11034,7 +11034,7 @@
 				)
 			)
 		)
-		(property "Value" "MIC"
+		(property "Value" "LINE"
 			(at 0.00034 3.620248 180)
 			(layer "F.SilkS")
 			(uuid "cab78014-79ac-4914-8fa5-c758fee7f91b")
