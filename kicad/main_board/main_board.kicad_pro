@@ -593,7 +593,7 @@
       "idf": "",
       "netlist": "",
       "plot": "../../pcb/main_board/",
-      "pos_files": "",
+      "pos_files": "../../pcb/main_board/",
       "specctra_dsn": "",
       "step": "",
       "svg": "",

@@ -492,7 +492,7 @@
       "idf": "",
       "netlist": "",
       "plot": "../../pcb/front_panel/",
-      "pos_files": "",
+      "pos_files": "../../pcb/front_panel/",
       "specctra_dsn": "",
       "step": "",
       "svg": "",

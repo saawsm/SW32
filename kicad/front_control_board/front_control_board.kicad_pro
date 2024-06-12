@@ -491,7 +491,7 @@
       "idf": "",
       "netlist": "",
       "plot": "../../pcb/front_control_board/",
-      "pos_files": "",
+      "pos_files": "../../pcb/front_control_board/",
       "specctra_dsn": "",
       "step": "",
       "svg": "",

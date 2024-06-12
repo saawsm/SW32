@@ -493,7 +493,7 @@
       "idf": "",
       "netlist": "",
       "plot": "../../pcb/output_board/",
-      "pos_files": "",
+      "pos_files": "../../pcb/output_board/",
       "specctra_dsn": "",
       "step": "",
       "svg": "",
