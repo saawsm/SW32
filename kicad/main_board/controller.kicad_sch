@@ -5,8 +5,8 @@
 	(uuid "eb93738c-b2f3-42e5-9d02-36f1f7d4a691")
 	(paper "A4")
 	(title_block
-		(title "SW32 - Main Board")
-		(date "2024-06-11")
+		(title "SW32")
+		(date "2024-06-12")
 		(rev "1")
 		(company "saawsm")
 		(comment 4 "Main board controller.")

@@ -5,8 +5,8 @@
 	(uuid "f242c8e3-6579-4ffa-a58b-8fa3275d0954")
 	(paper "A4")
 	(title_block
-		(title "SW32 - Front Panel")
-		(date "2024-05-27")
+		(title "SW32")
+		(date "2024-06-12")
 		(rev "1")
 		(company "saawsm")
 	)

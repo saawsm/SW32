@@ -5,8 +5,8 @@
 	(uuid "6acf68fa-0a26-4a56-b84c-ba0c1aee7b38")
 	(paper "A4")
 	(title_block
-		(title "SW32 - Main Board")
-		(date "2024-06-11")
+		(title "SW32")
+		(date "2024-06-12")
 		(rev "1")
 		(company "saawsm")
 		(comment 4 "USB-PD control and external input triggers.")

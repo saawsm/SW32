@@ -8,7 +8,7 @@
 	)
 	(paper "A4")
 	(title_block
-		(title "SW32 - Front Panel")
+		(title "SW32")
 		(date "2024-06-12")
 		(rev "1")
 		(company "saawsm")
@@ -1071,6 +1071,7 @@
 	(gr_line
 		(start 87.63 97.536)
 		(end 90.805 97.536)
+		(locked yes)
 		(stroke
 			(width 0.2)
 			(type solid)
@@ -1169,6 +1170,7 @@
 	(gr_line
 		(start 74.295 97.536)
 		(end 77.47 97.536)
+		(locked yes)
 		(stroke
 			(width 0.2)
 			(type solid)
@@ -2143,7 +2145,7 @@
 		(layer "Edge.Cuts")
 		(uuid "fc7fc24e-447f-4c04-a1d1-bae0972ab582")
 	)
-	(gr_text "SW32\n${PROJECTNAME}\nrev${REVISION} ${hash}"
+	(gr_text "${TITLE}\n${PROJECTNAME}\nrev${REVISION} ${hash}"
 		(locked yes)
 		(at 180.34 82.55 0)
 		(layer "B.SilkS")
@@ -2268,6 +2270,7 @@
 		)
 	)
 	(gr_text "SW32"
+		(locked yes)
 		(at 82.55 98.425 0)
 		(layer "F.SilkS")
 		(uuid "5be90d43-85f3-49e5-948d-05da2450da71")
@@ -2414,6 +2417,7 @@
 	)
 	(dimension
 		(type orthogonal)
+		(locked yes)
 		(layer "Dwgs.User")
 		(uuid "ed0e014e-3bba-4a43-906b-df9a934ab9bb")
 		(pts
@@ -2422,6 +2426,7 @@
 		(height 2.54)
 		(orientation 1)
 		(gr_text "70.1709 mm"
+			(locked yes)
 			(at 261.94 93.505473 90)
 			(layer "Dwgs.User")
 			(uuid "ed0e014e-3bba-4a43-906b-df9a934ab9bb")
@@ -2448,6 +2453,7 @@
 	)
 	(dimension
 		(type orthogonal)
+		(locked yes)
 		(layer "Dwgs.User")
 		(uuid "f1302f15-ccbb-4992-a752-89068a8197f2")
 		(pts
@@ -2456,6 +2462,7 @@
 		(height -2.54)
 		(orientation 0)
 		(gr_text "203.2000 mm"
+			(locked yes)
 			(at 154.94 52.39 0)
 			(layer "Dwgs.User")
 			(uuid "f1302f15-ccbb-4992-a752-89068a8197f2")

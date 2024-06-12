@@ -5,8 +5,8 @@
 	(uuid "a07b74e8-256c-4598-9ade-0461bd01e053")
 	(paper "A4")
 	(title_block
-		(title "SW32 - Main Board")
-		(date "2024-06-11")
+		(title "SW32")
+		(date "2024-06-12")
 		(rev "1")
 		(company "saawsm")
 		(comment 2 "BAT_LINK connector for smart BMS")

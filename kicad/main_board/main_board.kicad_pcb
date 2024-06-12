@@ -8,8 +8,8 @@
 	)
 	(paper "A4")
 	(title_block
-		(title "SW32 - Main Board")
-		(date "2024-06-11")
+		(title "SW32")
+		(date "2024-06-12")
 		(rev "1")
 		(company "saawsm")
 	)
@@ -68770,7 +68770,7 @@
 		(layer "Edge.Cuts")
 		(uuid "8feefb35-130f-49ff-9227-3ecbdd65d78c")
 	)
-	(gr_text "SW32\n${PROJECTNAME}\nrev${REVISION} ${hash}\n"
+	(gr_text "${TITLE}\n${PROJECTNAME}\nrev${REVISION} ${hash}\n"
 		(locked yes)
 		(at 223.647 88.646 0)
 		(layer "F.SilkS")
@@ -68826,6 +68826,7 @@
 	)
 	(dimension
 		(type orthogonal)
+		(locked yes)
 		(layer "Dwgs.User")
 		(uuid "ac10b568-504f-41a9-8b9a-76dcdcd6e9db")
 		(pts
@@ -68834,6 +68835,7 @@
 		(height -2.54)
 		(orientation 0)
 		(gr_text "198.1200 mm"
+			(locked yes)
 			(at 149.86 58.74 0)
 			(layer "Dwgs.User")
 			(uuid "ac10b568-504f-41a9-8b9a-76dcdcd6e9db")
@@ -68860,6 +68862,7 @@
 	)
 	(dimension
 		(type orthogonal)
+		(locked yes)
 		(layer "Dwgs.User")
 		(uuid "f7be420d-68b2-4fbe-b7df-a470817c84d7")
 		(pts
@@ -68868,6 +68871,7 @@
 		(height 2.54)
 		(orientation 1)
 		(gr_text "60.9600 mm"
+			(locked yes)
 			(at 267.02 96.52 90)
 			(layer "Dwgs.User")
 			(uuid "f7be420d-68b2-4fbe-b7df-a470817c84d7")

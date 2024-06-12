@@ -8,8 +8,8 @@
 	)
 	(paper "A4")
 	(title_block
-		(title "SW32 - Front Control Board")
-		(date "2024-06-11")
+		(title "SW32")
+		(date "2024-06-12")
 		(rev "1")
 		(company "saawsm")
 	)
@@ -18874,7 +18874,7 @@
 			(justify left bottom)
 		)
 	)
-	(gr_text "SW32\n${PROJECTNAME} \nrev${REVISION} ${hash}"
+	(gr_text "${TITLE}\n${PROJECTNAME} \nrev${REVISION} ${hash}"
 		(locked yes)
 		(at 212.979 112.776 0)
 		(layer "F.SilkS")

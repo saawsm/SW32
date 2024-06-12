@@ -5,8 +5,8 @@
 	(uuid "53af5e97-b40e-4e43-b94c-0c220390f16d")
 	(paper "A4")
 	(title_block
-		(title "SW32 - Main Board")
-		(date "2024-06-11")
+		(title "SW32")
+		(date "2024-06-12")
 		(rev "1")
 		(company "saawsm")
 		(comment 4 "System power supplies and soft latching power switch.")
