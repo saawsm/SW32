@@ -492,7 +492,7 @@
       "gencad": "",
       "idf": "",
       "netlist": "",
-      "plot": "",
+      "plot": "../../pcb/output_board/",
       "pos_files": "",
       "specctra_dsn": "",
       "step": "",

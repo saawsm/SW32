@@ -491,7 +491,7 @@
       "gencad": "",
       "idf": "",
       "netlist": "",
-      "plot": "",
+      "plot": "../../pcb/front_panel/",
       "pos_files": "",
       "specctra_dsn": "",
       "step": "",

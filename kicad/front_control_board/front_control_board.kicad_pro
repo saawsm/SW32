@@ -490,7 +490,7 @@
       "gencad": "",
       "idf": "",
       "netlist": "",
-      "plot": "",
+      "plot": "../../pcb/front_control_board/",
       "pos_files": "",
       "specctra_dsn": "",
       "step": "",
