@@ -36,8 +36,8 @@ The SW32 consists of following PCBs:
 
 The reason for having a separate output board is primarily for flexibility, space savings (expand vertically instead of horizontally), and long-term cost savings. Most of the cost is in the main board. So being able to reuse the main board when changing the output design will help keep costs down.
 
-## Building
+## Fabrication
 
 This build is mostly SMT with THT for connectors and front panel components. PCBs have been designed specifically for JLCPCB fabrication and assembly.
 
-Generated board files (schematics, gerbers, BoM, etc) can be found on the [releases](https://github.com/saawsm/SW32/releases) page.
+Schematics can be found in [/schematics](/schematics), and PCB fabrication files (gerbers, BoMs, CPL, etc.) can be found in [/pcb](/pcb).
