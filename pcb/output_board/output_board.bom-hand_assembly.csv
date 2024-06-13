@@ -1,0 +1,8 @@
+"Comment","Designator","Footprint","LCSC Part Number","Service","Qty","DNP"
+"220uF","C5","Capacitor_THT:CP_Radial_D8.0mm_P3.50mm","C264063","HandAssembly","1",""
+"220uF","C8,C10,C12,C14","Capacitor_THT:CP_Radial_D8.0mm_P3.50mm","","HandAssembly","4",""
+"DRV_PWR","J1","Connector_PinHeader_2.54mm:PinHeader_1x05_P2.54mm_Vertical","C492404","HandAssembly","1",""
+"DRV","J2","Connector_PinHeader_2.54mm:PinHeader_2x08_P2.54mm_Vertical","C492425","HandAssembly","1",""
+"CH_OUT","J3","Connector_PinSocket_2.54mm:PinSocket_1x12_P2.54mm_Vertical","C2897375","HandAssembly","1",""
+"IRF9Z24NPBF","Q1,Q4,Q7,Q10","Package_TO_SOT_THT:TO-220-3_Vertical","C2576","HandAssembly","4",""
+"42TL004/42TU200","T1,T2,T3,T4","SaawLib:42TL_TU","","HandAssembly","4",""
