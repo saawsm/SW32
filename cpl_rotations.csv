@@ -1,0 +1,12 @@
+"PackagePattern", "RotationOffset", "OffsetX", "OffsetY"
+"^LED_WS2812B_PLCC4_5.0x5.0mm_P3.2mm",270
+"^ESP32-WROOM-32UE",0,0,-0.323
+"^SOIC-14_3.9x8.7mm_P1.27mm",270
+"^SOT-23-6",270
+"^SOT-23",180
+"^VSON-8_3.3x3.3mm_P0.65mm_NexFET",270
+"^Diodes_PowerDI3333-8",270
+"^MSOP-8_3x3",270
+"^SOIC-8",270
+"^USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal",0,0,1.32
+"^WQFN-14-1EP_2.5x2.5mm_P0.5mm_EP1.45x1.45mm",270
