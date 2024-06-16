@@ -125,14 +125,14 @@ void app_main() {
 
    adc_oneshot_chan_cfg_t config = {
        .bitwidth = ADC_BITWIDTH_DEFAULT,
-       .atten = ADC_ATTEN_DB_11,
+       .atten = ADC_ATTEN_DB_12,
    };
 
    for (uint8_t i = 0; i < ADC_CHANNEL_MAP_COUNT; i++) {
       ESP_ERROR_CHECK(adc_oneshot_config_channel(adc_handle, ADC_CHANNEL_MAP[i], &config));
    }
 
-   adc_calibrated = adc_calibration_init(ADC_UNIT_1, ADC_ATTEN_DB_11, &adc_cali_handle);
+   adc_calibrated = adc_calibration_init(ADC_UNIT_1, ADC_ATTEN_DB_12, &adc_cali_handle);
    if (!adc_calibrated) {
       ESP_LOGW(TAG, "ADC failed calibration!");
    }
@@ -151,7 +151,7 @@ void app_main() {
 static inline esp_err_t read_adc(adc_channel_t channel, float* value, const float conv_factor) {
    const int SAMPLES = 32;
 
-   uint total = 0;
+   uint32_t total = 0;
    int counts;
    for (int i = 0; i < SAMPLES; i++) {
       ESP_RETURN_ON_ERROR(adc_oneshot_read(adc_handle, channel, &counts), TAG, "Failed to oneshot read ADC");
