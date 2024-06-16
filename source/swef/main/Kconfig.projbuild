@@ -1,0 +1,98 @@
+menu "swef Configuration"
+
+    menu "Front Panel"
+        menu "LED Strip"    
+            config SWEF_FP_PIN_LED_STRIP
+                int "LED Strip GPIO number"
+                default 2
+                help
+                    Set the GPIO number for the LED strip.
+
+            config SWEF_FP_LED_STRIP_LENGTH
+                int "LED Strip length"
+                default 10
+                help
+                    Set the number of LEDs in the LED strip.
+        endmenu
+
+        menu "Rotary Encoder"
+            config SWEF_FP_PIN_ROT_ENC_A
+                int "Rotary Encoder Pin A GPIO number"
+                default 16
+                help
+                    Set the GPIO number for pin A of the rotary encoder.
+                
+            config SWEF_FP_PIN_ROT_ENC_B
+                int "Rotary Encoder Pin B GPIO number"
+                default 17
+                help
+                    Set the GPIO number for pin B of the rotary encoder.
+    
+            config SWEF_FP_PIN_ROT_ENC_BTN
+                int "Rotary Encoder Button GPIO number"
+                default 4
+                help
+                    Set the GPIO number used by the rotary encoder button.
+        endmenu   
+    
+        menu "Buttons"
+            config SWEF_FP_PIN_BTN_TL
+                int "Top Left Button GPIO number"
+                default 27
+                help
+                    Set the GPIO number for the top left button.
+                    
+            config SWEF_FP_PIN_BTN_TR
+                int "Top Right Button GPIO number"
+                default 26
+                help
+                    Set the GPIO number for the top right button.
+                    
+            config SWEF_FP_PIN_BTN_BR
+                int "Bottom Right Button GPIO number"
+                default 14
+                help
+                    Set the GPIO number for the bottom right button
+                    
+            config SWEF_FP_PIN_BTN_BL
+                int "Bottom Left Button GPIO number"
+                default 21
+                help
+                    Set the GPIO number for the bottom left button.
+        endmenu
+    
+        menu "Potentiometers"
+            config SWEF_FP_POT_CH1_ADC1_CH
+                int "ADC1 channel number for output channel 1 potentiometer"
+                default 0
+                help
+                    Set the ADC1 channel number for the output channel 1.
+
+            config SWEF_FP_POT_CH2_ADC1_CH
+            int "ADC1 channel number for output channel 2 potentiometer"
+                default 3
+                help
+                    Set the ADC1 channel number for the output channel 2.
+
+            config SWEF_FP_POT_CH3_ADC1_CH
+                int "ADC1 channel number for output channel 3 potentiometer"
+                default 6
+                help
+                    Set the ADC1 channel number for the output channel 3.
+
+            config SWEF_FP_POT_CH4_ADC1_CH
+                int "ADC1 channel number for output channel 4 potentiometer"
+                default 7
+                help
+                    Set the ADC1 channel number for the output channel 4.
+        endmenu
+
+        config SWEF_FP_PIN_BUZZER
+            int "Buzzer GPIO number"
+            default 12
+            help
+                Set the GPIO number for the buzzer.
+
+    endmenu
+
+endmenu
