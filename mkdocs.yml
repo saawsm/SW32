@@ -1,0 +1,59 @@
+site_name: SW32
+site_url: https://saawsm.github.io/SW32
+site_author: saawsm
+site_description: "Documentation for the SW32, a 4-channel E-Stim box."
+
+repo_name: SW32
+repo_url: https://github.com/saawsm/SW32
+
+theme:
+  name: material
+  icon:
+    repo: fontawesome/brands/github
+  palette:
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.instant
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - search.share
+    - toc.integrate
+
+plugins:
+    - search
+    - awesome-pages
+    - table-reader
+
+markdown_extensions: 
+    - abbr
+    - attr_list
+    - sane_lists
+    - tables
+    - toc:
+        permalink: true
+    - pymdownx.snippets
+    - pymdownx.superfences
+    - pymdownx.highlight
+    - pymdownx.details
+
+extra_css:
+    - assets/stylesheets/styles.css
+
+nav:
+    - index.md
+    - ...

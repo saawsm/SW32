@@ -56,7 +56,7 @@ if ($null -eq $ibom) {
     $ibom = Get-ChildItem -Path (Join-Path -Path $documents -ChildPath "KiCad/$($Env:KICAD_VERSION)") -Depth 4 -Recurse -Include 'generate_interactive_bom.py'
 }
 
-$tmp = New-Item -ItemType Directory -Path "./_tmp"
+$tmp = New-Item -ItemType Directory -Path "./temp"
 $cpl_rotations = Import-Csv -Path "cpl_rotations.csv"
 
 # Find *.kicad_sch files that have the same name as their parent folder

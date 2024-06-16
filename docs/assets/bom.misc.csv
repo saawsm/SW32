@@ -1,0 +1,7 @@
+"Name","Description","Supplier","Quantity","Notes"
+"Display","1.8 Color TFT SPI Display (ADA358)","Adafruit",1,"Search for ADA358 for resellers"
+"Case","3D Printed Case","User or Print Service",1,
+"Button Caps","3D Printed Button Caps 10x10","User or Print Service",4,
+"Power Button Cap","3D Printed Button Cap 7x7","User or Print Service",1,
+"Ribbon Cable","2x4 16P 2.54mm 0.1” Pitch Ribbon Cable","Amazon/AliExpress",1,"Connects main_board to front_panel_control"
+"Jumper Cable","1x10 2.54mm 0.1” Pitch Jumper Cable","Amazon/AliExpress",1,"Connects front_panel_control to display module"
