@@ -33,6 +33,7 @@ theme:
     - search.highlight
     - search.share
     - toc.integrate
+    - content.code.copy
 
 plugins:
     - search
