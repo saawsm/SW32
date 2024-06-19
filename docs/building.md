@@ -54,6 +54,7 @@ Layers                 | 4
 PCB Thickness          | 1.6mm
 Outer Copper Weight    | 1oz
 Inner Copper Weight    | 0.5oz
+Specify Layer Sequence | F_Cu, In1_Cu, In2_Cu, B_Cu
 Impedance Control?     | Yes
 Layer Stackup          | JLC04161H-7628
 Via Covering           | Plugged (free upgrade from tented)
