@@ -42,6 +42,7 @@ pico_add_extra_outputs(${PROJECT_NAME}) # Create map/bin/hex/uf2 files
 
 target_sources(${PROJECT_NAME} PRIVATE
     "src/main.c"
+    "src/util/i2c.c"
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE
