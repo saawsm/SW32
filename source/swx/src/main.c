@@ -19,22 +19,36 @@
 
 #include <task.h>
 
-static void blink_task(void* arg) {
+static inline void init() {
+
+   bool clk_success = set_sys_clock_khz(250000, false); // try set clock to 250MHz
+   stdio_init_all();                                    // needs to be called after setting clock
+
+   LOG_INFO("~~ swx driver %s ~~\n", SWX_VERSION_STR);
+   LOG_INFO("Starting up...\n");
+
+   if (clk_success) {
+      LOG_DEBUG("sys_clk set to 250MHz\n");
+   }
+}
+
+static void run_task(void* arg) {
+   (void)arg;
+
    while (true) {
-      gpio_put(PICO_DEFAULT_LED_PIN, !gpio_get(PICO_DEFAULT_LED_PIN));
 
       vTaskDelay(pdMS_TO_TICKS(250));
    }
 }
 
 int main() {
-   stdio_init_all();
+   // Initialize hardware
+   init();
 
-   init_gpio(PICO_DEFAULT_LED_PIN, GPIO_OUT, false);
+   xTaskCreate(run_task, "run_task", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 1, NULL);
 
-   printf("Hello World\n");
-
-   xTaskCreate(blink_task, "blink_task", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 1, NULL);
-
+   // Startup FreeRTOS
    vTaskStartScheduler();
+
+   panic("Unsupported! Task scheduler returned!"); // should never reach here
 }
