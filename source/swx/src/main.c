@@ -17,9 +17,38 @@
  */
 #include "swx.h"
 
+#include <hardware/i2c.h>
+
 #include <task.h>
 
 static inline void init() {
+   init_gpio(PIN_PWR_CTRL, GPIO_IN, false);
+   gpio_pull_up(PIN_PWR_CTRL); // latch board power on
+
+   init_gpio(PIN_DRV_EN, GPIO_OUT, false);
+   init_gpio(PIN_PIP_EN, GPIO_OUT, true); // active low output
+   init_gpio(PIN_DISCH_EN, GPIO_OUT, false);
+
+   init_gpio(PIN_INT_PD, GPIO_IN, false); // active low input
+
+   init_gpio(PIN_TRIG_A1, GPIO_IN, false); // active low input
+   init_gpio(PIN_TRIG_A2, GPIO_IN, false); // active low input
+   init_gpio(PIN_TRIG_B1, GPIO_IN, false); // active low input
+   init_gpio(PIN_TRIG_B2, GPIO_IN, false); // active low input
+
+   // Init normal I2C bus
+   i2c_init(I2C_PORT, I2C_FREQ);
+   gpio_set_function(PIN_I2C_SDA, GPIO_FUNC_I2C);
+   gpio_set_function(PIN_I2C_SCL, GPIO_FUNC_I2C);
+   gpio_disable_pulls(PIN_I2C_SDA); // use hardware pullups
+   gpio_disable_pulls(PIN_I2C_SCL);
+
+   // Init DAC I2C bus
+   i2c_init(I2C_PORT_DAC, I2C_FREQ_DAC);
+   gpio_set_function(PIN_I2C_SDA_DAC, GPIO_FUNC_I2C);
+   gpio_set_function(PIN_I2C_SCL_DAC, GPIO_FUNC_I2C);
+   gpio_disable_pulls(PIN_I2C_SDA_DAC); // use hardware pullups
+   gpio_disable_pulls(PIN_I2C_SCL_DAC);
 
    bool clk_success = set_sys_clock_khz(250000, false); // try set clock to 250MHz
    stdio_init_all();                                    // needs to be called after setting clock

@@ -19,6 +19,94 @@
 #ifndef _BOARDS_SW32_H
 #define _BOARDS_SW32_H
 
-#include <boards/pico.h>
+#define PIN_PWR_CTRL (19)
+#define PIN_DRV_EN (10)
+#define PIN_PIP_EN (11) // active low
+#define PIN_DISCH_EN (24)
+
+#define PIN_INT_PD (25) // active low
+
+// -------- Triggers --------
+
+#define TRIGGER_COUNT (4)
+
+#define PIN_TRIG_A1 (14) // active low
+#define PIN_TRIG_A2 (15) // active low
+#define PIN_TRIG_B1 (12) // active low
+#define PIN_TRIG_B2 (13) // active low
+
+// -------- I2C --------
+#define PIN_I2C_SCL (23)
+#define PIN_I2C_SDA (22)
+#define I2C_PORT (i2c1)
+#define I2C_FREQ (400000) // Hz
+
+#define PIN_I2C_SCL_DAC (9)
+#define PIN_I2C_SDA_DAC (8)
+#define I2C_PORT_DAC (i2c0)
+#define I2C_FREQ_DAC (400000) // Hz
+
+// -------- UART --------
+#define PIN_TXD1 (20)
+#define PIN_RXD1 (21)
+
+// -------- I2S Audio --------
+#define PIN_I2S_DIN (16)
+#define PIN_I2S_WS (17)
+#define PIN_I2S_BCLK (18)
+
+// -------- ADC --------
+#define PIN_ADC_SENSE (26)
+#define PIN_ADC_AUDIO_LEFT (29)
+#define PIN_ADC_AUDIO_RIGHT (28)
+#define PIN_ADC_AUDIO_MIC (27)
+
+#define ADC_CH_SENSE (0)
+#define ADC_CH_AUDIO_LEFT (3)
+#define ADC_CH_AUDIO_RIGHT (2)
+#define ADC_CH_AUDIO_MIC (1)
+
+// -------- Channels --------
+
+#define CHANNEL_COUNT (4)
+#define CH_DAC_ADDRESS (0x60)
+
+// -------- Channel 1 --------
+#define PIN_CH1_GA (4)
+#define PIN_CH1_GB (5)
+#define CH1_DAC_CH (0)
+
+// -------- Channel 2 --------
+#define PIN_CH2_GA (0)
+#define PIN_CH2_GB (1)
+#define CH2_DAC_CH (1)
+
+// -------- Channel 3 --------
+#define PIN_CH3_GA (2)
+#define PIN_CH3_GB (3)
+#define CH3_DAC_CH (2)
+
+// -------- Channel 4 --------
+#define PIN_CH4_GA (6)
+#define PIN_CH4_GB (7)
+#define CH4_DAC_CH (3)
+
+// ---------------------------
+
+#define PICO_BOOT_STAGE2_CHOOSE_W25Q080 1
+
+#ifndef PICO_FLASH_SPI_CLKDIV
+#define PICO_FLASH_SPI_CLKDIV 2
+#endif
+
+// 16M flash
+#ifndef PICO_FLASH_SIZE_BYTES
+#define PICO_FLASH_SIZE_BYTES (16 * 1024 * 1024)
+#endif
+
+// Board has B1 RP2040
+#ifndef PICO_RP2040_B0_SUPPORTED
+#define PICO_RP2040_B0_SUPPORTED 0
+#endif
 
 #endif // _SW32_H
