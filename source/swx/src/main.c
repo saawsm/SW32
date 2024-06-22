@@ -15,17 +15,32 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include <pico/stdlib.h>
 #include <stdio.h>
+
+#include <pico/stdlib.h>
+
+#include <FreeRTOS.h>
+#include <task.h>
+
+static void blink_task(void* arg) {
+   while (true) {
+      printf("Time: %u\n", time_us_32());
+
+      gpio_put(PICO_DEFAULT_LED_PIN, !gpio_get(PICO_DEFAULT_LED_PIN));
+
+      vTaskDelay(pdMS_TO_TICKS(250));
+   }
+}
 
 int main() {
    stdio_init_all();
 
+   gpio_init(PICO_DEFAULT_LED_PIN);
+   gpio_set_dir(PICO_DEFAULT_LED_PIN, true);
+
    printf("Hello World\n");
 
-   while (true) {
-      printf("Time: %u\n", time_us_32());
+   xTaskCreate(blink_task, "blink_task", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 1, NULL);
 
-      sleep_ms(500);
-   }
+   vTaskStartScheduler();
 }
