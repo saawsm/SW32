@@ -22,6 +22,9 @@ include(pico_sdk_import.cmake)
 set(FREERTOS_KERNEL_PATH "${CMAKE_CURRENT_LIST_DIR}/lib/freertos")
 include(FreeRTOS_Kernel_import.cmake)
 
+# Pull in libfixmath
+add_subdirectory(lib/libfixmath)
+
 project(swx
     VERSION 1.0.0 # pcb_rev.major.minor
     HOMEPAGE_URL https://github.com/saawsm/SW32
@@ -34,37 +37,37 @@ pico_sdk_init()
 add_executable(${PROJECT_NAME})
 pico_add_extra_outputs(${PROJECT_NAME}) # Create map/bin/hex/uf2 files
 
-target_sources(${PROJECT_NAME}
-    PRIVATE
-        "src/main.c"
+target_sources(${PROJECT_NAME} PRIVATE
+    "src/main.c"
 )
 
-target_include_directories(${PROJECT_NAME} 
-    PRIVATE
-       "config"
-       "include/swx"
+target_include_directories(${PROJECT_NAME} PRIVATE
+    "config"
+    "include/swx"
 )
 
-target_link_libraries(${PROJECT_NAME} 
-    PRIVATE 
-        pico_stdlib
-        FreeRTOS-Kernel
-        FreeRTOS-Kernel-Heap4
-)
+target_link_libraries(${PROJECT_NAME} PRIVATE 
+    pico_stdlib
+    FreeRTOS-Kernel
+    FreeRTOS-Kernel-Heap4
+    libfixmath
 
-target_link_libraries(${PROJECT_NAME}
-    PRIVATE
-        hardware_i2c
-        hardware_uart
-        hardware_pio
-        hardware_adc
-        hardware_dma
+    hardware_i2c
+    hardware_uart
+    hardware_pio
+    hardware_adc
+    hardware_dma
 )
 
 target_compile_options(${PROJECT_NAME} PRIVATE
     -Wall
     -Wextra
     -Wno-format # int != int32_t as far as the compiler is concerned because gcc has int32_t as long int
+)
+
+target_compile_definitions(${PROJECT_NAME} PRIVATE
+    FIXMATH_FAST_SIN
+    PICO_USE_STACK_GUARDS
 )
 
 pico_enable_stdio_usb(${PROJECT_NAME} 1)

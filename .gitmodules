@@ -13,3 +13,6 @@
 [submodule "source/swx/lib/freertos"]
 	path = source/swx/lib/freertos
 	url = https://github.com/saawsm/FreeRTOS-Kernel
+[submodule "source/swx/lib/libfixmath"]
+	path = source/swx/lib/libfixmath
+	url = https://github.com/saawsm/libfixmath
