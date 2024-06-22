@@ -15,26 +15,15 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include "swx.h"
+#ifndef _SWX_VERSION_H
+#define _SWX_VERSION_H
 
-#include <task.h>
+#define SWX_VERSION_BITS (8)
 
-static void blink_task(void* arg) {
-   while (true) {
-      gpio_put(PICO_DEFAULT_LED_PIN, !gpio_get(PICO_DEFAULT_LED_PIN));
+#define SWX_VERSION_PCB_REV (1)
+#define SWX_VERSION_MAJOR (0)
+#define SWX_VERSION_MINOR (0)
 
-      vTaskDelay(pdMS_TO_TICKS(250));
-   }
-}
+#define SWX_VERSION ((SWX_VERSION_PCB_REV << SWX_VERSION_BITS * 2) | (SWX_VERSION_MAJOR << SWX_VERSION_BITS * 1) | (SWX_VERSION_MINOR << SWX_VERSION_BITS * 0))
 
-int main() {
-   stdio_init_all();
-
-   init_gpio(PICO_DEFAULT_LED_PIN, GPIO_OUT, false);
-
-   printf("Hello World\n");
-
-   xTaskCreate(blink_task, "blink_task", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 1, NULL);
-
-   vTaskStartScheduler();
-}
+#endif // _SWX_VERSION_H

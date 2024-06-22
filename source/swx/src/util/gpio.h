@@ -15,26 +15,29 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include "swx.h"
+#ifndef _GPIO_H
+#define _GPIO_H
 
-#include <task.h>
+#include "../swx.h"
 
-static void blink_task(void* arg) {
-   while (true) {
-      gpio_put(PICO_DEFAULT_LED_PIN, !gpio_get(PICO_DEFAULT_LED_PIN));
+#include <hardware/gpio.h>
 
-      vTaskDelay(pdMS_TO_TICKS(250));
-   }
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+static inline void init_gpio(uint pin, bool out, bool value) {
+   gpio_init(pin);
+   gpio_set_dir(pin, out);
+   gpio_put(pin, value);
 }
 
-int main() {
-   stdio_init_all();
-
-   init_gpio(PICO_DEFAULT_LED_PIN, GPIO_OUT, false);
-
-   printf("Hello World\n");
-
-   xTaskCreate(blink_task, "blink_task", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 1, NULL);
-
-   vTaskStartScheduler();
+static inline void gpio_toggle(uint pin) {
+   gpio_put(pin, !gpio_get(pin));
 }
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif // _GPIO_H
