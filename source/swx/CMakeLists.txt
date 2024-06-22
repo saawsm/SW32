@@ -25,6 +25,9 @@ include(FreeRTOS_Kernel_import.cmake)
 # Pull in libfixmath
 add_subdirectory(lib/libfixmath)
 
+# Pull in Lua
+add_subdirectory(lib/lua)
+
 project(swx
     VERSION 1.0.0 # pcb_rev.major.minor
     HOMEPAGE_URL https://github.com/saawsm/SW32
@@ -51,6 +54,7 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
     FreeRTOS-Kernel
     FreeRTOS-Kernel-Heap4
     libfixmath
+    lua
 
     hardware_i2c
     hardware_uart
