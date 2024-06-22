@@ -15,25 +15,23 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include <stdio.h>
+#ifndef _INPUT_H
+#define _INPUT_H
 
-#include <esp_check.h>
-#include <esp_event.h>
+#include <esp_err.h>
 
-#include <nvs_flash.h>
+#define CHANNEL_COUNT (4)
 
-#include "input.h"
+#ifdef __cplusplus
+extern "C" {
+#endif
 
-static const char* TAG = "main";
+extern uint32_t channel_levels[CHANNEL_COUNT];
 
-void app_main() {
-   ESP_LOGI(TAG, "~~ swef ~~");
+esp_err_t input_init();
 
-   // Init non-volatile key-value pair storage, required for WiFi driver.
-   ESP_ERROR_CHECK(nvs_flash_init());
-
-   // Init default system event loop
-   ESP_ERROR_CHECK(esp_event_loop_create_default());
-
-   ESP_ERROR_CHECK(input_init());
+#ifdef __cplusplus
 }
+#endif
+
+#endif // _INPUT_H

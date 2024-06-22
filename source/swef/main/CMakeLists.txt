@@ -1,6 +1,7 @@
 idf_component_register(
     SRCS 
         "main.c"
+        "input.c"
     INCLUDE_DIRS 
         "."
     REQUIRES
@@ -16,6 +17,7 @@ idf_component_register(
         mdns
         esp_http_server
         esp_netif
+        esp_wifi
 
         hagl
         hagl_hal
