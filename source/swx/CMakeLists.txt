@@ -15,8 +15,8 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 # Add the board directory so pico-sdk can find it
 list(APPEND PICO_BOARD_HEADER_DIRS ${CMAKE_SOURCE_DIR}/boards)
 
-# Pull in Pico SDK (must be before project) (environment variable PICO_SDK_PATH)
-include($ENV{PICO_SDK_PATH}/pico_sdk_init.cmake)
+# Pull in Pico SDK
+include(pico_sdk_import.cmake)
 
 # Pull in FreeRTOS
 set(FREERTOS_KERNEL_PATH "${CMAKE_CURRENT_LIST_DIR}/lib/freertos")
