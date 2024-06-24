@@ -18,10 +18,6 @@ list(APPEND PICO_BOARD_HEADER_DIRS ${CMAKE_SOURCE_DIR}/boards)
 # Pull in Pico SDK
 include(pico_sdk_import.cmake)
 
-# Pull in FreeRTOS
-set(FREERTOS_KERNEL_PATH "${CMAKE_CURRENT_LIST_DIR}/lib/freertos")
-include(FreeRTOS_Kernel_import.cmake)
-
 # Pull in libfixmath
 add_subdirectory(lib/libfixmath)
 
@@ -46,14 +42,11 @@ target_sources(${PROJECT_NAME} PRIVATE
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE
-    "config"
     "include/swx"
 )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE 
     pico_stdlib
-    FreeRTOS-Kernel
-    FreeRTOS-Kernel-Heap4
     libfixmath
     lua
 

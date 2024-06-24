@@ -23,8 +23,6 @@
 
 #include <pico/stdlib.h>
 
-#include <FreeRTOS.h>
-
 #include "version.h"
 
 #include "util/gpio.h"

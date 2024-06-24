@@ -19,7 +19,10 @@
 
 #include <hardware/i2c.h>
 
-#include <task.h>
+#include "output.h"
+#include "pulse_gen.h"
+
+#include "hardware/bq25703a.h"
 
 static inline void init() {
    init_gpio(PIN_PWR_CTRL, GPIO_IN, false);
@@ -61,23 +64,17 @@ static inline void init() {
    }
 }
 
-static void run_task(void* arg) {
-   (void)arg;
-
-   while (true) {
-
-      vTaskDelay(pdMS_TO_TICKS(250));
-   }
+static void __always_inline(run)() {
+   //
 }
 
 int main() {
    // Initialize hardware
    init();
 
-   xTaskCreate(run_task, "run_task", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 1, NULL);
 
-   // Startup FreeRTOS
-   vTaskStartScheduler();
 
-   panic("Unsupported! Task scheduler returned!"); // should never reach here
+   while (true) {
+      run();
+   }
 }
