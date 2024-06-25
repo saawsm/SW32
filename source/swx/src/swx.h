@@ -41,7 +41,21 @@
 #define LOG_WARN(...) printf(__VA_ARGS__)  // recoverable warnings
 #define LOG_ERROR(...) printf(__VA_ARGS__) // errors (usually not recoverable)
 
+// Errors that are not recoverable
+// Alternative to panic() that has unreliable stdio output
+#define LOG_FATAL(...)                                                                                                                                                   \
+   do {                                                                                                                                                                  \
+      LOG_ERROR("\n*** PANIC ***\n");                                                                                                                                    \
+      LOG_ERROR(__VA_ARGS__);                                                                                                                                            \
+      sleep_ms(10);                                                                                                                                                      \
+      extern void _exit(int status);                                                                                                                                     \
+      _exit(1);                                                                                                                                                          \
+   } while (0);
+
 #define HZ_TO_US(hz) (1000000ul / (hz))
 #define KHZ_TO_US(hz) (1000ul / (hz))
+
+// Turns off power by unlatching soft power switch
+void swx_power_off();
 
 #endif // _SWX_H

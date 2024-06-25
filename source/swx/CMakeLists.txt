@@ -36,8 +36,14 @@ pico_sdk_init()
 add_executable(${PROJECT_NAME})
 pico_add_extra_outputs(${PROJECT_NAME}) # Create map/bin/hex/uf2 files
 
+# Generate PIO headers (place them in the build/generated folder)
+pico_generate_pio_header(${PROJECT_NAME} ../src/pio/pulse_gen.pio OUTPUT_DIR build/generated) # "../" since we are in the /build folder
+
 target_sources(${PROJECT_NAME} PRIVATE
     "src/main.c"
+    "src/output.c"
+    "src/input.c"
+    "src/pulse_gen.c"
     "src/util/i2c.c"
 )
 
@@ -49,12 +55,13 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
     pico_stdlib
     libfixmath
     lua
-
+    
     hardware_i2c
     hardware_uart
     hardware_pio
     hardware_adc
     hardware_dma
+    pico_multicore
 )
 
 target_compile_options(${PROJECT_NAME} PRIVATE

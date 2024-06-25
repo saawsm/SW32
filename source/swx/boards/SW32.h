@@ -50,6 +50,8 @@
 #define PIN_TXD1 (20)
 #define PIN_RXD1 (21)
 
+#define UART_PORT (uart1)
+
 // -------- I2S Audio --------
 #define PIN_I2S_DIN (16)
 #define PIN_I2S_WS (17)
@@ -61,15 +63,16 @@
 #define PIN_ADC_AUDIO_RIGHT (28)
 #define PIN_ADC_AUDIO_MIC (27)
 
-#define ADC_CH_SENSE (0)
-#define ADC_CH_AUDIO_LEFT (3)
-#define ADC_CH_AUDIO_RIGHT (2)
-#define ADC_CH_AUDIO_MIC (1)
-
 // -------- Channels --------
 
 #define CHANNEL_COUNT (4)
 #define CH_DAC_ADDRESS (0x60)
+
+// -------- Channel Defaults --------
+
+#define CH_CAL_THRESHOLD_OK (0.15f)
+#define CH_CAL_THRESHOLD_OVER (0.18f)
+#define CH_CAL_OFFSET (400)
 
 // -------- Channel 1 --------
 #define PIN_CH1_GA (4)

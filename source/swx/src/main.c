@@ -17,27 +17,23 @@
  */
 #include "swx.h"
 
+#include <pico/multicore.h>
 #include <hardware/i2c.h>
 
+#include "input.h"
 #include "output.h"
 #include "pulse_gen.h"
 
 #include "hardware/bq25703a.h"
 
 static inline void init() {
-   init_gpio(PIN_PWR_CTRL, GPIO_IN, false);
-   gpio_pull_up(PIN_PWR_CTRL); // latch board power on
+   input_init();
 
-   init_gpio(PIN_DRV_EN, GPIO_OUT, false);
-   init_gpio(PIN_PIP_EN, GPIO_OUT, true); // active low output
-   init_gpio(PIN_DISCH_EN, GPIO_OUT, false);
+   init_gpio(PIN_DISCH_EN, GPIO_OUT, false); // TODO: Move to usb-pd
+   gpio_disable_pulls(PIN_DISCH_EN);
 
-   init_gpio(PIN_INT_PD, GPIO_IN, false); // active low input
-
-   init_gpio(PIN_TRIG_A1, GPIO_IN, false); // active low input
-   init_gpio(PIN_TRIG_A2, GPIO_IN, false); // active low input
-   init_gpio(PIN_TRIG_B1, GPIO_IN, false); // active low input
-   init_gpio(PIN_TRIG_B2, GPIO_IN, false); // active low input
+   init_gpio(PIN_INT_PD, GPIO_IN, false); // active low input   TODO: Move to usb-pd
+   gpio_disable_pulls(PIN_INT_PD);
 
    // Init normal I2C bus
    i2c_init(I2C_PORT, I2C_FREQ);
@@ -46,17 +42,11 @@ static inline void init() {
    gpio_disable_pulls(PIN_I2C_SDA); // use hardware pullups
    gpio_disable_pulls(PIN_I2C_SCL);
 
-   // Init DAC I2C bus
-   i2c_init(I2C_PORT_DAC, I2C_FREQ_DAC);
-   gpio_set_function(PIN_I2C_SDA_DAC, GPIO_FUNC_I2C);
-   gpio_set_function(PIN_I2C_SCL_DAC, GPIO_FUNC_I2C);
-   gpio_disable_pulls(PIN_I2C_SDA_DAC); // use hardware pullups
-   gpio_disable_pulls(PIN_I2C_SCL_DAC);
-
    bool clk_success = set_sys_clock_khz(250000, false); // try set clock to 250MHz
    stdio_init_all();                                    // needs to be called after setting clock
 
-   LOG_INFO("~~ swx driver %s ~~\n", SWX_VERSION_STR);
+   const char* const swxVersion = SWX_VERSION_STR;
+   LOG_INFO("~~ swx driver %s ~~\n", swxVersion);
    LOG_INFO("Starting up...\n");
 
    if (clk_success) {
@@ -64,17 +54,28 @@ static inline void init() {
    }
 }
 
-static void __always_inline(run)() {
-   //
+void core1_main() {
+   while (true) {
+      pulse_gen_process();
+
+      output_process_power();
+      output_process_pulse();
+   }
 }
 
 int main() {
-   // Initialize hardware
-   init();
+   init(); // Initialize hardware
+
+   // Initialize output driver
+   output_init();
+
+   // Initialize pulse generator
+   pulse_gen_init();
 
 
+   multicore_reset_core1();
+   multicore_launch_core1(core1_main);
 
    while (true) {
-      run();
    }
 }

@@ -33,22 +33,11 @@ static inline mutex_t* get_mutex(i2c_inst_t* i2c) {
 int i2c_scan(i2c_inst_t* i2c) {
    LOG_DEBUG("Scanning I2C devices...\n");
 
-#ifdef I2C_MUTEX_TIMEOUT
-   if (!mutex_enter_timeout_us(get_mutex(i2c), I2C_MUTEX_TIMEOUT)) {
-      LOG_WARN("i2c_scan: Mutex timeout!\n");
-      return -1;
-   }
-#endif
-
    for (uint8_t address = 0; address <= 0x7F; address++) {
       if (i2c_check(i2c, address)) {
          LOG_DEBUG("Found device at 0x%02x\n", address);
       }
    }
-
-#ifdef I2C_MUTEX_TIMEOUT
-   mutex_exit(get_mutex(i2c));
-#endif
 
    LOG_DEBUG("Done.\n");
 
@@ -92,9 +81,21 @@ bool i2c_check(i2c_inst_t* i2c, uint8_t addr) {
    if ((addr & 0x78) == 0 || (addr & 0x78) == 0x78)
       return false;
 
+#ifdef I2C_MUTEX_TIMEOUT
+   if (!mutex_enter_timeout_us(get_mutex(i2c), I2C_MUTEX_TIMEOUT)) {
+      LOG_WARN("i2c_read: addr=%u - Mutex timeout!\n", addr);
+      return -1;
+   }
+#endif
+
    // Perform one byte dummy read using the address.
    // If a slave acknowledges, the number of bytes transferred is returned.
    // If the address is ignored, the function returns -2.
    uint8_t data;
-   return i2c_read_blocking(i2c, addr, &data, 1, false) > 0;
+   const bool ack = i2c_read_timeout_us(i2c, addr, &data, 1, false, I2C_DEVICE_TIMEOUT) > 0;
+
+#ifdef I2C_MUTEX_TIMEOUT
+   mutex_exit(get_mutex(i2c));
+#endif
+   return ack;
 }

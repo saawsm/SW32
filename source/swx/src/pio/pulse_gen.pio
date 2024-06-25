@@ -1,0 +1,53 @@
+; Based on: https://github.com/CrashOverride85/zc95/blob/2f95bc6a729ece89606f52a9b8df8a882b6cf8bb/source/zc624/pulse_gen.pio
+
+.program pio_pulse_gen
+
+; assuming each clock cycle is 1us
+
+.wrap_target
+
+pull block
+out x, 9
+; mov y, x
+out y, 9
+
+a_pulse:
+    set PINS, 1
+    jmp y-- a_pulse
+
+; set PINS, 0 [2] ; 2us between switching off gate A and switching on gate B
+
+b_pulse:
+    set PINS, 2
+    jmp x-- b_pulse
+
+set PINS, 0 [5]
+
+out null, 32 ; discard the rest of the OSR
+.wrap
+
+% c-sdk {
+#include "hardware/clocks.h"
+
+#define PULSE_GEN_BITS (9)
+
+static inline void pulse_gen_program_init(PIO pio, uint sm, uint offset, uint pin_gate_a, uint pin_gate_b) {
+    assert(pin_gate_a == pin_gate_b - 1);
+
+    pio_gpio_init(pio, pin_gate_a);
+    pio_gpio_init(pio, pin_gate_b);
+    pio_sm_set_consecutive_pindirs(pio, sm, pin_gate_a, 2, true);
+
+    pio_sm_config c = pio_pulse_gen_program_get_default_config(offset);
+    sm_config_set_set_pins(&c, pin_gate_a, 2);
+    sm_config_set_fifo_join(&c, PIO_FIFO_JOIN_TX);
+    
+    float cycle_length_us = 0.5f;
+    float freq = 1.0f / (cycle_length_us / 1000000);
+    
+    float div = clock_get_hz(clk_sys) / freq;
+    sm_config_set_clkdiv(&c, div);
+
+    pio_sm_init(pio, sm, offset, &c);
+}
+%}
