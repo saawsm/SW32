@@ -10,6 +10,3 @@
 [submodule "source/swef/components/hagl_hal"]
 	path = source/swef/components/hagl_hal
 	url = https://github.com/saawsm/hagl_esp_mipi
-[submodule "source/swx/lib/libfixmath"]
-	path = source/swx/lib/libfixmath
-	url = https://github.com/saawsm/libfixmath

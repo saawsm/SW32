@@ -18,9 +18,6 @@ list(APPEND PICO_BOARD_HEADER_DIRS ${CMAKE_SOURCE_DIR}/boards)
 # Pull in Pico SDK
 include(pico_sdk_import.cmake)
 
-# Pull in libfixmath
-add_subdirectory(lib/libfixmath)
-
 # Pull in Lua
 add_subdirectory(lib/lua)
 
@@ -53,7 +50,6 @@ target_include_directories(${PROJECT_NAME} PRIVATE
 
 target_link_libraries(${PROJECT_NAME} PRIVATE 
     pico_stdlib
-    libfixmath
     lua
     
     hardware_i2c
@@ -71,8 +67,8 @@ target_compile_options(${PROJECT_NAME} PRIVATE
 )
 
 target_compile_definitions(${PROJECT_NAME} PRIVATE
-    FIXMATH_FAST_SIN
     PICO_USE_STACK_GUARDS
+    PICO_FLOAT_IN_RAM
 )
 
 pico_enable_stdio_usb(${PROJECT_NAME} 1)

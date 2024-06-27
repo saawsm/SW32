@@ -17,10 +17,7 @@
  */
 #include "pulse_gen.h"
 
-#include <libfixmath/fixmath.h>
 #include "output.h"
-
-#define MIN_STEP_US (10)
 
 #define STATE_COUNT (4)
 static const gen_param_t STATE_SEQUENCE[STATE_COUNT] = {
@@ -33,22 +30,18 @@ static const gen_param_t STATE_SEQUENCE[STATE_COUNT] = {
 typedef struct {
    bool enabled; // True, if this channel is generating
 
-   uint8_t state_index;         // The current "waveform" state (e.g. off, on_ramp, on)
-   uint32_t next_state_time_us; // The absolute timestamp for the next "waveform" state change (e.g. off -> on_ramp -> on)
+   uint8_t state_index; // The current "waveform" state (e.g. off, on_ramp, on)
 
-   fix16_t old_y; // last waveform state (see zero_crossing_between_time_points())
+   uint32_t last_state_time_us; // The absolute timestamp for the last "waveform" state change (e.g. off -> on_ramp -> on)
+   uint32_t last_pulse_time_us; // The absolute timestamp for the last generated output pulse
 
-   fix16_t power; // "global" power level for channel (front panel level knob) in 0.0 - 1.0
+   uint32_t period_us; // Waveform period
 
-   fix16_t cached_param_power;
-   fix16_t cached_param_phase;
-   fix16_t cached_param_frequency;
+   float power_level; // Power level of the channel (e.g. front panel level knob) in 0.0 - 1.0
+   float power;       // Routine power - PARAM_POWER [0.0 - 1.0]
 
    uint16_t parameters[TOTAL_PARAMS];
 } gen_channel_t;
-
-static const fix16_t FIX16_MIN_STEP_US = F16(MIN_STEP_US);
-static const fix16_t FIX16_MAX_POWER = F16(CHANNEL_POWER_MAX);
 
 static gen_channel_t channels[CHANNEL_COUNT] = {0};
 static uint32_t last_time_us = 0;
@@ -65,7 +58,7 @@ void pulse_gen_init() {
       pulse_gen_set_param(ch_index, PARAM_FREQUENCY, 1800);          // 180 Hz
       pulse_gen_set_param(ch_index, PARAM_PULSE_WIDTH, 150);         // 150 us
 
-      pulse_gen_set_power(ch_index, 0); // set channel global power level  (front panel level knob)
+      pulse_gen_set_power_level(ch_index, 1000); // 50% - set channel global power level  (front panel level knob)
    }
 }
 
@@ -73,39 +66,9 @@ static inline uint16_t ramp_time_us(const gen_channel_t* const ch) {
    return ch->parameters[STATE_SEQUENCE[ch->state_index]] * 1000u;
 }
 
-static inline uint32_t calc_next_state_time_us(const gen_channel_t* const ch) {
-   return time_us_32() + ramp_time_us(ch);
-}
-
-static inline fix16_t sine_half_cycle(fix16_t time, fix16_t frequency, fix16_t phase_rad) {
-   // sin((PI * frequency * time) + phase_rad)
-   return fix16_sin(fix16_add(fix16_mul(fix16_pi, fix16_mul(frequency, time)), phase_rad));
-}
-
-// Between "start" and "end" time, check if a zero crossing occurred with the given frequency and phase.
-// old_y* is the waveform state of the previous call so we can detect zero crossings between function call boundaries.
-static inline bool zero_crossing_between_time_points(uint32_t start_us, uint32_t end_us, uint16_t frequency, uint16_t phase_rad, fix16_t* const old_y) {
-   const uint32_t step = (end_us - start_us) / 4;
-
-   // subdivide time delta by ten, limiting minimum step to 10us
-   const fix16_t time_step_us = (step < MIN_STEP_US) ? FIX16_MIN_STEP_US : fix16_from_int(step);
-
-   const fix16_t start = fix16_from_int(start_us);
-   const fix16_t end = fix16_from_int(end_us);
-
-   fix16_t y = 0;
-   for (fix16_t x = start; x < end; x += time_step_us) {
-      y = fix16_floor(sine_half_cycle(x, frequency, phase_rad));
-      if (*old_y != y)
-         return true;
-   }
-
-   *old_y = y;
-   return false;
-}
-
 void pulse_gen_process() {
    const uint32_t time_us = time_us_32();
+   const uint32_t delta_us = time_us - last_time_us;
 
    for (size_t ch_index = 0; ch_index < CHANNEL_COUNT; ch_index++) {
       gen_channel_t* const ch = &channels[ch_index];
@@ -113,15 +76,16 @@ void pulse_gen_process() {
       if (!ch->enabled)
          continue;
 
-      if (time_us > ch->next_state_time_us) {
-         if (++(ch->state_index) >= STATE_COUNT)
-            ch->state_index = 0; // Increment or reset after 4 states (on_ramp, on, off_ramp, off)
+      // Increment state if enough time has passed
+      if (time_us_32() - ch->last_state_time_us > ramp_time_us(ch)) {
+         ch->last_state_time_us = time_us_32();
 
-         // Set the next state time based on the state parameter (on_ramp_time, on_time, off_ramp_time, off_time)
-         ch->next_state_time_us = calc_next_state_time_us(ch);
+         ch->state_index++;
+         if (ch->state_index >= STATE_COUNT)
+            ch->state_index = 0; // Increment or reset after 4 states (on_ramp, on, off_ramp, off)
       }
 
-      fix16_t power_modifier = fix16_one;
+      float power_modifier = 1.0f;
 
       // Scale power level depending on the current state (e.g. transition between off and on)
       const gen_param_t state = STATE_SEQUENCE[ch->state_index];
@@ -132,12 +96,14 @@ void pulse_gen_process() {
             if (ramp_us == 0)
                break;
 
-            uint32_t time_remaining_us = ch->next_state_time_us - time_us;
+            const uint32_t time_remaining_us = ramp_time_us(ch) - (time_us_32() - ch->last_state_time_us);
 
-            power_modifier = fix16_min(fix16_div(fix16_from_int(time_remaining_us), fix16_from_int(ramp_us)), fix16_one);
+            power_modifier = (float)time_remaining_us / ramp_us;
+            if (power_modifier > 1.0f)
+               power_modifier = 1.0f;
 
-            if (state == PARAM_ON_RAMP_TIME) // Invert percentage if transition is going from off to on
-               power_modifier = fix16_one - power_modifier;
+            if (state == PARAM_ON_RAMP_TIME) // Inverse percentage if transition is going from off to on
+               power_modifier = 1.0f - power_modifier;
             break;
          }
          case PARAM_OFF_TIME: // If the state is off, continue to next channel
@@ -146,15 +112,17 @@ void pulse_gen_process() {
             break;
       }
 
-      power_modifier = fix16_mul(power_modifier, ch->cached_param_power);
-      power_modifier = fix16_mul(power_modifier, ch->power);
+      power_modifier *= ch->power * ch->power_level;
 
-      const uint16_t real_power = fix16_to_int(fix16_mul(power_modifier, FIX16_MAX_POWER));
+      const uint16_t real_power = (uint16_t)(power_modifier * CHANNEL_POWER_MAX);
+
       output_set_power(ch_index, real_power);
 
-      if (zero_crossing_between_time_points(last_time_us, time_us, ch->cached_param_frequency, ch->cached_param_phase, &ch->old_y)) {
+      if (time_us_32() - ch->last_pulse_time_us >= ch->period_us - delta_us) {
+         ch->last_pulse_time_us = time_us_32();
+
          const uint16_t pw = ch->parameters[PARAM_PULSE_WIDTH];
-         output_pulse(ch_index, pw, pw, time_us);
+         output_pulse(ch_index, pw, pw, time_us_32());
       }
    }
 
@@ -168,7 +136,8 @@ void pulse_gen_enable(uint8_t ch_index, bool enabled) {
    gen_channel_t* const ch = &channels[ch_index];
    if (enabled && !ch->enabled) { // reset state if going from disabled->enabled
       ch->state_index = 0;
-      ch->next_state_time_us = calc_next_state_time_us(ch);
+      ch->last_state_time_us = time_us_32();
+      ch->last_pulse_time_us = time_us_32();
    }
 
    ch->enabled = enabled;
@@ -190,21 +159,19 @@ void pulse_gen_set_param(uint8_t ch_index, gen_param_t param, uint16_t value) {
       case PARAM_FREQUENCY: {
          if (value > 5000)
             value = 5000;
-         ch->cached_param_frequency = fix16_div(fix16_from_int(value), fix16_from_int(10000000));
+         ch->period_us = 10000000ul / value; // dHz -> us
          break;
       }
       case PARAM_POWER: {
          if (value > CHANNEL_POWER_MAX)
             value = CHANNEL_POWER_MAX;
-         ch->cached_param_power = fix16_div(fix16_from_int(value), FIX16_MAX_POWER);
+         ch->power = value * (1.0f / CHANNEL_POWER_MAX);
          break;
       }
-      case PARAM_PHASE:
-         ch->cached_param_phase = fix16_deg_to_rad(fix16_div(fix16_from_int(value), fix16_from_int(100)));
-         break;
       default:
          break;
    }
+
    ch->parameters[param] = value;
 }
 
@@ -215,21 +182,19 @@ uint16_t pulse_gen_get_param(uint8_t ch_index, gen_param_t param) {
    return channels[ch_index].parameters[param];
 }
 
-void pulse_gen_set_power(uint8_t ch_index, uint16_t power) {
+void pulse_gen_set_power_level(uint8_t ch_index, uint16_t power) {
    if (ch_index >= CHANNEL_COUNT)
       return;
 
    if (power > CHANNEL_POWER_MAX)
       power = CHANNEL_POWER_MAX;
 
-   // convert into fix16_t percent
-   channels[ch_index].power = fix16_div(fix16_from_int(power), FIX16_MAX_POWER);
+   channels[ch_index].power_level = power * (1.0f / CHANNEL_POWER_MAX);
 }
 
-uint16_t pulse_gen_get_power(uint8_t ch_index) {
+uint16_t pulse_gen_get_power_level(uint8_t ch_index) {
    if (ch_index >= CHANNEL_COUNT)
       return 0;
 
-   // convert from a fix16_t percent into value between 0 - CHANNEL_POWER_MAX
-   return fix16_to_int(fix16_mul(channels[ch_index].power, FIX16_MAX_POWER));
+   return CHANNEL_POWER_MAX * channels[ch_index].power_level;
 }

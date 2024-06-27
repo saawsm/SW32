@@ -31,9 +31,6 @@ typedef enum {
    /// The frequency of pulses generated in dHz (decihertz, 1 Hz = 10 dHz)
    PARAM_FREQUENCY,
 
-   /// The phase offset in degrees (0 to 36000)
-   PARAM_PHASE,
-
    /// The duration of each pulse (0 us to 500 us).
    PARAM_PULSE_WIDTH,
 
@@ -62,8 +59,8 @@ bool pulse_gen_enabled(uint8_t ch_index);
 void pulse_gen_set_param(uint8_t ch_index, gen_param_t param, uint16_t value);
 uint16_t pulse_gen_get_param(uint8_t ch_index, gen_param_t param);
 
-void pulse_gen_set_power(uint8_t ch_index, uint16_t power);
-uint16_t pulse_gen_get_power(uint8_t ch_index);
+void pulse_gen_set_power_level(uint8_t ch_index, uint16_t power);
+uint16_t pulse_gen_get_power_level(uint8_t ch_index);
 
 #ifdef __cplusplus
 }
