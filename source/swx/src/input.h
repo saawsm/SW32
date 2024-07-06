@@ -27,6 +27,8 @@ extern "C" {
 
 void input_init();
 
+void analog_capture_init();
+
 bool fetch_trigger_state(trigger_channel_t channel);
 
 bool fetch_analog_buffer(analog_channel_t channel, uint16_t* samples, uint16_t** buffer, uint32_t* capture_end_time_us);

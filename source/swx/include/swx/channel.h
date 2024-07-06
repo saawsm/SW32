@@ -20,6 +20,8 @@
 
 #include <stdint.h>
 
+#define CHANNEL_POWER_MAX (2000)
+
 #ifndef CHANNEL_COUNT
 #define CHANNEL_COUNT (4)
 #endif
@@ -49,7 +51,7 @@ typedef enum {
    TRIGGER_CHANNEL_A2,
    TRIGGER_CHANNEL_B1,
    TRIGGER_CHANNEL_B2,
-   TOTAL_TRIGGERS
+   TOTAL_TRIGGERS,
 } trigger_channel_t;
 
 #ifdef __cplusplus

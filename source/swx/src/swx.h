@@ -55,6 +55,10 @@
 #define HZ_TO_US(hz) (1000000ul / (hz))
 #define KHZ_TO_US(hz) (1000ul / (hz))
 
+#ifndef PIN_ADC_BASE
+#define PIN_ADC_BASE (26)
+#endif
+
 // Turns off power by unlatching soft power switch
 void swx_power_off();
 

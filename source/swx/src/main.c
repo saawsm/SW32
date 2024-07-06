@@ -64,10 +64,14 @@ void core1_main() {
 }
 
 int main() {
-   init(); // Initialize hardware
+   // Initialize hardware
+   init();
 
    // Initialize output driver
    output_init();
+
+   // Initialize free running adc capture, must be called after output_init()
+   analog_capture_init();
 
    // Initialize pulse generator
    pulse_gen_init();

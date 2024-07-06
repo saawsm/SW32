@@ -21,8 +21,6 @@
 #include <hardware/irq.h>
 #include <hardware/dma.h>
 
-#define PIN_ADC_BASE (26)
-
 // The number of analog samples per second per channel. Since 3 ADC channels are being sampled the actual sample rate is 4 times larger.
 #define ADC_SAMPLES_PER_SECOND (44100)
 
@@ -35,7 +33,6 @@
 static void init_pingpong_dma(const uint channel1, const uint channel2, uint dreq, const volatile void* read_addr, volatile void* write_addr1, volatile void* write_addr2,
                               uint transfer_count, enum dma_channel_transfer_size size, uint irq_num, irq_handler_t handler);
 static void dma_adc_handler();
-static inline void analog_input_init();
 
 static uint dma_adc_ch1;
 static uint dma_adc_ch2;
@@ -79,6 +76,8 @@ static const uint16_t triggers[] = {
 };
 
 void input_init() {
+   LOG_DEBUG("Init input...\n");
+
    init_gpio(PIN_PWR_CTRL, GPIO_IN, false);
    gpio_pull_up(PIN_PWR_CTRL); // latch board power on
 
@@ -93,11 +92,9 @@ void input_init() {
    gpio_disable_pulls(PIN_TRIG_A2);
    gpio_disable_pulls(PIN_TRIG_B1);
    gpio_disable_pulls(PIN_TRIG_B2);
-
-   analog_input_init();
 }
 
-static inline void analog_input_init() {
+void analog_capture_init() {
    LOG_DEBUG("Init analog capture...\n");
 
    adc_gpio_init(PIN_ADC_AUDIO_LEFT);
@@ -105,7 +102,7 @@ static inline void analog_input_init() {
    adc_gpio_init(PIN_ADC_AUDIO_MIC);
    adc_gpio_init(PIN_ADC_SENSE);
 
-   LOG_DEBUG("Init internal ADC...\n");
+   LOG_DEBUG("Init freerunning ADC...\n");
    adc_init();
    adc_select_input(0);
    adc_set_round_robin((1 << (PIN_ADC_AUDIO_LEFT - PIN_ADC_BASE)) | (1 << (PIN_ADC_AUDIO_RIGHT - PIN_ADC_BASE)) | (1 << (PIN_ADC_AUDIO_MIC - PIN_ADC_BASE)) |

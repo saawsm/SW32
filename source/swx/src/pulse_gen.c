@@ -18,6 +18,7 @@
 #include "pulse_gen.h"
 
 #include "output.h"
+#include "channel.h"
 
 #define STATE_COUNT (4)
 static const gen_param_t STATE_SEQUENCE[STATE_COUNT] = {

@@ -19,9 +19,6 @@
 #define _OUTPUT_H
 
 #include "swx.h"
-#include "channel.h"
-
-#define CHANNEL_POWER_MAX (2000)
 
 #ifdef __cplusplus
 extern "C" {

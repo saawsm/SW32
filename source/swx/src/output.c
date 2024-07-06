@@ -20,10 +20,11 @@
 #include <stdlib.h>
 
 #include <pico/util/queue.h>
+#include <hardware/adc.h>
+
+#include "channel.h"
 
 #include "util/i2c.h"
-
-#include "input.h"
 
 #include "hardware/mcp4728.h"
 #define DAC_MAX_VALUE MCP4728_MAX_VALUE
@@ -103,6 +104,10 @@ void output_init() {
    gpio_set_function(PIN_I2C_SCL_DAC, GPIO_FUNC_I2C);
    gpio_disable_pulls(PIN_I2C_SDA_DAC); // using hardware pullups
    gpio_disable_pulls(PIN_I2C_SCL_DAC);
+
+   // Init ADC
+   adc_gpio_init(PIN_ADC_SENSE);
+   adc_init();
 
    // Init channels
    for (size_t ch_index = 0; ch_index < CHANNEL_COUNT; ch_index++) {
@@ -279,20 +284,19 @@ static float read_voltage() {
 
    static_assert(MAX_SAMPLES > (TRIM_AMOUNT * 2));
 
-   uint16_t samples;
-   uint16_t* readings;
-   uint32_t capture_end_time_us;
-   fetch_analog_buffer(ANALOG_SENSE_CHANNEL, &samples, &readings, &capture_end_time_us);
-   if (samples > MAX_SAMPLES) // limit sample count
-      samples = MAX_SAMPLES;
+   adc_select_input(PIN_ADC_BASE - PIN_ADC_SENSE);
+
+   uint16_t readings[MAX_SAMPLES];
+   for (size_t i = 0; i < MAX_SAMPLES; i++)
+      readings[i] = adc_read();
 
    // Ignore n highest and lowest values. Average the rest
    uint32_t total = 0;
-   qsort(readings, samples, sizeof(uint16_t), cmpfunc);
-   for (uint8_t index = TRIM_AMOUNT; index < (samples - TRIM_AMOUNT); index++)
+   qsort(readings, MAX_SAMPLES, sizeof(uint16_t), cmpfunc);
+   for (uint8_t index = TRIM_AMOUNT; index < (MAX_SAMPLES - TRIM_AMOUNT); index++)
       total += readings[index];
 
-   uint16_t counts = total / (samples - (TRIM_AMOUNT * 2));
+   uint16_t counts = total / (MAX_SAMPLES - (TRIM_AMOUNT * 2));
    return conv_factor * counts;
 }
 
