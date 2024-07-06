@@ -51,14 +51,14 @@ void pulse_gen_init() {
 
    // init defaults
    for (size_t ch_index = 0; ch_index < CHANNEL_COUNT; ch_index++) {
-      channels[ch_index].enabled = false;
+      channel_set_enabled(ch_index, false);
 
-      // Must use pulse_gen_set_param() and pulse_gen_set_power() to update computed/cached values
-      pulse_gen_set_param(ch_index, PARAM_POWER, CHANNEL_POWER_MAX); // note: not max power since other power levels are combined with this one
-      pulse_gen_set_param(ch_index, PARAM_FREQUENCY, 1800);          // 180 Hz
-      pulse_gen_set_param(ch_index, PARAM_PULSE_WIDTH, 150);         // 150 us
+      // Must use channel_set_param() and channel_set_power() to update computed/cached values
+      channel_set_param(ch_index, PARAM_POWER, CHANNEL_POWER_MAX); // note: not max power since other power levels are combined with this one
+      channel_set_param(ch_index, PARAM_FREQUENCY, 1800);          // 180 Hz
+      channel_set_param(ch_index, PARAM_PULSE_WIDTH, 150);         // 150 us
 
-      pulse_gen_set_power_level(ch_index, 1000); // 50% - set channel global power level  (front panel level knob)
+      channel_set_power_level(ch_index, 1000); // 50% - set channel global power level  (front panel level knob)
    }
 }
 
@@ -129,7 +129,7 @@ void pulse_gen_process() {
    last_time_us = time_us;
 }
 
-void pulse_gen_enable(uint8_t ch_index, bool enabled) {
+void channel_set_enabled(uint8_t ch_index, bool enabled) {
    if (ch_index >= CHANNEL_COUNT)
       return;
 
@@ -143,13 +143,13 @@ void pulse_gen_enable(uint8_t ch_index, bool enabled) {
    ch->enabled = enabled;
 }
 
-bool pulse_gen_enabled(uint8_t ch_index) {
+bool channel_get_enabled(uint8_t ch_index) {
    if (ch_index >= CHANNEL_COUNT)
       return false;
    return channels[ch_index].enabled;
 }
 
-void pulse_gen_set_param(uint8_t ch_index, gen_param_t param, uint16_t value) {
+void channel_set_param(uint8_t ch_index, gen_param_t param, uint16_t value) {
    if (ch_index >= CHANNEL_COUNT || param >= TOTAL_PARAMS)
       return;
 
@@ -175,14 +175,14 @@ void pulse_gen_set_param(uint8_t ch_index, gen_param_t param, uint16_t value) {
    ch->parameters[param] = value;
 }
 
-uint16_t pulse_gen_get_param(uint8_t ch_index, gen_param_t param) {
+uint16_t channel_get_param(uint8_t ch_index, gen_param_t param) {
    if (ch_index >= CHANNEL_COUNT || param >= TOTAL_PARAMS)
       return 0;
 
    return channels[ch_index].parameters[param];
 }
 
-void pulse_gen_set_power_level(uint8_t ch_index, uint16_t power) {
+void channel_set_power_level(uint8_t ch_index, uint16_t power) {
    if (ch_index >= CHANNEL_COUNT)
       return;
 
@@ -192,7 +192,7 @@ void pulse_gen_set_power_level(uint8_t ch_index, uint16_t power) {
    channels[ch_index].power_level = power * (1.0f / CHANNEL_POWER_MAX);
 }
 
-uint16_t pulse_gen_get_power_level(uint8_t ch_index) {
+uint16_t channel_get_power_level(uint8_t ch_index) {
    if (ch_index >= CHANNEL_COUNT)
       return 0;
 

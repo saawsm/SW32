@@ -53,14 +53,14 @@ void pulse_gen_init();
 
 void pulse_gen_process();
 
-void pulse_gen_enable(uint8_t ch_index, bool enabled);
-bool pulse_gen_enabled(uint8_t ch_index);
+void channel_set_enabled(uint8_t ch_index, bool enabled);
+bool channel_get_enabled(uint8_t ch_index);
 
-void pulse_gen_set_param(uint8_t ch_index, gen_param_t param, uint16_t value);
-uint16_t pulse_gen_get_param(uint8_t ch_index, gen_param_t param);
+void channel_set_param(uint8_t ch_index, gen_param_t param, uint16_t value);
+uint16_t channel_get_param(uint8_t ch_index, gen_param_t param);
 
-void pulse_gen_set_power_level(uint8_t ch_index, uint16_t power);
-uint16_t pulse_gen_get_power_level(uint8_t ch_index);
+void channel_set_power_level(uint8_t ch_index, uint16_t power);
+uint16_t channel_get_power_level(uint8_t ch_index);
 
 #ifdef __cplusplus
 }
