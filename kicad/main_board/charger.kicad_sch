@@ -8563,7 +8563,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2304241822_Changzhou-Amass-Elec-XT30UPB-M_C428721.pdf"
 			(at 274.32 58.42 0)
 			(effects
 				(font
@@ -8581,7 +8581,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C428721"
 			(at 274.32 58.42 0)
 			(effects
 				(font

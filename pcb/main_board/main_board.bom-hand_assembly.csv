@@ -1,7 +1,7 @@
 "Comment","Designator","Footprint","LCSC Part Number","Service","Qty","DNP"
 "TRIG_A","J2","SaawLib:PJ-3062-CO","C319113","HandAssembly","1",""
 "TRIG_B","J3","SaawLib:PJ-3062-CO","C319113","HandAssembly","1",""
-"BAT","J4","Connector_AMASS:AMASS_XT30UPB-M_1x02_P5.0mm_Vertical","","HandAssembly","1",""
+"BAT","J4","Connector_AMASS:AMASS_XT30UPB-M_1x02_P5.0mm_Vertical","C428721","HandAssembly","1",""
 "BAT_LINK","J5","Connector_JST:JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical","C7429634","HandAssembly","1",""
 "FRONT_PANEL","J6","Connector_IDC:IDC-Header_2x04_P2.54mm_Vertical","C5372864","HandAssembly","1",""
 "I2C","J7","Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical","C2691448","HandAssembly","1","DNP"

@@ -61912,7 +61912,7 @@
 				)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2304241822_Changzhou-Amass-Elec-XT30UPB-M_C428721.pdf"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -61936,7 +61936,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C428721"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
