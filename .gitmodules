@@ -10,3 +10,6 @@
 [submodule "source/swef/components/hagl_hal"]
 	path = source/swef/components/hagl_hal
 	url = https://github.com/saawsm/hagl_esp_mipi
+[submodule "source/swx/lib/cobs-c"]
+	path = source/swx/lib/cobs-c
+	url = https://github.com/saawsm/cobs-c

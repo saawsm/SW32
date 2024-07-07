@@ -24,6 +24,8 @@
 #include "output.h"
 #include "pulse_gen.h"
 
+#include "protocol.h"
+
 #include "hardware/bq25703a.h"
 
 static inline void init() {
@@ -67,6 +69,9 @@ int main() {
    // Initialize hardware
    init();
 
+   // Initialize UART and protocol handling
+   protocol_init();
+
    // Initialize output driver
    output_init();
 
@@ -81,5 +86,6 @@ int main() {
    multicore_launch_core1(core1_main);
 
    while (true) {
+      protocol_process();
    }
 }

@@ -51,6 +51,7 @@
 #define PIN_RXD1 (21)
 
 #define UART_PORT (uart1)
+#define UART_BAUD (115200)
 
 // -------- I2S Audio --------
 #define PIN_I2S_DIN (16)

@@ -21,6 +21,9 @@ include(pico_sdk_import.cmake)
 # Pull in Lua
 add_subdirectory(lib/lua)
 
+# Pull in COBS
+add_subdirectory(lib/cobs-c)
+
 project(swx
     VERSION 1.0.0 # pcb_rev.major.minor
     HOMEPAGE_URL https://github.com/saawsm/SW32
@@ -38,6 +41,7 @@ pico_generate_pio_header(${PROJECT_NAME} ../src/pio/pulse_gen.pio OUTPUT_DIR bui
 
 target_sources(${PROJECT_NAME} PRIVATE
     "src/main.c"
+    "src/protocol.c"
     "src/output.c"
     "src/input.c"
     "src/pulse_gen.c"
@@ -51,6 +55,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE
 target_link_libraries(${PROJECT_NAME} PRIVATE 
     pico_stdlib
     lua
+    cobs-c
     
     hardware_i2c
     hardware_uart

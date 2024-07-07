@@ -27,26 +27,39 @@
 
 #include "util/gpio.h"
 
-// See pico_enable_stdio_usb() and pico_enable_stdio_uart() in CMakeLists for log targets
+typedef enum {
+   LOG_LEVEL_NONE = 0,
+   LOG_LEVEL_FINE,
+   LOG_LEVEL_DEBUG,
+   LOG_LEVEL_INFO,
+   LOG_LEVEL_WARN,
+   LOG_LEVEL_ERROR,
+   LOG_LEVEL_FATAL,
+} log_level_t;
+
+extern void write_log(log_level_t level, char* fmt, ...);
+
 #ifndef NDEBUG
-#define LOG_DEBUG(...) printf(__VA_ARGS__) // general debugging
-#define LOG_FINE(...) printf(__VA_ARGS__)  // inner loops, etc
+#define LOG_DEBUG(...) write_log(LOG_LEVEL_DEBUG, __VA_ARGS__) // general debugging
+#define LOG_FINE(...) write_log(LOG_LEVEL_FINE, __VA_ARGS__)   // inner loops, etc
 #else
 #define LOG_DEBUG(...)
 #define LOG_FINE(...)
 #endif
 
-#define LOG_INFO(...) printf(__VA_ARGS__) // general info
+#define LOG_INFO(...) write_log(LOG_LEVEL_INFO, __VA_ARGS__) // general info
 
-#define LOG_WARN(...) printf(__VA_ARGS__)  // recoverable warnings
-#define LOG_ERROR(...) printf(__VA_ARGS__) // errors (usually not recoverable)
+#define LOG_WARN(...) write_log(LOG_LEVEL_WARN, __VA_ARGS__)   // recoverable warnings
+#define LOG_ERROR(...) write_log(LOG_LEVEL_ERROR, __VA_ARGS__) // errors (usually not recoverable)
 
 // Errors that are not recoverable
 // Alternative to panic() that has unreliable stdio output
 #define LOG_FATAL(...)                                                                                                                                                   \
    do {                                                                                                                                                                  \
-      LOG_ERROR("\n*** PANIC ***\n");                                                                                                                                    \
-      LOG_ERROR(__VA_ARGS__);                                                                                                                                            \
+      extern bool output_drv_enable(bool enabled);                                                                                                                       \
+      output_drv_enable(false);                                                                                                                                          \
+      write_log(LOG_LEVEL_FATAL, "\n\n*** PANIC ***\n");                                                                                                                   \
+      write_log(LOG_LEVEL_FATAL, __VA_ARGS__);                                                                                                                           \
       sleep_ms(10);                                                                                                                                                      \
       extern void _exit(int status);                                                                                                                                     \
       _exit(1);                                                                                                                                                          \
