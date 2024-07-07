@@ -18,11 +18,8 @@ list(APPEND PICO_BOARD_HEADER_DIRS ${CMAKE_SOURCE_DIR}/boards)
 # Pull in Pico SDK
 include(pico_sdk_import.cmake)
 
-# Pull in Lua
-add_subdirectory(lib/lua)
-
-# Pull in COBS
-add_subdirectory(lib/cobs-c)
+# Pull in libs
+add_subdirectory(lib)
 
 project(swx
     VERSION 1.0.0 # pcb_rev.major.minor
@@ -41,6 +38,7 @@ pico_generate_pio_header(${PROJECT_NAME} ../src/pio/pulse_gen.pio OUTPUT_DIR bui
 
 target_sources(${PROJECT_NAME} PRIVATE
     "src/main.c"
+    "src/filesystem.c"
     "src/protocol.c"
     "src/output.c"
     "src/input.c"
@@ -56,6 +54,7 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
     pico_stdlib
     lua
     cobs-c
+    littlefs
     
     hardware_i2c
     hardware_uart
@@ -83,5 +82,8 @@ pico_set_program_name(${PROJECT_NAME} ${PROJECT_NAME})
 pico_set_program_version(${PROJECT_NAME} ${PROJECT_VERSION})
 
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-    target_compile_definitions(${PROJECT_NAME} PRIVATE PICO_STDIO_USB_CONNECT_WAIT_TIMEOUT_MS=5000)    
+    target_compile_definitions(${PROJECT_NAME} PRIVATE
+        PICO_STDIO_USB_CONNECT_WAIT_TIMEOUT_MS=5000
+        PARAM_ASSERTIONS_ENABLE_ALL=1
+    )    
 endif()

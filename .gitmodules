@@ -13,3 +13,6 @@
 [submodule "source/swx/lib/cobs-c"]
 	path = source/swx/lib/cobs-c
 	url = https://github.com/saawsm/cobs-c
+[submodule "source/swx/lib/littlefs"]
+	path = source/swx/lib/littlefs
+	url = https://github.com/saawsm/littlefs

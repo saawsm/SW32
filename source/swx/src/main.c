@@ -20,6 +20,7 @@
 #include <pico/multicore.h>
 #include <hardware/i2c.h>
 
+#include "filesystem.h"
 #include "input.h"
 #include "output.h"
 #include "pulse_gen.h"
@@ -69,19 +70,28 @@ int main() {
    // Initialize hardware
    init();
 
-   // Initialize UART and protocol handling
-   protocol_init();
-
    // Initialize output driver
    output_init();
 
-   // Initialize free running adc capture, must be called after output_init()
+   // Initialize free running ADC capture
+   // Needs to be called after output_init(), since output_init() briefly uses the ADC during output calibration
    analog_capture_init();
 
    // Initialize pulse generator
    pulse_gen_init();
 
+   // Initialize flash filesystem by mounting (and optionally formatting if required)
+   LOG_DEBUG("Mounting filesystem...\n");
+   int err = fs_flash_mount(true);
+   if (err) { // should not happen since this is non-removable flash memory
+      LOG_FATAL("Mounting failed! err=%u (%s)\n", err, lfs_err_msg(err));
+   }
 
+
+   // Initialize UART and protocol handling
+   protocol_init();
+
+   // Start core1
    multicore_reset_core1();
    multicore_launch_core1(core1_main);
 

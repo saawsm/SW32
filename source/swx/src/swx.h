@@ -56,14 +56,12 @@ extern void write_log(log_level_t level, char* fmt, ...);
 // Alternative to panic() that has unreliable stdio output
 #define LOG_FATAL(...)                                                                                                                                                   \
    do {                                                                                                                                                                  \
-      extern bool output_drv_enable(bool enabled);                                                                                                                       \
-      output_drv_enable(false);                                                                                                                                          \
-      write_log(LOG_LEVEL_FATAL, "\n\n*** PANIC ***\n");                                                                                                                   \
+      write_log(LOG_LEVEL_FATAL, "\n\n*** PANIC ***\n");                                                                                                                 \
       write_log(LOG_LEVEL_FATAL, __VA_ARGS__);                                                                                                                           \
       sleep_ms(10);                                                                                                                                                      \
       extern void _exit(int status);                                                                                                                                     \
       _exit(1);                                                                                                                                                          \
-   } while (0);
+   } while (0)
 
 #define HZ_TO_US(hz) (1000000ul / (hz))
 #define KHZ_TO_US(hz) (1000ul / (hz))
