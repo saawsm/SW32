@@ -22,8 +22,6 @@
 #include <pico/util/queue.h>
 #include <hardware/adc.h>
 
-#include "channel.h"
-
 #include "util/i2c.h"
 
 #include "hardware/mcp4728.h"
@@ -34,9 +32,15 @@
 #define CHANNEL_PIO (pio0)
 
 #define CH(pinGateA, pinGateB, dacChannel)                                                                                                                               \
-   { .pin_gate_a = (pinGateA), .pin_gate_b = (pinGateB), .dac_channel = (dacChannel), .status = CHANNEL_INVALID }
+   {                                                                                                                                                                     \
+      .pin_gate_a = (pinGateA), .pin_gate_b = (pinGateB), .dac_channel = (dacChannel), .status = CHANNEL_INVALID, .power = 1.0f, .power_level = 0.5f,                    \
+      .pulse_width_us = 150, .period_us = HZ_TO_US(180.0f), .audio_src = ANALOG_CHANNEL_NONE, .enabled = false                                                           \
+   }
+
+extern float audio_process(channel_t* ch, uint8_t ch_index);
 
 static bool calibrate();
+static bool write_dac(const channel_t* ch, uint16_t value);
 
 typedef struct {
    uint8_t channel;
@@ -52,20 +56,7 @@ typedef struct {
    uint16_t neg_us;
 } pulse_t;
 
-typedef struct {
-   const uint8_t pin_gate_a; // GPIO pin for NFET gate A
-   const uint8_t pin_gate_b; // GPIO pin for NFET gate B
-
-   const uint8_t dac_channel;
-
-   uint16_t cal_value;
-
-   channel_status_t status;
-} channel_t;
-
-static bool write_dac(const channel_t* ch, uint16_t value);
-
-static channel_t channels[CHANNEL_COUNT] = {
+channel_t channels[CHANNEL_COUNT] = {
     CH(PIN_CH1_GA, PIN_CH1_GB, CH1_DAC_CH),
 #if CHANNEL_COUNT > 1
     CH(PIN_CH2_GA, PIN_CH2_GB, CH2_DAC_CH),
@@ -149,10 +140,40 @@ void output_init() {
    }
 }
 
+void pulse_gen_process() {
+   for (size_t ch_index = 0; ch_index < CHANNEL_COUNT; ch_index++) {
+      channel_t* const ch = &channels[ch_index];
+
+      if (!ch->enabled)
+         continue;
+
+      float audio_power = 1.0f;
+
+      // Channel has audio source, so process audio instead of running pulse gen
+      if (ch->audio_src != ANALOG_CHANNEL_NONE) {
+         audio_power = audio_process(ch, ch_index);
+
+      } else if (time_us_32() - ch->last_pulse_time_us >= ch->period_us) { // otherwise pulse output every period_us
+         ch->last_pulse_time_us = time_us_32();
+
+         const uint16_t pw = ch->pulse_width_us;
+         output_pulse(ch_index, pw, pw, time_us_32());
+      }
+
+      // Set channel output power, limit update rate to ~2.2 kHz since it takes the DAC about ~110us/ch
+      if (time_us_32() - ch->last_power_time_us >= CHANNEL_COUNT * 110) {
+         ch->last_power_time_us = time_us_32();
+
+         const uint16_t real_power = (uint16_t)(CHANNEL_POWER_MAX * fclamp(ch->power_level * ch->power * audio_power, 0.0f, 1.0f));
+         output_set_power(ch_index, real_power);
+      }
+   }
+}
+
 void output_process_pulse() {
    static const uint16_t PW_MAX = (1 << PULSE_GEN_BITS) - 1;
 
-   for (size_t i = 0; i < CHANNEL_COUNT; i++) {
+   for (size_t i = 0; i < CHANNEL_COUNT * 8; i++) { // FIFO is 8 deep
       if (fetch_pulse) {
          if (queue_try_remove(&pulse_queue, &pulse)) {
             if (pulse.abs_time_us < time_us_32() + 1000000ul) // ignore pulses with wait times above 1 second
@@ -184,6 +205,9 @@ void output_process_pulse() {
 
 void output_process_power() {
    for (size_t i = 0; i < CHANNEL_COUNT; i++) {
+      if (i2c_get_write_available(I2C_PORT_DAC) < 5) // break, if I2C is going to have blocking writes
+         break;
+
       pwr_cmd_t cmd;
       if (queue_try_remove(&power_queue, &cmd)) {
          const channel_t* ch = &channels[cmd.channel];
@@ -220,9 +244,6 @@ bool output_pulse(uint8_t ch_index, uint16_t pos_us, uint16_t neg_us, uint32_t a
 void output_set_power(uint8_t ch_index, uint16_t power) {
    if (ch_index >= CHANNEL_COUNT)
       return;
-
-   if (power > CHANNEL_POWER_MAX)
-      power = CHANNEL_POWER_MAX;
 
    pwr_cmd_t cmd = {.channel = ch_index, .power = power};
    queue_try_add(&power_queue, &cmd);
@@ -302,11 +323,6 @@ static float read_voltage() {
 
 static bool write_dac(const channel_t* ch, uint16_t value) {
    uint8_t buffer[3];
-
-   if (i2c_get_write_available(I2C_PORT_DAC) < sizeof(buffer)) {
-      LOG_WARN("MCP4728: ch=%u ret=%d - I2C write failed, I2C tx buffer full!\n");
-      return false;
-   }
 
    const size_t len = mcp4728_build_write_cmd(buffer, sizeof(buffer), ch->dac_channel, value, MCP4728_VREF_VDD, MCP4728_GAIN_ONE, MCP4728_PD_NORMAL, MCP4728_UDAC_FALSE);
    if (len == 0)

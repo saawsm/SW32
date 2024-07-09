@@ -23,7 +23,6 @@
 #include "filesystem.h"
 #include "input.h"
 #include "output.h"
-#include "pulse_gen.h"
 
 #include "protocol.h"
 
@@ -76,9 +75,6 @@ int main() {
    // Initialize free running ADC capture
    // Needs to be called after output_init(), since output_init() briefly uses the ADC during output calibration
    analog_capture_init();
-
-   // Initialize pulse generator
-   pulse_gen_init();
 
    // Initialize flash filesystem by mounting (and optionally formatting if required)
    LOG_DEBUG("Mounting filesystem...\n");

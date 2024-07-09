@@ -19,12 +19,40 @@
 #define _OUTPUT_H
 
 #include "swx.h"
+#include "channel.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
+typedef struct {
+   const uint8_t pin_gate_a; // GPIO pin for NFET gate A
+   const uint8_t pin_gate_b; // GPIO pin for NFET gate B
+
+   const uint8_t dac_channel;
+
+   uint16_t cal_value;
+
+   channel_status_t status;
+
+   bool enabled;               // True, if this channel is generating output from the pulse generator (period_us) or the audio_src
+   analog_channel_t audio_src; // Analog channel for audio pulse generation
+
+   uint32_t last_power_time_us; // The absolute timestamp for the last power set
+   uint32_t last_pulse_time_us; // The absolute timestamp for the last generated output pulse
+
+   uint32_t period_us;      // Pulse period in microseconds, see. HZ_TO_US() macro
+   uint16_t pulse_width_us; // Pulse width in microseconds
+
+   float power_level; // Power level of channel (e.g. front panel level knob) range [0.0 - 1.0]
+   float power;       // Routine power level, range [0.0 - 1.0]
+} channel_t;
+
+extern channel_t channels[CHANNEL_COUNT];
+
 void output_init();
+
+void pulse_gen_process();
 
 void output_process_power();
 void output_process_pulse();

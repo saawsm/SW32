@@ -70,6 +70,15 @@ extern void write_log(log_level_t level, char* fmt, ...);
 #define PIN_ADC_BASE (26)
 #endif
 
+static inline float fclamp(float val, float min, float max) {
+   if (val < min) {
+      return min;
+   } else if (val > max) {
+      return max;
+   }
+   return val;
+}
+
 // Turns off power by unlatching soft power switch
 void swx_power_off();
 

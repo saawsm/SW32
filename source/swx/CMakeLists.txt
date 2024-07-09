@@ -42,7 +42,7 @@ target_sources(${PROJECT_NAME} PRIVATE
     "src/protocol.c"
     "src/output.c"
     "src/input.c"
-    "src/pulse_gen.c"
+    "src/audio.c"
     "src/util/i2c.c"
 )
 
