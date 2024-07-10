@@ -21,6 +21,11 @@ include(pico_sdk_import.cmake)
 # Pull in libs
 add_subdirectory(lib)
 
+# LFS HAL implements lock/unlock
+target_compile_definitions(littlefs PUBLIC
+    LFS_THREADSAFE
+)
+
 project(swx
     VERSION 1.0.0 # pcb_rev.major.minor
     HOMEPAGE_URL https://github.com/saawsm/SW32

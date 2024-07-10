@@ -17,6 +17,10 @@
  */
 #include "filesystem.h"
 
+#ifdef LFS_THREADSAFE
+#include <pico/mutex.h>
+#endif
+
 #include <hardware/flash.h>
 #include <hardware/regs/addressmap.h>
 #include <hardware/sync.h>
@@ -60,6 +64,21 @@ static int flash_sync(const struct lfs_config* c) {
    return 0;
 }
 
+#ifdef LFS_THREADSAFE
+
+static int lock(const struct lfs_config* cfg) {
+   return mutex_enter_timeout_ms(cfg->context, 5000) ? LFS_ERR_OK : LFS_ERR_TIMEOUT;
+}
+
+static int unlock(const struct lfs_config* cfg) {
+   mutex_exit(cfg->context);
+   return LFS_ERR_OK;
+}
+
+auto_init_mutex(fs_flash_mutex);
+
+#endif
+
 lfs_t fs_flash;
 
 // littlefs config for flash
@@ -68,6 +87,12 @@ static struct lfs_config cfg_flash = {
     .prog = flash_prog,
     .erase = flash_erase,
     .sync = flash_sync,
+
+#ifdef LFS_THREADSAFE
+    .context = &fs_flash_mutex,
+    .lock = lock,
+    .unlock = unlock,
+#endif
 
     .read_size = 1,
     .prog_size = FLASH_PAGE_SIZE,
@@ -101,6 +126,7 @@ const char* lfs_err_msg(int err) {
    // errors are all negative, negate, so they can be stored in an array
    static const char* const msgs[] = {
        [-LFS_ERR_OK] = NULL,
+       [-LFS_ERR_TIMEOUT] = "Mutex timeout",
        [-LFS_ERR_IO] = "Operation error",
        [-LFS_ERR_CORRUPT] = "Corrupted",
        [-LFS_ERR_NOENT] = "No directory entry",

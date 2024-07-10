@@ -22,6 +22,8 @@
 
 #include <lfs.h>
 
+#define LFS_ERR_TIMEOUT (-1)
+
 #ifdef __cplusplus
 extern "C" {
 #endif
