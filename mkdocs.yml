@@ -39,6 +39,8 @@ plugins:
     - search
     - awesome-pages
     - table-reader
+    - glightbox:
+        auto_caption: true
 
 markdown_extensions: 
     - abbr

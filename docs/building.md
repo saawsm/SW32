@@ -16,7 +16,7 @@ All parts required to populate the PCBs can be purchased from LCSC/JLCPCB with t
 
 BOM lists are available with associated zipped gerber files located in the `/pcb` directory. Each list is split in two, one for the surface mount components intended for the JLCPCB assembly service (`*.bom.csv`), and another for through-hole components (`*.bom-hand_assembly.csv`).
 
-This allows for easy ordering of through-hole components at LCSC via their [BOM Tool](https://www.lcsc.com/bom){:target="_blank"}
+This allows for easy ordering of through-hole components at LCSC via their [BOM Tool](https://www.lcsc.com/bom){:target="_blank"}.
 
 *[BOM]: Bill of Materials
 
@@ -136,3 +136,104 @@ PCB Assembly?          | No
 Front panel has no components {: class="parent-display-none" } | .
 
 *[CPL]: Component Pick List (also known as a POS file)
+
+## Assembly
+
+View the iBOM (`*-ibom.html`) for an overview and guidance on component placement. Use `HandAssembly` as the filter to show only the components needing hand soldering.
+
+See the `*.bom-hand_assembly.csv` and `bom.misc.csv` BOM files for the parts list of components requiring manual assembly.
+
+The sections listed below are in recommended assembly order.
+
+### Front Control Board {: #assembly-front-control-board }
+
+Image of board as it arrived from JLCPCB:
+
+![Front Control Board - Top](assets/images/front_control_board_top.jpg){ loading="lazy" width="450" align="left" }
+
+![Front Control Board - Bottom](assets/images/front_control_board_bottom.jpg){ loading="lazy" width="450" }
+
+- Remove assembly rails by bending along v-cut lines, being careful not to bend the PCB near any of the components.
+
+![Front Control Board - Top - No Rails](assets/images/front_control_board_top_no_rails.jpg){ loading="lazy" width="450" align="left" }
+
+![Front Control Board - Bottom - No Rails](assets/images/front_control_board_bottom_no_rails.jpg){ loading="lazy" width="450" }
+
+- Hand solder through-hole components on the sides indicated by the silkscreen.
+    - BZ1 can be installed on the bottom side, or top side if using [10mm standoffs](#misc-parts).
+- J4 is optional and only needed if you want to add extra LED strips.
+- Recommended to solder back components first (J1, J2, and J3) and optionally J4/BZ1.
+- Install 5x standoffs on top side of board.
+- Attach the U.FL antenna to the connector on the ESP32 module (U1).
+
+Fully assembled board:
+
+![Front Control Board - Top - Assembled](assets/images/front_control_board_top_assembled.jpg){ loading="lazy" width="450" align="left" }
+
+![Front Control Board - Bottom - Assembled](assets/images/front_control_board_bottom_assembled.jpg){ loading="lazy" width="450" }
+
+### Front Panel {: #assembly-front-panel }
+
+Image of board as it arrived from JLCPCB:
+
+![Front Panel - Top](assets/images/front_panel_top.jpg){ loading="lazy" width="450" align="left" }
+
+![Front Panel - Bottom](assets/images/front_panel_bottom.jpg){ loading="lazy" width="450" }
+
+- Ensure the display module has a 10P 0.1" pin header soldered on the back.
+- Install 4x display standoffs onto display module first, then attach to the front panel with 4x screws.
+- Place 4x 10x10 button caps into the holes of the front panel board.
+- Install front panel control board onto front panel with 4x screws, so the button caps are captured between the two PCBs.
+- Push on the encoder/pot knobs.
+
+Fully assembled board:
+
+![Front Panel - Top - Assembled](assets/images/front_panel_top_assembled.jpg){ loading="lazy" width="450" align="left" }
+
+![Front Panel - Bottom - Assembled](assets/images/front_panel_bottom_assembled.jpg){ loading="lazy" width="450" }
+
+### Main Board {: #assembly-main-board }
+
+Image of board as it arrived from JLCPCB:
+
+![Main Board - Top](assets/images/main_board_top.jpg){ loading="lazy" width="450" align="left" }
+
+![Main Board - Bottom](assets/images/main_board_bottom.jpg){ loading="lazy" width="450" }
+
+- Hand solder through-hole components on the top side (indicated by the silkscreen).
+- Recommended to solder SW1 first, then CT1, CT2, CT3, and CT4.
+- J7/J8 are optional and only used for debugging and future peripheral addon support.
+- Ensure TRS sockets (J15-J18, J2-J3, J9, J11) are aligned with the board edge before soldering, so the front panel will fit cleanly.
+
+*[SWD]: Single Wire Debug
+
+Fully assembled board:
+
+![Main Board - Top - Assembled](assets/images/main_board_top_assembled.jpg){ loading="lazy" width="900" }
+
+### Output Board {: #assembly-output-board }
+
+Image of board as it arrived from JLCPCB:
+
+![Output Board - Top](assets/images/output_board_top.jpg){ loading="lazy" width="450" align="left" }
+
+![Output Board - Bottom](assets/images/output_board_bottom.jpg){ loading="lazy" width="450" }
+
+- Hand solder through-hole components on the sides indicated by the silkscreen.
+- Recommended to solder back components first (J1, J2, and J3), ensure they are aligned correctly by first plugging them into the main board.
+- The "P" marking on each transformer (T1, T2, T3, and T4) should face towards J3 (CH_OUT). We are using the transformers in reverse, the primaries going to outputs.
+- The 4x MOSFETs (Q1, Q4, Q7, and Q10) should have the exposed metal pad facing towards the transformers.
+
+Fully assembled board:
+
+![Output Board - Top - Assembled](assets/images/output_board_top_assembled.jpg){ loading="lazy" width="441" align="left" }
+
+![Output Board - Bottom - Assembled](assets/images/output_board_bottom_assembled.jpg){ loading="lazy" width="441" }
+
+Main Board assembly:
+
+![Main Board & Output Board - Assembled](assets/images/main_board_assembled.jpg){ loading="lazy" width="900" }
+
+### Case {: #assembly-case }
+
+TBW
