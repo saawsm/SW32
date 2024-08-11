@@ -57,6 +57,8 @@ static inline void init() {
 }
 
 void core1_main() {
+   multicore_lockout_victim_init();
+
    while (true) {
       pulse_gen_process();
 
@@ -82,7 +84,6 @@ int main() {
    if (err) { // should not happen since this is non-removable flash memory
       LOG_FATAL("Mounting failed! err=%u (%s)\n", err, lfs_err_msg(err));
    }
-
 
    // Initialize UART and protocol handling
    protocol_init();

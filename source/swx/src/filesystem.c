@@ -17,6 +17,8 @@
  */
 #include "filesystem.h"
 
+#include <pico/multicore.h>
+
 #ifdef LFS_THREADSAFE
 #include <pico/mutex.h>
 #endif
@@ -39,22 +41,30 @@ static int flash_read(const struct lfs_config* c, lfs_block_t block, lfs_off_t o
 }
 
 static int flash_prog(const struct lfs_config* c, lfs_block_t block, lfs_off_t off, const void* buffer, lfs_size_t size) {
-   const uint32_t state = save_and_disable_interrupts();
+   multicore_lockout_start_blocking();
+
+   const uint32_t status = save_and_disable_interrupts();
    {
       const uint32_t offset = (uint32_t)FLASH_TARGET_OFFSET + (block * c->block_size) + off;
       flash_range_program(offset, buffer, size);
    }
-   restore_interrupts(state);
+   restore_interrupts(status);
+
+   multicore_lockout_end_blocking();
    return LFS_ERR_OK;
 }
 
 static int flash_erase(const struct lfs_config* c, lfs_block_t block) {
-   const uint32_t state = save_and_disable_interrupts();
+   multicore_lockout_start_blocking();
+
+   const uint32_t status = save_and_disable_interrupts();
    {
       const uint32_t offset = (uint32_t)FLASH_TARGET_OFFSET + (block * c->block_size);
       flash_range_erase(offset, c->block_size);
    }
-   restore_interrupts(state);
+   restore_interrupts(status);
+
+   multicore_lockout_end_blocking();
    return LFS_ERR_OK;
 }
 
@@ -107,6 +117,7 @@ int lfs_mountf(lfs_t* lfs, struct lfs_config* cfg, bool format_on_error) {
    int err = lfs_mount(lfs, cfg);
 
    if (err && format_on_error) {
+      LOG_WARN("Formatting...");
       err = lfs_format(lfs, cfg);
       if (!err)
          return fs_flash_mount(false); // only try format once
@@ -125,7 +136,7 @@ int fs_flash_unmount() {
 const char* lfs_err_msg(int err) {
    // errors are all negative, negate, so they can be stored in an array
    static const char* const msgs[] = {
-       [-LFS_ERR_OK] = NULL,
+       [-LFS_ERR_OK] = "No error",
        [-LFS_ERR_TIMEOUT] = "Mutex timeout",
        [-LFS_ERR_IO] = "Operation error",
        [-LFS_ERR_CORRUPT] = "Corrupted",
