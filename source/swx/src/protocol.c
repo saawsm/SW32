@@ -17,13 +17,28 @@
  */
 #include "protocol.h"
 
-#include <stdarg.h>
+#include <cobs.h>
 
 #include <hardware/uart.h>
 
-#include <cobs.h>
-
 #include "message.h"
+#include "output.h"
+
+#define U16_U8(value) ((value) >> 8), ((value) & 0xff)
+
+static const char* const cobs_encode_status_text[] = {
+    [COBS_ENCODE_OK] = "ok",
+    [COBS_ENCODE_NULL_POINTER] = "null pointer",
+    [COBS_ENCODE_OUT_BUFFER_OVERFLOW] = "out buffer overflow",
+};
+
+static const char* const cobs_decode_status_text[] = {
+    [COBS_DECODE_OK] = "ok",
+    [COBS_DECODE_NULL_POINTER] = "null pointer",
+    [COBS_DECODE_OUT_BUFFER_OVERFLOW] = "out buffer overflow",
+    [COBS_DECODE_ZERO_BYTE_IN_INPUT] = "zero byte in input",
+    [COBS_DECODE_INPUT_TOO_SHORT] = "input too short",
+};
 
 typedef struct {
    size_t index;
@@ -33,7 +48,8 @@ typedef struct {
 static ringbuffer_t rb_uart = {0};
 static ringbuffer_t rb_stdio = {0};
 
-static uint8_t frame[MSG_FRAME_SIZE] = {0}; // decoded frame
+static uint8_t frame_dec[MSG_SIZE] = {0};       // decoded frame
+static uint8_t frame_enc[MSG_FRAME_SIZE] = {0}; // encoded frame
 
 void protocol_init() {
    uart_init(UART_PORT, UART_BAUD);
@@ -44,26 +60,79 @@ void protocol_init() {
 }
 
 static void process_frame(comm_channel_t ch, ringbuffer_t* rb) {
-   if (rb->index == 0)
+   if (rb->index < 2) { // buffer not large enough to be a valid frame
+      rb->index = 0;
       return;
-
-   cobs_decode_result ret = cobs_decode(frame, sizeof(frame), rb->buffer, rb->index);
-
-   if (ret.status == COBS_DECODE_OK) {
-      // [id:8][seq:8][len:8][payload:<len>][crc:16]
-      uint8_t id = frame[0];
-      uint8_t seq = frame[1];
-      uint8_t len = frame[2];
-      uint8_t* payload = &frame[3];
-      uint16_t crc = *(uint16_t*)&payload[len];
-
-      // TODO: Parse message
-
-   } else {
-      LOG_INFO("Invalid frame: %u", ret.status);
    }
 
-   rb->index = 0;
+   // Decode COBS encoded ring buffer frame
+   cobs_decode_result ret = cobs_decode(frame_dec, sizeof(frame_dec), rb->buffer, rb->index);
+   rb->index = 0; // wrap ringbuffer
+
+   if (ret.status != COBS_DECODE_OK) {
+      LOG_WARN("Frame decode failed! ret=%u (%s)", ret.status, cobs_decode_status_text[ret.status]);
+      return;
+   } else if (ret.out_len == 0 || frame_dec[0] != MSG_FRAME_START) {
+      LOG_WARN("Frame missing starting byte! Expected %u, got %u!", MSG_FRAME_START, frame_dec[0]);
+      return;
+   }
+
+   const uint8_t cmd = frame_dec[1] & ~MSG_UPDATE;
+   const bool update = frame_dec[1] & MSG_UPDATE;
+   const uint8_t* data = &frame_dec[2];
+
+   switch (cmd) {
+      case MSG_CMD_INFO: {
+         uint8_t msg[] = {
+             MSG_FRAME_START,           //
+             MSG_CMD_INFO | MSG_UPDATE, //
+             SWX_VERSION_PCB_REV,       //
+             SWX_VERSION_MAJOR,         //
+             SWX_VERSION_MINOR,         //
+             CHANNEL_COUNT,             //
+             U16_U8(CHANNEL_POWER_MAX),
+         };
+         protocol_write_frame(ch, msg, sizeof(msg));
+      } break;
+      case MSG_CMD_MAX_POWER: {
+         uint8_t ch_mask = data[0];
+         if (update) { // update max power
+
+            uint16_t value = (data[1] << 8) | data[2];
+            if (value > CHANNEL_POWER_MAX)
+               value = CHANNEL_POWER_MAX;
+
+            float pwr = (float)value / CHANNEL_POWER_MAX;
+
+            for (size_t ch_index = 0; ch_index < CHANNEL_COUNT; ch_index++) {
+               if (ch_mask & (1 << ch_index)) {
+                  channels[ch_index].max_power = pwr;
+                  LOG_FINE("Update max_power: ch=%u value=%f", ch_index, pwr);
+               }
+            }
+         } else { // fetch max power
+            for (size_t ch_index = 0; ch_index < CHANNEL_COUNT; ch_index++) {
+               if (ch_mask & (1 << ch_index)) {
+                  float max_power = channels[ch_index].max_power;
+
+                  LOG_FINE("Fetch max_power: ch=%u value=%f", ch_index, max_power);
+
+                  uint16_t value = CHANNEL_POWER_MAX * max_power;
+
+                  uint8_t msg[] = {
+                      MSG_FRAME_START,                //
+                      MSG_CMD_MAX_POWER | MSG_UPDATE, //
+                      ch_index,
+                      U16_U8(value),
+                  };
+                  protocol_write_frame(ch, msg, sizeof(msg));
+               }
+            }
+         }
+      } break;
+      default:
+         break;
+   }
 }
 
 static inline bool rb_push(ringbuffer_t* rb, char c) {
@@ -78,17 +147,17 @@ static inline bool rb_push(ringbuffer_t* rb, char c) {
 }
 
 void protocol_process() {
-   // read UART
+   // Read UART
    while (uart_is_readable(UART_PORT)) {
       if (rb_push(&rb_uart, uart_getc(UART_PORT)))
          process_frame(COMM_UART, &rb_uart);
    }
 
-   // read STDIO
+   // Read STDIO
    int cc = 0;
    while ((cc = getchar_timeout_us(0)) != PICO_ERROR_TIMEOUT) {
       if (rb_push(&rb_stdio, (char)cc))
-         process_frame(COMM_NONE, &rb_stdio);
+         process_frame(COMM_STDIO, &rb_stdio);
    }
 }
 
@@ -106,18 +175,17 @@ static inline void write(comm_channel_t ch, uint8_t* src, size_t len) {
 }
 
 void protocol_write_frame(comm_channel_t ch, uint8_t* src, size_t len) {
-   if (ch == COMM_NONE || len == 0)
+   if (len == 0)
       return;
 
-   uint8_t frame[MSG_FRAME_SIZE];
-
-   // the frame will always have a termination byte (0x00) so subtract one
-   cobs_encode_result ret = cobs_encode(frame, sizeof(frame) - 1, src, len);
+   cobs_encode_result ret = cobs_encode(frame_enc, sizeof(frame_enc), src, len);
    if (ret.status != COBS_ENCODE_OK)
-      LOG_FATAL("Encode frame failed: ret=%u", ret.status); // should not happen
+      LOG_FATAL("Frame encode failed! ret=%u (%s)", ret.status, cobs_encode_status_text[ret.status]); // should not happen
+   else if (ret.out_len == 0)
+      return;
 
-   // add termination byte to frame
-   frame[ret.out_len++] = 0;
+   // append frame boundary marker
+   frame_enc[ret.out_len++] = 0;
 
-   write(ch, frame, ret.out_len);
+   write(ch, frame_enc, ret.out_len);
 }

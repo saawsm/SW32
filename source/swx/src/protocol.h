@@ -25,8 +25,8 @@ extern "C" {
 #endif
 
 typedef enum {
-   COMM_NONE,
    COMM_UART,
+   COMM_STDIO,
 } comm_channel_t;
 
 void protocol_init();
@@ -34,8 +34,6 @@ void protocol_init();
 void protocol_process();
 
 void protocol_write_frame(comm_channel_t ch, uint8_t* src, size_t len);
-
-void protocol_write(char* fmt, ...);
 
 #ifdef __cplusplus
 }

@@ -18,11 +18,31 @@
 #ifndef _MESSAGE_H
 #define _MESSAGE_H
 
-#include <stdint.h>
+// Each message is formatted the following way:
+//
+// [MSG_FRAME_START:8] [data:n]
+//
+// The message is encoded using COBS before being sent. The receiver will buffer data until it receives a 0x00 byte before decoding it as a frame.
+// Debugging information (LOG_ macros) and COBS encoded messages share the same communication channel. This is achieved by having 0x00 byte appended
+// to any debugging messages, and assuming these messages will not contain the non-printable ASCII control character (STX 0x02 - MSG_FRAME_START).
 
-#define MSG_HEADER_SIZE (3)
-#define MSG_PAYLOAD_SIZE (255)
-#define MSG_CRC_SIZE (2)
-#define MSG_FRAME_SIZE (MSG_HEADER_SIZE + MSG_PAYLOAD_SIZE + MSG_CRC_SIZE + 1) // [id:8][seq:8][len:8][payload:<len>][crc:16] 0x00
+#define MSG_SIZE (255)
+#define MSG_FRAME_SIZE (MSG_SIZE + 1 + ((MSG_SIZE + (254 - 1)) / 254))
+#define MSG_FRAME_START (2) // STX
+
+#define MSG_FETCH (0)
+#define MSG_UPDATE (1)
+
+// Get fixed firmware information (e.g. version, channel count)
+// MSG_FETCH: <none>
+// RESPONSE: [version_pcb_rev:8 version_major:8 version_minor:8] [channel_count:8] [channel_power_max_hi:8 channel_power_max_lo:8]
+#define MSG_CMD_INFO (0 << 1)
+
+// Set or get the maximum power level for one or more output channels. Value represents a percentage, out of CHANNEL_POWER_MAX.
+// MSG_FETCH:  [ch_mask:8]
+// MSG_UPDATE: [ch_mask:8] [value_hi:8 value_lo:8]
+//
+// Note: MSG_FETCH will reply with MSG_UPDATE, ch_mask is replaced with ch_index.
+#define MSG_CMD_MAX_POWER (1 << 1)
 
 #endif // _MESSAGE_H
