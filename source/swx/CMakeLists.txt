@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.26)
+cmake_minimum_required(VERSION 3.25)
 
 if (NOT PICO_BOARD)
 set(PICO_BOARD SW32)
@@ -51,9 +51,8 @@ target_sources(${PROJECT_NAME} PRIVATE
     "src/util/i2c.c"
 )
 
-target_include_directories(${PROJECT_NAME} PRIVATE
-    "include/swx"
-)
+# Include public header files
+target_include_directories(${PROJECT_NAME} PRIVATE "include/swx")
 
 target_link_libraries(${PROJECT_NAME} PRIVATE 
     pico_stdlib
@@ -89,6 +88,6 @@ pico_set_program_version(${PROJECT_NAME} ${PROJECT_VERSION})
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
     target_compile_definitions(${PROJECT_NAME} PRIVATE
         PICO_STDIO_USB_CONNECT_WAIT_TIMEOUT_MS=5000
-        PARAM_ASSERTIONS_ENABLE_ALL=1
+        PARAM_ASSERTIONS_ENABLE_ALL
     )    
 endif()
