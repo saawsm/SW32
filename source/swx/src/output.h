@@ -21,6 +21,10 @@
 #include "swx.h"
 #include "channel.h"
 
+#ifndef CHANNEL_COUNT
+#define CHANNEL_COUNT (4)
+#endif
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -35,34 +39,22 @@ typedef struct {
 
    channel_status_t status;
 
-   bool enabled;               // True, if this channel is generating output from the pulse generator (period_us) or the audio_src
-   analog_channel_t audio_src; // Analog channel for audio pulse generation
-
-   uint32_t last_power_time_us; // The absolute timestamp for the last power set
-   uint32_t last_pulse_time_us; // The absolute timestamp for the last generated output pulse
-
-   uint32_t period_us;      // Pulse period in microseconds, see. HZ_TO_US() macro
-   uint16_t pulse_width_us; // Pulse width in microseconds
-
-   float power_level; // Power level of channel (e.g. front panel level knob) range [0.0 - 1.0]
-   float power;       // Routine power level, range [0.0 - 1.0]
+   float max_power; // Maximum power level (e.g. front panel knobs), range [0.0, 1.0]
 } channel_t;
 
 extern channel_t channels[CHANNEL_COUNT];
 
+// Bitmask indicating if a channel needs max_power to be less than 1% to enable output (bit will be reset to zero)
+extern uint8_t require_zero_mask;
+
 void output_init();
 void output_scram();
-
-void pulse_gen_process();
 
 void output_process_power();
 void output_process_pulse();
 
 bool output_pulse(uint8_t ch_index, uint16_t pos_us, uint16_t neg_us, uint32_t abs_time_us);
-void output_set_power(uint8_t ch_index, uint16_t power);
-
-bool output_drv_enable(bool enabled);
-bool output_drv_enabled();
+bool output_power(uint8_t ch_index, float power);
 
 bool check_output_board_missing();
 

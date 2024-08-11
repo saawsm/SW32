@@ -33,18 +33,21 @@
 
 #define CH(pinGateA, pinGateB, dacChannel)                                                                                                                               \
    {                                                                                                                                                                     \
-      .pin_gate_a = (pinGateA), .pin_gate_b = (pinGateB), .dac_channel = (dacChannel), .status = CHANNEL_INVALID, .power = 1.0f, .power_level = 0.5f,                    \
-      .pulse_width_us = 150, .period_us = HZ_TO_US(180.0f), .audio_src = ANALOG_CHANNEL_NONE, .enabled = false                                                           \
+       .pin_gate_a = (pinGateA),                                                                                                                                         \
+       .pin_gate_b = (pinGateB),                                                                                                                                         \
+       .dac_channel = (dacChannel),                                                                                                                                      \
+       .status = CHANNEL_INVALID,                                                                                                                                        \
+       .max_power = 0.0f,                                                                                                                                                \
    }
 
-extern float audio_process(channel_t* ch, uint8_t ch_index);
-
 static bool calibrate();
+static float read_voltage();
 static bool write_dac(const channel_t* ch, uint16_t value);
+static bool set_drive_enabled(bool enabled);
 
 typedef struct {
    uint8_t channel;
-   uint16_t power;
+   float power;
 } pwr_cmd_t;
 
 typedef struct {
@@ -69,6 +72,8 @@ channel_t channels[CHANNEL_COUNT] = {
 #endif
 };
 
+uint8_t require_zero_mask = 0xff;
+
 static bool drv_enabled;
 static uint pio_offset;
 
@@ -77,6 +82,7 @@ static queue_t power_queue;
 
 static pulse_t pulse;
 static bool fetch_pulse = false;
+static uint32_t last_pulse_time_us = 0;
 
 void output_init() {
    LOG_DEBUG("Init output...");
@@ -87,7 +93,7 @@ void output_init() {
    // Init drive enable pin
    init_gpio(PIN_DRV_EN, GPIO_OUT, 0);
    gpio_disable_pulls(PIN_DRV_EN);
-   output_drv_enable(false);
+   set_drive_enabled(false);
 
    // Init DAC I2C bus
    i2c_init(I2C_PORT_DAC, I2C_FREQ_DAC);
@@ -142,7 +148,7 @@ void output_init() {
 
 void output_scram() {
    // ensure drive power and nfet gates are off, before entering inf loop
-   output_drv_enable(false);
+   set_drive_enabled(false);
 
    for (size_t i = 0; i < CHANNEL_COUNT; i++) {
       channels[i].status = CHANNEL_FAULT;
@@ -160,40 +166,138 @@ void output_scram() {
    pio_remove_program(CHANNEL_PIO, &CHANNEL_PIO_PROGRAM, pio_offset);
 }
 
-void pulse_gen_process() {
-   for (size_t ch_index = 0; ch_index < CHANNEL_COUNT; ch_index++) {
-      channel_t* const ch = &channels[ch_index];
+static bool calibrate() {
+   LOG_INFO("Starting channel self-test calibration...");
 
-      if (!ch->enabled)
+   // Enable PSU directly since set_drive_enabled() is disabled before calibration is complete
+   gpio_put(PIN_DRV_EN, 1);
+   sleep_ms(100); // Stabilize
+
+   bool success = true;
+   for (size_t ch_index = 0; ch_index < CHANNEL_COUNT; ch_index++) {
+      channel_t* ch = &channels[ch_index];
+
+      // Calibration of already calibrated channels (CHANNEL_READY) is not supported
+      if (ch->status != CHANNEL_INVALID)
          continue;
 
-      float audio_power = 1.0f;
+      LOG_DEBUG("Calibrating channel: ch=%u", ch_index);
 
-      // Channel has audio source, so process audio instead of running pulse gen
-      if (ch->audio_src != ANALOG_CHANNEL_NONE) {
-         audio_power = audio_process(ch, ch_index);
+      float voltage = read_voltage();
+      if (voltage > 0.015f) { // 15mV
+         LOG_ERROR("Precalibration overvoltage! ch=%u voltage=%.3fv", ch_index, voltage);
+         break;
 
-      } else if (time_us_32() - ch->last_pulse_time_us >= ch->period_us) { // otherwise pulse output every period_us
-         ch->last_pulse_time_us = time_us_32();
+      } else {
+         LOG_DEBUG("Precalibration voltage: ch=%u voltage=%.3fv", ch_index, voltage);
 
-         const uint16_t pw = ch->pulse_width_us;
-         output_pulse(ch_index, pw, pw, time_us_32());
+         for (uint16_t dacValue = 4000; dacValue > 2000; dacValue -= 10) {
+            write_dac(ch, dacValue);
+            sleep_us(100); // Stabilize
+
+            // Switch on both nfets
+            gpio_put(ch->pin_gate_a, 1);
+            gpio_put(ch->pin_gate_b, 1);
+
+            sleep_us(50); // Stabilize, then sample feedback voltage
+
+            voltage = read_voltage();
+
+            // Switch off both nfets
+            gpio_put(ch->pin_gate_a, 0);
+            gpio_put(ch->pin_gate_b, 0);
+
+            LOG_FINE("Calibrating: ch=%u dac=%d voltage=%.3fv", ch_index, dacValue, voltage);
+
+            // Check if the voltage isn't higher than expected
+            if (voltage > CH_CAL_THRESHOLD_OVER) {
+               LOG_ERROR("Calibration overvoltage! ch=%u dac=%d voltage=%.3fv", ch_index, dacValue, voltage);
+               break;
+
+            } else if (voltage > CH_CAL_THRESHOLD_OK) { // self test ok
+               LOG_DEBUG("Calibration OK: ch=%u dac=%d voltage=%.3fv", ch_index, dacValue, voltage);
+               ch->cal_value = dacValue;
+               ch->status = CHANNEL_READY;
+               break;
+            }
+
+            sleep_ms(5);
+         }
       }
 
-      // Set channel output power, limit update rate to ~2.2 kHz since it takes the DAC about ~110us/ch
-      if (time_us_32() - ch->last_power_time_us >= CHANNEL_COUNT * 110) {
-         ch->last_power_time_us = time_us_32();
+      // Switch off power
+      write_dac(ch, DAC_MAX_VALUE);
 
-         const uint16_t real_power = (uint16_t)(CHANNEL_POWER_MAX * fclamp(ch->power_level * ch->power * audio_power, 0.0f, 1.0f));
-         output_set_power(ch_index, real_power);
+      if (ch->status == CHANNEL_READY) {
+         // Init PIO state machine with pulse gen program
+         // Must be done here, since PIO uses different GPIO muxing compared to regular GPIO
+         pulse_gen_program_init(CHANNEL_PIO, ch_index, pio_offset, ch->pin_gate_a, ch->pin_gate_b);
+         pio_sm_set_enabled(CHANNEL_PIO, ch_index, true); // Start state machine
+      } else {
+         success = false;
+         ch->status = CHANNEL_FAULT;
+         LOG_ERROR("Calibration failed! ch=%u", ch_index);
+         break;
       }
    }
+
+   // Disable PSU since we are done with calibration
+   set_drive_enabled(false);
+
+   if (success) {
+      LOG_INFO("Calibration successful!");
+   } else {
+      LOG_ERROR("Calibration failed for one or more channels!");
+   }
+   return success;
+}
+
+static int cmpfunc(const void* a, const void* b) {
+   return *(uint16_t*)a - *(uint16_t*)b;
+}
+
+static float read_voltage() {
+   const uint32_t MAX_SAMPLES = 10;
+   const uint32_t TRIM_AMOUNT = 2;
+   const float conv_factor = 3.3f / (1 << 12);
+
+   static_assert(MAX_SAMPLES > (TRIM_AMOUNT * 2));
+
+   adc_select_input(PIN_ADC_BASE - PIN_ADC_SENSE);
+
+   uint16_t readings[MAX_SAMPLES];
+   for (size_t i = 0; i < MAX_SAMPLES; i++) // ~2us/sample
+      readings[i] = adc_read();
+
+   // Ignore n highest and lowest values. Average the rest
+   uint32_t total = 0;
+   qsort(readings, MAX_SAMPLES, sizeof(uint16_t), cmpfunc);
+   for (uint8_t index = TRIM_AMOUNT; index < (MAX_SAMPLES - TRIM_AMOUNT); index++)
+      total += readings[index];
+
+   uint16_t counts = total / (MAX_SAMPLES - (TRIM_AMOUNT * 2));
+   return conv_factor * counts;
+}
+
+static bool write_dac(const channel_t* ch, uint16_t value) {
+   uint8_t buffer[3];
+
+   const size_t len = mcp4728_build_write_cmd(buffer, sizeof(buffer), ch->dac_channel, value, MCP4728_VREF_VDD, MCP4728_GAIN_ONE, MCP4728_PD_NORMAL, MCP4728_UDAC_FALSE);
+   if (len == 0)
+      LOG_FATAL("MCP4728 build cmd failed!"); // should not happen
+
+   const int ret = i2c_write(I2C_PORT_DAC, CH_DAC_ADDRESS, buffer, len, false, I2C_DEVICE_TIMEOUT);
+   if (ret <= 0) {
+      LOG_ERROR("DAC write failed! ch=%u ret=%d", ch->dac_channel, ret);
+      return false;
+   }
+   return true;
 }
 
 void output_process_pulse() {
    static const uint16_t PW_MAX = (1 << PULSE_GEN_BITS) - 1;
 
-   for (size_t i = 0; i < CHANNEL_COUNT * 8; i++) { // FIFO is 8 deep
+   for (size_t i = 0; i < CHANNEL_COUNT * 8; i++) { // PIO FIFO is 8 deep
       if (fetch_pulse) {
          if (queue_try_remove(&pulse_queue, &pulse)) {
             if (pulse.abs_time_us < time_us_32() + 1000000ul) // ignore pulses with wait times above 1 second
@@ -202,7 +306,7 @@ void output_process_pulse() {
       } else if (time_us_32() >= pulse.abs_time_us) {
          const channel_t* ch = &channels[pulse.channel];
 
-         if (ch->status == CHANNEL_READY) {
+         if (!(require_zero_mask & (1 << pulse.channel)) && drv_enabled && ch->status == CHANNEL_READY) {
             if (!pio_sm_is_tx_fifo_full(CHANNEL_PIO, pulse.channel)) {
                static_assert(PULSE_GEN_BITS <= 16); // Ensure we can fit the bits
 
@@ -213,13 +317,22 @@ void output_process_pulse() {
 
                uint32_t val = (pulse.pos_us << PULSE_GEN_BITS) | (pulse.neg_us);
                pio_sm_put(CHANNEL_PIO, pulse.channel, val);
+
+               last_pulse_time_us = time_us_32();
             } else {
-               LOG_WARN("PIO pulse queue full! ch=%u", pulse.channel);
+               LOG_WARN("Pulse queue full! ch=%u", pulse.channel);
             }
          }
 
          fetch_pulse = true;
       }
+   }
+
+   // Disable drive power if more than 30 seconds since last output pulse
+   if (drv_enabled && (time_us_32() - last_pulse_time_us) > (30 * 1000000u)) {
+      set_drive_enabled(false);
+   } else if (!drv_enabled && !queue_is_empty(&pulse_queue)) {
+      set_drive_enabled(true);
    }
 }
 
@@ -230,15 +343,25 @@ void output_process_power() {
 
       pwr_cmd_t cmd;
       if (queue_try_remove(&power_queue, &cmd)) {
-         const channel_t* ch = &channels[cmd.channel];
+         channel_t* const ch = &channels[cmd.channel];
 
          if (ch->status != CHANNEL_READY)
             continue;
 
-         int16_t dacValue = (ch->cal_value + CH_CAL_OFFSET) - cmd.power;
+         float pwr = fclamp(cmd.power, 0.0f, 1.0f) * fclamp(ch->max_power, 0.0f, 1.0f);
+
+         if (require_zero_mask & (1 << cmd.channel)) {
+            if (ch->max_power <= 0.01f) {
+               require_zero_mask &= ~(1 << cmd.channel);
+            } else {
+               pwr = 0.0f;
+            }
+         }
+
+         int16_t dacValue = (ch->cal_value + CH_CAL_OFFSET) - (2000 * pwr);
 
          if (dacValue < 0 || dacValue > DAC_MAX_VALUE) {
-            LOG_WARN("Invalid power calculated! ch=%u pwr=%u dac=%d - ERROR!", cmd.channel, cmd.power, dacValue);
+            LOG_WARN("Invalid power calculated! ch=%u pwr=%f dac=%d", cmd.channel, pwr, dacValue);
             continue;
          }
 
@@ -261,12 +384,12 @@ bool output_pulse(uint8_t ch_index, uint16_t pos_us, uint16_t neg_us, uint32_t a
    return queue_try_add(&pulse_queue, &pulse);
 }
 
-void output_set_power(uint8_t ch_index, uint16_t power) {
+bool output_power(uint8_t ch_index, float power) {
    if (ch_index >= CHANNEL_COUNT)
-      return;
+      return false;
 
    pwr_cmd_t cmd = {.channel = ch_index, .power = power};
-   queue_try_add(&power_queue, &cmd);
+   return queue_try_add(&power_queue, &cmd);
 }
 
 bool check_output_board_missing() {
@@ -288,18 +411,18 @@ bool check_output_board_missing() {
    }
 }
 
-bool output_drv_enable(bool enabled) {
+static bool set_drive_enabled(bool enabled) {
    if (enabled != drv_enabled) {
       if (enabled) { // prevent output power enable if any channel is faulted or is uninitialized
          for (uint8_t ch_index = 0; ch_index < CHANNEL_COUNT; ch_index++) {
             if (channels[ch_index].status != CHANNEL_READY) {
-               output_drv_enable(false);
+               set_drive_enabled(false);
                return false;
             }
          }
-         LOG_INFO("Enabling power...");
+         LOG_INFO("Enabling drive power...");
       } else {
-         LOG_INFO("Disabling power...");
+         LOG_INFO("Disabling drive power...");
       }
    }
 
@@ -308,138 +431,4 @@ bool output_drv_enable(bool enabled) {
    gpio_set_dir(PIN_DRV_EN, GPIO_OUT);
    gpio_put(PIN_DRV_EN, enabled);
    return true;
-}
-
-bool output_drv_enabled() {
-   return drv_enabled;
-}
-
-static int cmpfunc(const void* a, const void* b) {
-   return *(uint16_t*)a - *(uint16_t*)b;
-}
-
-static float read_voltage() {
-   const uint32_t MAX_SAMPLES = 10;
-   const uint32_t TRIM_AMOUNT = 2;
-   const float conv_factor = 3.3f / (1 << 12);
-
-   static_assert(MAX_SAMPLES > (TRIM_AMOUNT * 2));
-
-   adc_select_input(PIN_ADC_BASE - PIN_ADC_SENSE);
-
-   uint16_t readings[MAX_SAMPLES];
-   for (size_t i = 0; i < MAX_SAMPLES; i++)
-      readings[i] = adc_read();
-
-   // Ignore n highest and lowest values. Average the rest
-   uint32_t total = 0;
-   qsort(readings, MAX_SAMPLES, sizeof(uint16_t), cmpfunc);
-   for (uint8_t index = TRIM_AMOUNT; index < (MAX_SAMPLES - TRIM_AMOUNT); index++)
-      total += readings[index];
-
-   uint16_t counts = total / (MAX_SAMPLES - (TRIM_AMOUNT * 2));
-   return conv_factor * counts;
-}
-
-static bool write_dac(const channel_t* ch, uint16_t value) {
-   uint8_t buffer[3];
-
-   const size_t len = mcp4728_build_write_cmd(buffer, sizeof(buffer), ch->dac_channel, value, MCP4728_VREF_VDD, MCP4728_GAIN_ONE, MCP4728_PD_NORMAL, MCP4728_UDAC_FALSE);
-   if (len == 0)
-      LOG_FATAL("MCP4728 build cmd failed!"); // should not happen
-
-   const int ret = i2c_write(I2C_PORT_DAC, CH_DAC_ADDRESS, buffer, sizeof(buffer), false, I2C_DEVICE_TIMEOUT);
-   if (ret <= 0) {
-      LOG_ERROR("MCP4728: ch=%u ret=%d - I2C write failed!", ch->dac_channel, ret);
-      return false;
-   }
-   return true;
-}
-
-static bool calibrate() {
-   LOG_INFO("Starting channel self-test calibration...");
-
-   // Enable PSU directly since output_drv_enable() is disabled before calibration is complete
-   gpio_put(PIN_DRV_EN, 1);
-   sleep_ms(100); // stabilize
-
-   bool success = true;
-   for (size_t ch_index = 0; ch_index < CHANNEL_COUNT; ch_index++) {
-      channel_t* ch = &channels[ch_index];
-
-      // Calibration of already calibrated channels (CHANNEL_READY) is not supported
-      if (ch->status != CHANNEL_INVALID)
-         continue;
-
-      LOG_DEBUG("Calibrating channel: ch=%u", ch_index);
-
-      float voltage = read_voltage();
-      if (voltage > 0.015f) { // 15mV
-         LOG_ERROR("Precalibration overvoltage! ch=%u voltage=%.3fv - ERROR!", ch_index, voltage);
-         break;
-
-      } else {
-         LOG_DEBUG("Precalibration voltage: ch=%u voltage=%.3fv - OK", ch_index, voltage);
-
-         bool gate_flip = false;
-         for (uint16_t dacValue = 4000; dacValue > 2000; dacValue -= 10) {
-            write_dac(ch, dacValue);
-            sleep_us(100); // Stabilize
-
-            // Switch on one nfet leg and alternate each iteration
-            gpio_put(ch->pin_gate_a, gate_flip);
-            gpio_put(ch->pin_gate_b, !gate_flip);
-
-            sleep_us(50); // Stabilize, then sample feedback voltage
-
-            voltage = read_voltage();
-
-            // Switch off both nfets
-            gpio_put(ch->pin_gate_a, 0);
-            gpio_put(ch->pin_gate_b, 0);
-
-            LOG_FINE("Calibrating: ch=%u dac=%d voltage=%.3fv", ch_index, dacValue, voltage);
-
-            // Check if the voltage isn't higher than expected
-            if (voltage > CH_CAL_THRESHOLD_OVER) {
-               LOG_ERROR("Calibration overvoltage! ch=%u dac=%d voltage=%.3fv - ERROR!", ch_index, dacValue, voltage);
-               break;
-
-            } else if (voltage > CH_CAL_THRESHOLD_OK) { // self test ok
-               LOG_DEBUG("Calibration: ch=%u dac=%d voltage=%.3fv - OK", ch_index, dacValue, voltage);
-               ch->cal_value = dacValue;
-               ch->status = CHANNEL_READY;
-               break;
-            }
-
-            sleep_ms(5);
-            gate_flip = !gate_flip;
-         }
-      }
-
-      // Switch off power
-      write_dac(ch, DAC_MAX_VALUE);
-
-      if (ch->status == CHANNEL_READY) {
-         // Init PIO state machine with pulse gen program
-         // Must be done here, since PIO uses different GPIO muxing compared to regular GPIO
-         pulse_gen_program_init(CHANNEL_PIO, ch_index, pio_offset, ch->pin_gate_a, ch->pin_gate_b);
-         pio_sm_set_enabled(CHANNEL_PIO, ch_index, true); // Start state machine
-      } else {
-         success = false;
-         ch->status = CHANNEL_FAULT;
-         LOG_ERROR("Calibration failed! ch=%u - ERROR!", ch_index);
-         break;
-      }
-   }
-
-   // Disable PSU since we are done with calibration
-   output_drv_enable(false);
-
-   if (success) {
-      LOG_INFO("Calibration successful!");
-   } else {
-      LOG_ERROR("Calibration failed for one or more channels!");
-   }
-   return success;
 }

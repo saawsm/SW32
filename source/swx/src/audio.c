@@ -25,13 +25,13 @@
 static int32_t last_sample_values[CHANNEL_COUNT] = {0};
 static uint32_t last_process_times_us[CHANNEL_COUNT] = {0};
 
-float audio_process(channel_t* ch, uint8_t ch_index) {
+float audio_process(analog_channel_t audio_src, uint8_t ch_index, uint16_t pulse_width_us, uint32_t* last_pulse_time_us) {
    uint16_t sample_count;
    uint16_t* sample_buffer;
    uint32_t capture_end_time_us = 0;
 
    // Fetch audio from the specific analog channel
-   fetch_analog_buffer(ch->audio_src, &sample_count, &sample_buffer, &capture_end_time_us);
+   fetch_analog_buffer(audio_src, &sample_count, &sample_buffer, &capture_end_time_us);
 
    // Skip processing if audio samples are older than previously processed
    if (capture_end_time_us <= last_process_times_us[ch_index])
@@ -58,7 +58,7 @@ float audio_process(channel_t* ch, uint8_t ch_index) {
    if (abs((int32_t)min - avg) < 7 && abs((int32_t)max - avg) < 7)
       return 0.0f;
 
-   const uint32_t capture_duration_us = get_capture_duration_us(ch->audio_src);      // buffer capture duration
+   const uint32_t capture_duration_us = get_capture_duration_us(audio_src);          // buffer capture duration
    const uint32_t capture_start_time_us = capture_end_time_us - capture_duration_us; // time when capture started
 
    const uint32_t sample_duration_us = capture_duration_us / sample_count; // single sample duration
@@ -71,15 +71,10 @@ float audio_process(channel_t* ch, uint8_t ch_index) {
       // Check for zero crossing
       if (((value > 0 && last_sample_values[ch_index] <= 0) || (value < 0 && last_sample_values[ch_index] >= 0))) {
 
-         uint32_t min_period = ch->period_us; // dHz -> us
-         if (min_period < HZ_TO_US(500))      // clamp to 500 Hz
-            min_period = HZ_TO_US(500);
+         if (sample_time_us - (*last_pulse_time_us) >= HZ_TO_US(500)) { // limit pulses to 500 Hz max
+            *last_pulse_time_us = sample_time_us;
 
-         if (sample_time_us - ch->last_pulse_time_us >= min_period) { // limit pulses to channel period
-            ch->last_pulse_time_us = sample_time_us;
-
-            const uint16_t pw = ch->pulse_width_us;
-            output_pulse(ch_index, pw, pw, sample_time_us + 20000); // 20 ms in future
+            output_pulse(ch_index, pulse_width_us, pulse_width_us, sample_time_us + 20000); // 20 ms in future
          }
       }
 

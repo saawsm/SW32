@@ -20,11 +20,7 @@
 
 #include <stdint.h>
 
-#define CHANNEL_POWER_MAX (2000)
-
-#ifndef CHANNEL_COUNT
-#define CHANNEL_COUNT (4)
-#endif
+#define CHANNEL_POWER_MAX (1000)
 
 #ifdef __cplusplus
 extern "C" {
