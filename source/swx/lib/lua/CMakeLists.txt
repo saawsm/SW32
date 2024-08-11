@@ -25,15 +25,16 @@ add_library(lua STATIC
     "src/lzio.c"
     "src/lauxlib.c"
     "src/lbaselib.c"
+    "src/lbitlib.c"
     "src/lcorolib.c"
     "src/ldblib.c"
     "src/liolib.c"
     "src/lmathlib.c"
-    "src/loadlib.c"
     "src/loslib.c"
     "src/lstrlib.c"
     "src/ltablib.c"
     "src/lutf8lib.c"
+    "src/loadlib.c"
     "src/linit.c"
 )
 
