@@ -71,8 +71,8 @@
 
 // -------- Channel Defaults --------
 
-#define CH_CAL_THRESHOLD_OK (0.15f)
-#define CH_CAL_THRESHOLD_OVER (0.18f)
+#define CH_CAL_THRESHOLD_OK (0.015f)
+#define CH_CAL_THRESHOLD_OVER (0.018f)
 #define CH_CAL_OFFSET (400)
 
 // -------- Channel 1 --------
