@@ -31,15 +31,15 @@ static inline mutex_t* get_mutex(i2c_inst_t* i2c) {
 #endif
 
 int i2c_scan(i2c_inst_t* i2c) {
-   LOG_DEBUG("Scanning I2C devices...\n");
+   LOG_DEBUG("Scanning I2C devices...");
 
    for (uint8_t address = 0; address <= 0x7F; address++) {
       if (i2c_check(i2c, address)) {
-         LOG_DEBUG("Found device at 0x%02x\n", address);
+         LOG_DEBUG("Found device at 0x%02x", address);
       }
    }
 
-   LOG_DEBUG("Done.\n");
+   LOG_DEBUG("Done.");
 
    return 0;
 }
@@ -47,7 +47,7 @@ int i2c_scan(i2c_inst_t* i2c) {
 int i2c_write(i2c_inst_t* i2c, uint8_t addr, const uint8_t* src, size_t len, bool nostop, uint timeout_us) {
 #ifdef I2C_MUTEX_TIMEOUT
    if (!mutex_enter_timeout_us(get_mutex(i2c), I2C_MUTEX_TIMEOUT)) {
-      LOG_WARN("i2c_write: addr=%u - Mutex timeout!\n", addr);
+      LOG_WARN("i2c_write: addr=%u - Mutex timeout!", addr);
       return -1;
    }
 #endif
@@ -63,7 +63,7 @@ int i2c_write(i2c_inst_t* i2c, uint8_t addr, const uint8_t* src, size_t len, boo
 int i2c_read(i2c_inst_t* i2c, uint8_t addr, uint8_t* dst, size_t len, bool nostop, uint timeout_us) {
 #ifdef I2C_MUTEX_TIMEOUT
    if (!mutex_enter_timeout_us(get_mutex(i2c), I2C_MUTEX_TIMEOUT)) {
-      LOG_WARN("i2c_read: addr=%u - Mutex timeout!\n", addr);
+      LOG_WARN("i2c_read: addr=%u - Mutex timeout!", addr);
       return -1;
    }
 #endif
@@ -83,7 +83,7 @@ bool i2c_check(i2c_inst_t* i2c, uint8_t addr) {
 
 #ifdef I2C_MUTEX_TIMEOUT
    if (!mutex_enter_timeout_us(get_mutex(i2c), I2C_MUTEX_TIMEOUT)) {
-      LOG_WARN("i2c_read: addr=%u - Mutex timeout!\n", addr);
+      LOG_WARN("i2c_read: addr=%u - Mutex timeout!", addr);
       return -1;
    }
 #endif

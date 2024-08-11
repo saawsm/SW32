@@ -27,44 +27,36 @@
 
 #include "util/gpio.h"
 
-typedef enum {
-   LOG_LEVEL_NONE = 0,
-   LOG_LEVEL_FINE,
-   LOG_LEVEL_DEBUG,
-   LOG_LEVEL_INFO,
-   LOG_LEVEL_WARN,
-   LOG_LEVEL_ERROR,
-   LOG_LEVEL_FATAL,
-} log_level_t;
-
-extern void write_log(log_level_t level, char* fmt, ...);
-
-#ifndef NDEBUG
-#define LOG_DEBUG(...) write_log(LOG_LEVEL_DEBUG, __VA_ARGS__) // general debugging
-#define LOG_FINE(...) write_log(LOG_LEVEL_FINE, __VA_ARGS__)   // inner loops, etc
-#else
-#define LOG_DEBUG(...)
-#define LOG_FINE(...)
-#endif
-
-#define LOG_INFO(...) write_log(LOG_LEVEL_INFO, __VA_ARGS__) // general info
-
-#define LOG_WARN(...) write_log(LOG_LEVEL_WARN, __VA_ARGS__)   // recoverable warnings
-#define LOG_ERROR(...) write_log(LOG_LEVEL_ERROR, __VA_ARGS__) // errors (usually not recoverable)
-
-// Errors that are not recoverable
-// Alternative to panic() that has unreliable stdio output
-#define LOG_FATAL(...)                                                                                                                                                   \
+// Write debugging information to stdout. Includes trailing zero byte to reset receiver line buffer for COBS framing.
+#define LOG_WRITE(lvl, fmt, ...)                                                                                                                                         \
    do {                                                                                                                                                                  \
-      write_log(LOG_LEVEL_FATAL, "\n\n*** PANIC ***\n");                                                                                                                 \
-      write_log(LOG_LEVEL_FATAL, __VA_ARGS__);                                                                                                                           \
-      sleep_ms(10);                                                                                                                                                      \
-      extern void _exit(int status);                                                                                                                                     \
-      _exit(1);                                                                                                                                                          \
+      printf("(" lvl ") " fmt "\n", ##__VA_ARGS__);                                                                                                                      \
+      fputc(0, stdout);                                                                                                                                                  \
+      fflush(stdout);                                                                                                                                                    \
    } while (0)
 
-#define HZ_TO_US(hz) (1000000ul / (hz))
-#define KHZ_TO_US(hz) (1000ul / (hz))
+#ifndef NDEBUG
+#define LOG_DEBUG(fmt, ...) LOG_WRITE("D", fmt, ##__VA_ARGS__) // general debugging
+#define LOG_FINE(fmt, ...) LOG_WRITE("*", fmt, ##__VA_ARGS__)  // inner loops, etc
+#else
+#define LOG_DEBUG(fmt, ...)
+#define LOG_FINE(fmt, ...)
+#endif
+
+#define LOG_INFO(fmt, ...) LOG_WRITE("I", fmt, ##__VA_ARGS__) // general info
+
+#define LOG_WARN(fmt, ...) LOG_WRITE("W", fmt, ##__VA_ARGS__)  // recoverable warnings
+#define LOG_ERROR(fmt, ...) LOG_WRITE("E", fmt, ##__VA_ARGS__) // errors (usually not recoverable)
+
+// Errors that are not recoverable
+// Note: Using custom panic handler (hence the *** PANIC ***)
+#define LOG_FATAL(fmt, ...) panic("\n\n*** PANIC ***\n(F) " fmt "\n", ##__VA_ARGS__)
+
+#define HZ_TO_US(hz) (1000000u / (hz))
+#define US_TO_HZ(us) (1000000.0f / (us))
+
+#define KHZ_TO_US(hz) (1000u / (hz))
+#define US_TO_KHZ(us) (1000.0f / (us))
 
 #ifndef PIN_ADC_BASE
 #define PIN_ADC_BASE (26)

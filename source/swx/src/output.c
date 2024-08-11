@@ -79,7 +79,7 @@ static pulse_t pulse;
 static bool fetch_pulse = false;
 
 void output_init() {
-   LOG_DEBUG("Init output...\n");
+   LOG_DEBUG("Init output...");
 
    queue_init(&pulse_queue, sizeof(pulse_t), 16);
    queue_init(&power_queue, sizeof(pwr_cmd_t), 16);
@@ -102,7 +102,7 @@ void output_init() {
 
    // Init channels
    for (size_t ch_index = 0; ch_index < CHANNEL_COUNT; ch_index++) {
-      LOG_DEBUG("Init channel: ch=%u\n", ch_index);
+      LOG_DEBUG("Init channel: ch=%u", ch_index);
 
       channel_t* ch = &channels[ch_index];
 
@@ -114,7 +114,7 @@ void output_init() {
       pio_sm_claim(CHANNEL_PIO, ch_index);
    }
 
-   LOG_DEBUG("Load PIO pulse gen program\n");
+   LOG_DEBUG("Load PIO pulse gen program");
    if (pio_can_add_program(CHANNEL_PIO, &CHANNEL_PIO_PROGRAM)) {
       pio_offset = pio_add_program(CHANNEL_PIO, &CHANNEL_PIO_PROGRAM);
    } else {
@@ -129,7 +129,7 @@ void output_init() {
 
    // If output board is missing, fail initialization
    if (check_output_board_missing()) {
-      LOG_ERROR("Output board not installed! Disabling all channels...\n");
+      LOG_ERROR("Output board not installed! Disabling all channels...");
 
       for (size_t i = 0; i < CHANNEL_COUNT; i++)
          channels[i].status = CHANNEL_FAULT;
@@ -138,6 +138,26 @@ void output_init() {
       // Kick-start processing queued channel pulses by fetching the first one if calibration was successful
       fetch_pulse = calibrate();
    }
+}
+
+void output_scram() {
+   // ensure drive power and nfet gates are off, before entering inf loop
+   output_drv_enable(false);
+
+   for (size_t i = 0; i < CHANNEL_COUNT; i++) {
+      channels[i].status = CHANNEL_FAULT;
+
+      // since pins are used by PIO mux them back to SIO
+      init_gpio(channels[i].pin_gate_a, GPIO_OUT, 0);
+      init_gpio(channels[i].pin_gate_b, GPIO_OUT, 0);
+   }
+
+   for (size_t i = 0; i < CHANNEL_COUNT; i++) {
+      if (!write_dac(&channels[i], DAC_MAX_VALUE)) // turn off channels
+         break;
+   }
+
+   pio_remove_program(CHANNEL_PIO, &CHANNEL_PIO_PROGRAM, pio_offset);
 }
 
 void pulse_gen_process() {
@@ -194,7 +214,7 @@ void output_process_pulse() {
                uint32_t val = (pulse.pos_us << PULSE_GEN_BITS) | (pulse.neg_us);
                pio_sm_put(CHANNEL_PIO, pulse.channel, val);
             } else {
-               LOG_WARN("PIO pulse queue full! ch=%u\n", pulse.channel);
+               LOG_WARN("PIO pulse queue full! ch=%u", pulse.channel);
             }
          }
 
@@ -218,7 +238,7 @@ void output_process_power() {
          int16_t dacValue = (ch->cal_value + CH_CAL_OFFSET) - cmd.power;
 
          if (dacValue < 0 || dacValue > DAC_MAX_VALUE) {
-            LOG_WARN("Invalid power calculated! ch=%u pwr=%u dac=%d - ERROR!\n", cmd.channel, cmd.power, dacValue);
+            LOG_WARN("Invalid power calculated! ch=%u pwr=%u dac=%d - ERROR!", cmd.channel, cmd.power, dacValue);
             continue;
          }
 
@@ -277,9 +297,9 @@ bool output_drv_enable(bool enabled) {
                return false;
             }
          }
-         LOG_INFO("Enabling power...\n");
+         LOG_INFO("Enabling power...");
       } else {
-         LOG_INFO("Disabling power...\n");
+         LOG_INFO("Disabling power...");
       }
    }
 
@@ -330,14 +350,14 @@ static bool write_dac(const channel_t* ch, uint16_t value) {
 
    const int ret = i2c_write(I2C_PORT_DAC, CH_DAC_ADDRESS, buffer, sizeof(buffer), false, I2C_DEVICE_TIMEOUT);
    if (ret <= 0) {
-      LOG_ERROR("MCP4728: ch=%u ret=%d - I2C write failed!\n", ch->dac_channel, ret);
+      LOG_ERROR("MCP4728: ch=%u ret=%d - I2C write failed!", ch->dac_channel, ret);
       return false;
    }
    return true;
 }
 
 static bool calibrate() {
-   LOG_INFO("Starting channel self-test calibration...\n");
+   LOG_INFO("Starting channel self-test calibration...");
 
    // Enable PSU directly since output_drv_enable() is disabled before calibration is complete
    gpio_put(PIN_DRV_EN, 1);
@@ -351,15 +371,15 @@ static bool calibrate() {
       if (ch->status != CHANNEL_INVALID)
          continue;
 
-      LOG_DEBUG("Calibrating channel: ch=%u\n", ch_index);
+      LOG_DEBUG("Calibrating channel: ch=%u", ch_index);
 
       float voltage = read_voltage();
       if (voltage > 0.015f) { // 15mV
-         LOG_ERROR("Precalibration overvoltage! ch=%u voltage=%.3fv - ERROR!\n", ch_index, voltage);
+         LOG_ERROR("Precalibration overvoltage! ch=%u voltage=%.3fv - ERROR!", ch_index, voltage);
          break;
 
       } else {
-         LOG_DEBUG("Precalibration voltage: ch=%u voltage=%.3fv - OK\n", ch_index, voltage);
+         LOG_DEBUG("Precalibration voltage: ch=%u voltage=%.3fv - OK", ch_index, voltage);
 
          bool gate_flip = false;
          for (uint16_t dacValue = 4000; dacValue > 2000; dacValue -= 10) {
@@ -378,15 +398,15 @@ static bool calibrate() {
             gpio_put(ch->pin_gate_a, 0);
             gpio_put(ch->pin_gate_b, 0);
 
-            LOG_FINE("Calibrating: ch=%u dac=%d voltage=%.3fv\n", ch_index, dacValue, voltage);
+            LOG_FINE("Calibrating: ch=%u dac=%d voltage=%.3fv", ch_index, dacValue, voltage);
 
             // Check if the voltage isn't higher than expected
             if (voltage > CH_CAL_THRESHOLD_OVER) {
-               LOG_ERROR("Calibration overvoltage! ch=%u dac=%d voltage=%.3fv - ERROR!\n", ch_index, dacValue, voltage);
+               LOG_ERROR("Calibration overvoltage! ch=%u dac=%d voltage=%.3fv - ERROR!", ch_index, dacValue, voltage);
                break;
 
             } else if (voltage > CH_CAL_THRESHOLD_OK) { // self test ok
-               LOG_DEBUG("Calibration: ch=%u dac=%d voltage=%.3fv - OK\n", ch_index, dacValue, voltage);
+               LOG_DEBUG("Calibration: ch=%u dac=%d voltage=%.3fv - OK", ch_index, dacValue, voltage);
                ch->cal_value = dacValue;
                ch->status = CHANNEL_READY;
                break;
@@ -408,7 +428,7 @@ static bool calibrate() {
       } else {
          success = false;
          ch->status = CHANNEL_FAULT;
-         LOG_ERROR("Calibration failed! ch=%u - ERROR!\n", ch_index);
+         LOG_ERROR("Calibration failed! ch=%u - ERROR!", ch_index);
          break;
       }
    }
@@ -417,9 +437,9 @@ static bool calibrate() {
    output_drv_enable(false);
 
    if (success) {
-      LOG_INFO("Calibration successful!\n");
+      LOG_INFO("Calibration successful!");
    } else {
-      LOG_ERROR("Calibration failed for one or more channels!\n");
+      LOG_ERROR("Calibration failed for one or more channels!");
    }
    return success;
 }

@@ -17,6 +17,8 @@
  */
 #include "swx.h"
 
+#include <stdarg.h>
+
 #include <pico/multicore.h>
 #include <hardware/i2c.h>
 
@@ -25,8 +27,6 @@
 #include "output.h"
 
 #include "protocol.h"
-
-#include "hardware/bq25703a.h"
 
 static inline void init() {
    input_init();
@@ -48,11 +48,11 @@ static inline void init() {
    stdio_init_all();                                    // needs to be called after setting clock
 
    const char* const swxVersion = SWX_VERSION_STR;
-   LOG_INFO("~~ swx driver %s ~~\n", swxVersion);
-   LOG_INFO("Starting up...\n");
+   LOG_INFO("~~ swx driver %s ~~", swxVersion);
+   LOG_INFO("Starting up...");
 
    if (clk_success) {
-      LOG_DEBUG("sys_clk set to 250MHz\n");
+      LOG_DEBUG("sys_clk set to 250MHz");
    }
 }
 
@@ -79,10 +79,10 @@ int main() {
    analog_capture_init();
 
    // Initialize flash filesystem by mounting (and optionally formatting if required)
-   LOG_DEBUG("Mounting filesystem...\n");
+   LOG_DEBUG("Mounting filesystem...");
    int err = fs_flash_mount(true);
    if (err) { // should not happen since this is non-removable flash memory
-      LOG_FATAL("Mounting failed! err=%u (%s)\n", err, lfs_err_msg(err));
+      LOG_FATAL("Mounting failed! err=%u (%s)", err, lfs_err_msg(err));
    }
 
    // Initialize UART and protocol handling
@@ -95,4 +95,26 @@ int main() {
    while (true) {
       protocol_process();
    }
+}
+
+// Custom exit() handler
+void __attribute__((noreturn)) _exit(__unused int status) {
+   // delay a little, so any messages are fully output
+   sleep_ms(10);
+
+   while (1) {
+      __breakpoint();
+   }
+}
+
+// Custom panic() handler
+void __attribute__((noreturn)) __printflike(1, 0) PICO_PANIC_FUNCTION(const char* fmt, ...) {
+   output_scram();
+
+   va_list args;
+   va_start(args, fmt);
+   vprintf(fmt, args);
+   va_end(args);
+
+   _exit(1);
 }

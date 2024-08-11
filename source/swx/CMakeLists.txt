@@ -75,6 +75,7 @@ target_compile_options(${PROJECT_NAME} PRIVATE
 )
 
 target_compile_definitions(${PROJECT_NAME} PRIVATE
+    PICO_PANIC_FUNCTION=swx_panic
     PICO_USE_STACK_GUARDS
     PICO_FLOAT_IN_RAM
 )

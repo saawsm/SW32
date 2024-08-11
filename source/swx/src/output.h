@@ -51,6 +51,7 @@ typedef struct {
 extern channel_t channels[CHANNEL_COUNT];
 
 void output_init();
+void output_scram();
 
 void pulse_gen_process();
 

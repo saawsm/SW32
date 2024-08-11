@@ -60,7 +60,7 @@ static void process_frame(comm_channel_t ch, ringbuffer_t* rb) {
       // TODO: Parse message
 
    } else {
-      LOG_INFO("Invalid frame: %u\n", ret.status);
+      LOG_INFO("Invalid frame: %u", ret.status);
    }
 
    rb->index = 0;
@@ -114,45 +114,10 @@ void protocol_write_frame(comm_channel_t ch, uint8_t* src, size_t len) {
    // the frame will always have a termination byte (0x00) so subtract one
    cobs_encode_result ret = cobs_encode(frame, sizeof(frame) - 1, src, len);
    if (ret.status != COBS_ENCODE_OK)
-      LOG_FATAL("Encode frame failed: ret=%u\n", ret.status); // should not happen
+      LOG_FATAL("Encode frame failed: ret=%u", ret.status); // should not happen
 
    // add termination byte to frame
    frame[ret.out_len++] = 0;
 
    write(ch, frame, ret.out_len);
-}
-
-static const char log_level_symbols[] = {
-    [LOG_LEVEL_NONE] = ' ',  //
-    [LOG_LEVEL_FINE] = '*',  //
-    [LOG_LEVEL_DEBUG] = 'D', //
-    [LOG_LEVEL_INFO] = 'I',  //
-    [LOG_LEVEL_WARN] = 'W',  //
-    [LOG_LEVEL_ERROR] = 'E', //
-    [LOG_LEVEL_FATAL] = 'F',
-};
-
-void write_log(log_level_t level, char* fmt, ...) {
-   if (level > 9)
-      level = 9;
-
-   char buffer[255];
-
-   va_list args;
-   va_start(args, fmt);
-   int len = vsnprintf(buffer + 4, sizeof(buffer) - 4, fmt, args); // +4 bytes for level prefix
-   va_end(args);
-
-   if (len <= 0)
-      return;
-
-   buffer[0] = '(';
-   buffer[1] = log_level_symbols[level];
-   buffer[2] = ')';
-   buffer[3] = ' ';
-
-   len += 4;
-
-   fwrite(buffer, 1, len, stdout);
-   fflush(stdout);
 }

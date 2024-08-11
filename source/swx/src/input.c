@@ -76,7 +76,7 @@ static const uint16_t triggers[] = {
 };
 
 void input_init() {
-   LOG_DEBUG("Init input...\n");
+   LOG_DEBUG("Init input...");
 
    init_gpio(PIN_PWR_CTRL, GPIO_IN, false);
    gpio_pull_up(PIN_PWR_CTRL); // latch board power on
@@ -95,14 +95,14 @@ void input_init() {
 }
 
 void analog_capture_init() {
-   LOG_DEBUG("Init analog capture...\n");
+   LOG_DEBUG("Init analog capture...");
 
    adc_gpio_init(PIN_ADC_AUDIO_LEFT);
    adc_gpio_init(PIN_ADC_AUDIO_RIGHT);
    adc_gpio_init(PIN_ADC_AUDIO_MIC);
    adc_gpio_init(PIN_ADC_SENSE);
 
-   LOG_DEBUG("Init freerunning ADC...\n");
+   LOG_DEBUG("Init freerunning ADC...");
    adc_init();
    adc_select_input(0);
    adc_set_round_robin((1 << (PIN_ADC_AUDIO_LEFT - PIN_ADC_BASE)) | (1 << (PIN_ADC_AUDIO_RIGHT - PIN_ADC_BASE)) | (1 << (PIN_ADC_AUDIO_MIC - PIN_ADC_BASE)) |
