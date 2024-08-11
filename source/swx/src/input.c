@@ -52,18 +52,18 @@ static const uint32_t adc_capture_duration_us = ADC_CAPTURE_COUNT * (1000000ul /
 
 // Lookup Table: Analog channel -> ADC round robin stripe offset
 static const uint8_t adc_stripe_offsets[] = {
-    [ANALOG_AUDIO_CHANNEL_MIC] = (PIN_ADC_AUDIO_MIC - PIN_ADC_BASE),
-    [ANALOG_AUDIO_CHANNEL_LEFT] = (PIN_ADC_AUDIO_LEFT - PIN_ADC_BASE),
-    [ANALOG_AUDIO_CHANNEL_RIGHT] = (PIN_ADC_AUDIO_RIGHT - PIN_ADC_BASE),
-    [ANALOG_SENSE_CHANNEL] = (PIN_ADC_SENSE - PIN_ADC_BASE),
+    [ANALOG_CHANNEL_AUDIO_MIC] = (PIN_ADC_AUDIO_MIC - PIN_ADC_BASE),
+    [ANALOG_CHANNEL_AUDIO_LEFT] = (PIN_ADC_AUDIO_LEFT - PIN_ADC_BASE),
+    [ANALOG_CHANNEL_AUDIO_RIGHT] = (PIN_ADC_AUDIO_RIGHT - PIN_ADC_BASE),
+    [ANALOG_CHANNEL_SENSE] = (PIN_ADC_SENSE - PIN_ADC_BASE),
 };
 
 // Lookup Table: Analog channel -> capture_buf
 static uint16_t* const buffers[] = {
-    [ANALOG_AUDIO_CHANNEL_MIC] = adc_buffers[0],
-    [ANALOG_AUDIO_CHANNEL_LEFT] = adc_buffers[1],
-    [ANALOG_AUDIO_CHANNEL_RIGHT] = adc_buffers[2],
-    [ANALOG_SENSE_CHANNEL] = adc_buffers[3],
+    [ANALOG_CHANNEL_AUDIO_MIC] = adc_buffers[0],
+    [ANALOG_CHANNEL_AUDIO_LEFT] = adc_buffers[1],
+    [ANALOG_CHANNEL_AUDIO_RIGHT] = adc_buffers[2],
+    [ANALOG_CHANNEL_SENSE] = adc_buffers[3],
 };
 
 // Lookup Table: Trigger channel -> GPIO pin
@@ -139,10 +139,10 @@ bool fetch_trigger_state(trigger_channel_t channel) {
 
 bool fetch_analog_buffer(analog_channel_t channel, uint16_t* samples, uint16_t** buffer, uint32_t* capture_end_time_us) {
    switch (channel) {
-      case ANALOG_AUDIO_CHANNEL_LEFT:
-      case ANALOG_AUDIO_CHANNEL_RIGHT:
-      case ANALOG_AUDIO_CHANNEL_MIC:
-      case ANALOG_SENSE_CHANNEL: {
+      case ANALOG_CHANNEL_AUDIO_LEFT:
+      case ANALOG_CHANNEL_AUDIO_RIGHT:
+      case ANALOG_CHANNEL_AUDIO_MIC:
+      case ANALOG_CHANNEL_SENSE: {
          const uint8_t ready = buf_adc_ready; // Local copy, since volatile
 
          // Check if this channel has new or unprocessed buffer data available
@@ -180,10 +180,10 @@ void swx_power_off() {
 
 uint32_t get_capture_duration_us(analog_channel_t channel) {
    switch (channel) {
-      case ANALOG_AUDIO_CHANNEL_LEFT:
-      case ANALOG_AUDIO_CHANNEL_RIGHT:
-      case ANALOG_AUDIO_CHANNEL_MIC:
-      case ANALOG_SENSE_CHANNEL:
+      case ANALOG_CHANNEL_AUDIO_LEFT:
+      case ANALOG_CHANNEL_AUDIO_RIGHT:
+      case ANALOG_CHANNEL_AUDIO_MIC:
+      case ANALOG_CHANNEL_SENSE:
          return adc_capture_duration_us;
       default:
          return 1;
