@@ -3,7 +3,7 @@
 The firmware for the SW32 is open-source and mostly written in C. It makes use of both [pico-sdk](https://github.com/raspberrypi/pico-sdk){:target="_blank"} and [esp-idf](https://github.com/espressif/esp-idf){:target="_blank"}
 frameworks.
 
-It can be acquired by downloading precompiled binaries or built directly from source. Many settings can be changed even after the firmware has been built, so unless you make significant hardware changes, you can use precompiled firmware most of the time.
+It can be acquired by downloading precompiled binaries or built directly from source. Unless you make significant hardware changes, you can use precompiled firmware most of the time.
 
 ## Precompiled Firmware
 

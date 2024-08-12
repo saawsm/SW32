@@ -224,6 +224,12 @@ Image of board as it arrived from JLCPCB:
 - The "P" marking on each transformer (T1, T2, T3, and T4) should face towards J3 (CH_OUT). We are using the transformers in reverse, the primaries going to outputs.
 - The 4x MOSFETs (Q1, Q4, Q7, and Q10) should have the exposed metal pad facing towards the transformers.
 
+??? warning "MOSFET Metal Pads"
+    Ensure that the exposed metal pads of each MOSFET (Q1, Q4, Q7, and Q10) are not touching one another. Recommend to solder one leg of each MOSFET first, so the spacing/clearance can be adjusted easily, before soldering the remaining legs. A high-temp non-conductive separator between each pad might also be a wise addition (e.g. polyimide tape).
+
+??? warning "Vibration"
+    If the box is going to be subjected to vibrations, securing the MOSFETs to the PCB is also recommended. This will prevent the legs from breaking due to metal fatigue.
+
 Fully assembled board:
 
 ![Output Board - Top - Assembled](assets/images/output_board_top_assembled.jpg){ loading="lazy" width="441" align="left" }
