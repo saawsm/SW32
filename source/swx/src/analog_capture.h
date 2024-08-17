@@ -15,32 +15,43 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef _INPUT_H
-#define _INPUT_H
+#ifndef _ANALOG_CAPTURE_H
+#define _ANALOG_CAPTURE_H
 
 #include "swx.h"
 #include "channel.h"
+
+#define ADC_ZERO_POINT (2047) // ~1.65V
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-void input_init();
+typedef struct {
+   uint32_t min;
+   uint32_t max;
+   uint32_t above;
+   uint32_t below;
+   float amplitude;
+} buf_stats_t;
+
+extern const uint32_t adc_capture_duration_us;
+extern const uint32_t adc_single_capture_duration_us;
 
 void analog_capture_init();
 
-bool fetch_trigger_state(trigger_channel_t channel);
-
-bool fetch_analog_buffer(analog_channel_t channel, uint16_t* samples, uint16_t** buffer, uint32_t* capture_end_time_us);
-
-uint32_t get_capture_duration_us(analog_channel_t channel);
+bool fetch_analog_buffer(analog_channel_t channel, size_t* samples, uint16_t** buffer, uint32_t* capture_end_time_us, buf_stats_t* stats, bool update_stats);
 
 static inline void mic_pip_enable(bool enabled) {
-   gpio_put(PIN_PIP_EN, !enabled);
+   gpio_put(PIN_PIP_EN, !enabled); // active low
+}
+
+static inline bool mic_pip_enabled() {
+   return !gpio_get(PIN_PIP_EN); // active low
 }
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif // _INPUT_H
+#endif // _ANALOG_CAPTURE_H

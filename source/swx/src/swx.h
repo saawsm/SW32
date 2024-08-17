@@ -55,6 +55,8 @@
 #define HZ_TO_US(hz) (1000000u / (hz))
 #define US_TO_HZ(us) (1000000.0f / (us))
 
+#define DHZ_TO_US(dhz) (10000000u / (dhz))
+
 #define KHZ_TO_US(hz) (1000u / (hz))
 #define US_TO_KHZ(us) (1000.0f / (us))
 

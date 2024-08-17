@@ -20,6 +20,15 @@
 
 #include "swx.h"
 
+#define U16_U8(value) ((value) >> 8), ((value) & 0xff)
+#define U8_U16(arr, i) ((arr[(i)] << 8) | arr[((i) + 1)])
+
+#define PROTO_REPLY(ch, id, ...)                                                                                                                                         \
+   do {                                                                                                                                                                  \
+      uint8_t msg[] = {MSG_FRAME_START, id, __VA_ARGS__};                                                                                                                \
+      protocol_write_frame((ch), msg, sizeof(msg));                                                                                                                      \
+   } while (0)
+
 #ifdef __cplusplus
 extern "C" {
 #endif

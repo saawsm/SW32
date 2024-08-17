@@ -20,66 +20,59 @@
 #include <stdlib.h>
 
 #include "output.h"
-#include "input.h"
+#include "analog_capture.h"
 
-static int32_t last_sample_values[CHANNEL_COUNT] = {0};
+#define NOISE_THRESHOLD (8)
+
+static int32_t last_sample_values[CHANNEL_COUNT][2] = {0};
 static uint32_t last_process_times_us[CHANNEL_COUNT] = {0};
 
-float audio_process(analog_channel_t audio_src, uint8_t ch_index, uint16_t pulse_width_us, uint32_t* last_pulse_time_us) {
-   uint16_t sample_count;
+float audio_process(analog_channel_t audio_src, bool gen_zcs, uint8_t ch_index, uint16_t pulse_width_us, uint32_t min_period_us, uint32_t* last_pulse_time_us) {
+   size_t sample_count;
    uint16_t* sample_buffer;
    uint32_t capture_end_time_us = 0;
 
-   // Fetch audio from the specific analog channel
-   fetch_analog_buffer(audio_src, &sample_count, &sample_buffer, &capture_end_time_us);
+   // Fetch audio from the specific analog channel.
+   buf_stats_t stats;
+   fetch_analog_buffer(audio_src, &sample_count, &sample_buffer, &capture_end_time_us, &stats, true);
 
-   // Skip processing if audio samples are older than previously processed
+   // Skip processing if audio samples are older than previously processed.
    if (capture_end_time_us <= last_process_times_us[ch_index])
-      return 1.0f;
+      return stats.amplitude; // Return the last computed amplitude, since we are still in the same sample buffer.
    last_process_times_us[ch_index] = capture_end_time_us;
 
-   // Find the min, max, and mean sample values
-   uint32_t min = UINT32_MAX;
-   uint32_t max = 0;
-   uint32_t total = 0;
-   for (uint16_t x = 0; x < sample_count; x++) {
-      if (sample_buffer[x] > max)
-         max = sample_buffer[x];
-
-      if (sample_buffer[x] < min)
-         min = sample_buffer[x];
-
-      total += sample_buffer[x];
-   }
-
-   const uint16_t avg = total / sample_count;
-
-   // Noise filter
-   if (abs((int32_t)min - avg) < 7 && abs((int32_t)max - avg) < 7)
+   // Noise filter, ignore very weak signals.
+   if (stats.amplitude < 0.05f)
       return 0.0f;
 
-   const uint32_t capture_duration_us = get_capture_duration_us(audio_src);          // buffer capture duration
-   const uint32_t capture_start_time_us = capture_end_time_us - capture_duration_us; // time when capture started
+   if (gen_zcs) {
+      // Signals that have a period less than the capture duration, should have samples in above/below zero be approx equal.
+      // Slow signals that dont complete a full cycle within the capture time will result in an unbalanced above/below zero count.
+      bool low_frequency = abs((int32_t)stats.above - (int32_t)stats.below) > 50;
 
-   const uint32_t sample_duration_us = capture_duration_us / sample_count; // single sample duration
+      const uint32_t capture_start_time_us = capture_end_time_us - adc_capture_duration_us; // time when capture started
 
-   // Process each sample at roughly the time it happened
-   for (uint16_t i = 0; i < sample_count; i++) {
-      const uint32_t sample_time_us = capture_start_time_us + (sample_duration_us * i);
-      const int32_t value = avg - sample_buffer[i];
+      // Process each sample at roughly the time it happened
+      for (size_t i = 0; i < sample_count; i++) {
+         const int32_t value = ADC_ZERO_POINT - sample_buffer[i];
 
-      // Check for zero crossing
-      if (((value > 0 && last_sample_values[ch_index] <= 0) || (value < 0 && last_sample_values[ch_index] >= 0))) {
+         // Check for rising edge zero crossing
+         // Low frequencies, require at least two samples to be rising, to minimize false positives due to noise.
+         if ((value > 0 && last_sample_values[ch_index][0] <= 0) && (!low_frequency || (last_sample_values[ch_index][0] >= last_sample_values[ch_index][1]))) {
 
-         if (sample_time_us - (*last_pulse_time_us) >= HZ_TO_US(500)) { // limit pulses to 500 Hz max
-            *last_pulse_time_us = sample_time_us;
+            const uint32_t sample_time_us = capture_start_time_us + (adc_single_capture_duration_us * i);
 
-            output_pulse(ch_index, pulse_width_us, pulse_width_us, sample_time_us + 20000); // 20 ms in future
+            if (sample_time_us - (*last_pulse_time_us) >= min_period_us) { // limit pulse period
+               *last_pulse_time_us = sample_time_us;
+
+               output_pulse(ch_index, pulse_width_us, pulse_width_us, sample_time_us + adc_capture_duration_us);
+            }
          }
-      }
 
-      last_sample_values[ch_index] = value;
+         last_sample_values[ch_index][1] = last_sample_values[ch_index][0];
+         last_sample_values[ch_index][0] = value;
+      }
    }
 
-   return (max - min) / 255.0f; // crude approximation of volume
+   return stats.amplitude;
 }

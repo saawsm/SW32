@@ -23,13 +23,16 @@
 #include <hardware/i2c.h>
 
 #include "filesystem.h"
-#include "input.h"
+#include "analog_capture.h"
+#include "trigger.h"
 #include "output.h"
+#include "pulse_gen.h"
 
 #include "protocol.h"
 
 static inline void init() {
-   input_init();
+   init_gpio(PIN_PWR_CTRL, GPIO_IN, false);
+   gpio_pull_up(PIN_PWR_CTRL); // latch board power on
 
    init_gpio(PIN_DISCH_EN, GPIO_OUT, false); // TODO: Move to usb-pd
    gpio_disable_pulls(PIN_DISCH_EN);
@@ -87,18 +90,32 @@ int main() {
       LOG_FATAL("Mounting failed! err=%u (%s)", err, lfs_err_msg(err));
    }
 
+   // Initialize parametric pulse generation
+   pulse_gen_init();
+
+   // Initialize input trigger handling
+   trigger_init();
+
    // Initialize UART and protocol handling
    protocol_init();
 
    while (true) {
       protocol_process();
+
+      pulse_gen_process();
+      trigger_process();
    }
+}
+
+void swx_power_off() {
+   LOG_FINE("Shutdown...");
+   gpio_put(PIN_PWR_CTRL, 0);
+   gpio_set_dir(PIN_PWR_CTRL, GPIO_OUT);
 }
 
 // Custom exit() handler
 void __attribute__((noreturn)) _exit(__unused int status) {
-   // delay a little, so any messages are fully output
-   sleep_ms(10);
+   stdio_flush();
 
    while (1) {
       __breakpoint();
@@ -107,7 +124,7 @@ void __attribute__((noreturn)) _exit(__unused int status) {
 
 // Custom panic() handler
 void __attribute__((noreturn)) __printflike(1, 0) PICO_PANIC_FUNCTION(const char* fmt, ...) {
-   output_scram();
+   output_scram(); // shutdown driver board
 
    va_list args;
    va_start(args, fmt);

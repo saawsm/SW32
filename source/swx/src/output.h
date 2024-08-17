@@ -21,10 +21,6 @@
 #include "swx.h"
 #include "channel.h"
 
-#ifndef CHANNEL_COUNT
-#define CHANNEL_COUNT (4)
-#endif
-
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -44,7 +40,8 @@ typedef struct {
 
 extern channel_t channels[CHANNEL_COUNT];
 
-// Bitmask indicating if a channel needs max_power to be less than 1% to enable output (bit will be reset to zero)
+// Bitmask indicating if a channel needs max_power to be less than 1% to enable output.
+// Once channel condition is met, associated bit will be zeroed.
 extern uint8_t require_zero_mask;
 
 void output_init();

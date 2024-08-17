@@ -153,6 +153,8 @@ void output_scram() {
    for (size_t i = 0; i < CHANNEL_COUNT; i++) {
       channels[i].status = CHANNEL_FAULT;
 
+      pio_sm_set_enabled(CHANNEL_PIO, i, false);
+
       // since pins are used by PIO mux them back to SIO
       init_gpio(channels[i].pin_gate_a, GPIO_OUT, 0);
       init_gpio(channels[i].pin_gate_b, GPIO_OUT, 0);
@@ -162,8 +164,6 @@ void output_scram() {
       if (!write_dac(&channels[i], DAC_MAX_VALUE)) // turn off channels
          break;
    }
-
-   pio_remove_program(CHANNEL_PIO, &CHANNEL_PIO_PROGRAM, pio_offset);
 }
 
 static bool calibrate() {
@@ -297,76 +297,77 @@ static bool write_dac(const channel_t* ch, uint16_t value) {
 void output_process_pulse() {
    static const uint16_t PW_MAX = (1 << PULSE_GEN_BITS) - 1;
 
-   for (size_t i = 0; i < CHANNEL_COUNT * 8; i++) { // PIO FIFO is 8 deep
-      if (fetch_pulse) {
-         if (queue_try_remove(&pulse_queue, &pulse)) {
-            if (pulse.abs_time_us < time_us_32() + 1000000ul) // ignore pulses with wait times above 1 second
-               fetch_pulse = false;
-         }
-      } else if (time_us_32() >= pulse.abs_time_us) {
-         const channel_t* ch = &channels[pulse.channel];
+   if (fetch_pulse) {
+      if (queue_try_remove(&pulse_queue, &pulse)) {
+         if (pulse.abs_time_us < time_us_32() + 1000000ul) { // Ignore pulses with wait times above 1 second.
+            fetch_pulse = false;
 
-         if (!(require_zero_mask & (1 << pulse.channel)) && drv_enabled && ch->status == CHANNEL_READY) {
-            if (!pio_sm_is_tx_fifo_full(CHANNEL_PIO, pulse.channel)) {
-               static_assert(PULSE_GEN_BITS <= 16); // Ensure we can fit the bits
+            if (!drv_enabled) {
+               set_drive_enabled(true);
 
-               if (pulse.pos_us > PW_MAX)
-                  pulse.pos_us = PW_MAX;
-               if (pulse.neg_us > PW_MAX)
-                  pulse.neg_us = PW_MAX;
-
-               uint32_t val = (pulse.pos_us << PULSE_GEN_BITS) | (pulse.neg_us);
-               pio_sm_put(CHANNEL_PIO, pulse.channel, val);
-
+               // Reset pulse time to prevent drive power being disabled due to require zero flag being set.
                last_pulse_time_us = time_us_32();
-            } else {
-               LOG_WARN("Pulse queue full! ch=%u", pulse.channel);
             }
          }
-
-         fetch_pulse = true;
+      } else if (drv_enabled && (time_us_32() - last_pulse_time_us) > 30000000u) {
+         // Disable drive power if more than 30 seconds since last output pulse.
+         set_drive_enabled(false);
       }
-   }
 
-   // Disable drive power if more than 30 seconds since last output pulse
-   if (drv_enabled && (time_us_32() - last_pulse_time_us) > (30 * 1000000u)) {
-      set_drive_enabled(false);
-   } else if (!drv_enabled && !queue_is_empty(&pulse_queue)) {
-      set_drive_enabled(true);
+   } else if (time_us_32() >= pulse.abs_time_us) {
+      const channel_t* ch = &channels[pulse.channel];
+
+      if (!(require_zero_mask & (1 << pulse.channel)) && drv_enabled && ch->status == CHANNEL_READY) {
+         if (!pio_sm_is_tx_fifo_full(CHANNEL_PIO, pulse.channel)) {
+            static_assert(PULSE_GEN_BITS <= 16); // Ensure we can fit the bits.
+
+            if (pulse.pos_us > PW_MAX)
+               pulse.pos_us = PW_MAX;
+            if (pulse.neg_us > PW_MAX)
+               pulse.neg_us = PW_MAX;
+
+            uint32_t val = (pulse.pos_us << PULSE_GEN_BITS) | (pulse.neg_us);
+            pio_sm_put(CHANNEL_PIO, pulse.channel, val);
+
+            last_pulse_time_us = time_us_32();
+         } else {
+            LOG_WARN("Pulse queue full! ch=%u", pulse.channel);
+         }
+      }
+
+      fetch_pulse = true;
    }
 }
 
 void output_process_power() {
-   for (size_t i = 0; i < CHANNEL_COUNT; i++) {
-      if (i2c_get_write_available(I2C_PORT_DAC) < 5) // break, if I2C is going to have blocking writes
-         break;
+   if (i2c_get_write_available(I2C_PORT_DAC) < 5) // break, if I2C is going to have blocking writes
+      return;
 
-      pwr_cmd_t cmd;
-      if (queue_try_remove(&power_queue, &cmd)) {
-         channel_t* const ch = &channels[cmd.channel];
+   pwr_cmd_t cmd;
+   if (queue_try_remove(&power_queue, &cmd)) {
+      channel_t* const ch = &channels[cmd.channel];
 
-         if (ch->status != CHANNEL_READY)
-            continue;
+      if (ch->status != CHANNEL_READY)
+         return;
 
-         float pwr = fclamp(cmd.power, 0.0f, 1.0f) * fclamp(ch->max_power, 0.0f, 1.0f);
+      float pwr = fclamp(cmd.power, 0.0f, 1.0f) * fclamp(ch->max_power, 0.0f, 1.0f);
 
-         if (require_zero_mask & (1 << cmd.channel)) {
-            if (ch->max_power <= 0.01f) {
-               require_zero_mask &= ~(1 << cmd.channel);
-            } else {
-               pwr = 0.0f;
-            }
+      if (require_zero_mask & (1 << cmd.channel)) {
+         if (ch->max_power <= 0.01f) {
+            require_zero_mask &= ~(1 << cmd.channel);
+         } else {
+            pwr = 0.0f;
          }
-
-         int16_t dacValue = (ch->cal_value + CH_CAL_OFFSET) - (2000 * pwr);
-
-         if (dacValue < 0 || dacValue > DAC_MAX_VALUE) {
-            LOG_WARN("Invalid power calculated! ch=%u pwr=%f dac=%d", cmd.channel, pwr, dacValue);
-            continue;
-         }
-
-         write_dac(ch, (uint16_t)dacValue);
       }
+
+      int16_t dacValue = (ch->cal_value + CH_CAL_OFFSET) - (2000 * pwr);
+
+      if (dacValue < 0 || dacValue > DAC_MAX_VALUE) {
+         LOG_WARN("Invalid power calculated! ch=%u pwr=%f dac=%d", cmd.channel, pwr, dacValue);
+         return;
+      }
+
+      write_dac(ch, (uint16_t)dacValue);
    }
 }
 

@@ -27,9 +27,6 @@
 #define PIN_INT_PD (25) // active low
 
 // -------- Triggers --------
-
-#define TRIGGER_COUNT (4)
-
 #define PIN_TRIG_A1 (14) // active low
 #define PIN_TRIG_A2 (15) // active low
 #define PIN_TRIG_B1 (12) // active low
@@ -66,7 +63,6 @@
 
 // -------- Channels --------
 
-#define CHANNEL_COUNT (4)
 #define CH_DAC_ADDRESS (0x60)
 
 // -------- Channel Defaults --------

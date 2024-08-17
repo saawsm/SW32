@@ -46,7 +46,9 @@ target_sources(${PROJECT_NAME} PRIVATE
     "src/filesystem.c"
     "src/protocol.c"
     "src/output.c"
-    "src/input.c"
+    "src/pulse_gen.c"
+    "src/trigger.c"
+    "src/analog_capture.c"
     "src/audio.c"
     "src/util/i2c.c"
 )
@@ -56,7 +58,6 @@ target_include_directories(${PROJECT_NAME} PRIVATE "include/swx")
 
 target_link_libraries(${PROJECT_NAME} PRIVATE 
     pico_stdlib
-    lua
     cobs-c
     littlefs
     

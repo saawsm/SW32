@@ -15,13 +15,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include "input.h"
+#include "analog_capture.h"
 
 #include <hardware/adc.h>
 #include <hardware/irq.h>
 #include <hardware/dma.h>
 
-// The number of analog samples per second per channel. Since 3 ADC channels are being sampled the actual sample rate is 4 times larger.
+// The number of analog samples per second per channel. Since 4 ADC channels are being sampled the actual sample rate is 4 times larger.
 #define ADC_SAMPLES_PER_SECOND (44100)
 
 // Number of ADC channels sampled
@@ -48,7 +48,8 @@ static uint16_t adc_buffers[ADC_SAMPLED_CHANNELS][ADC_SAMPLE_COUNT];
 
 static uint32_t adc_end_time_us; // Cached version of: buf_adc_done_time_us
 
-static const uint32_t adc_capture_duration_us = ADC_CAPTURE_COUNT * (1000000ul / (ADC_SAMPLES_PER_SECOND));
+const uint32_t adc_capture_duration_us = ADC_CAPTURE_COUNT * (1000000ul / (ADC_SAMPLES_PER_SECOND));
+const uint32_t adc_single_capture_duration_us = adc_capture_duration_us / ADC_SAMPLE_COUNT;
 
 // Lookup Table: Analog channel -> ADC round robin stripe offset
 static const uint8_t adc_stripe_offsets[] = {
@@ -66,36 +67,14 @@ static uint16_t* const buffers[] = {
     [ANALOG_CHANNEL_SENSE] = adc_buffers[3],
 };
 
-// Lookup Table: Trigger channel -> GPIO pin
-static const uint16_t triggers[] = {
-    [TRIGGER_CHANNEL_NONE] = 0,         //
-    [TRIGGER_CHANNEL_A1] = PIN_TRIG_A1, //
-    [TRIGGER_CHANNEL_A2] = PIN_TRIG_A2, //
-    [TRIGGER_CHANNEL_B1] = PIN_TRIG_B1, //
-    [TRIGGER_CHANNEL_B2] = PIN_TRIG_B2,
-};
-
-void input_init() {
-   LOG_DEBUG("Init input...");
-
-   init_gpio(PIN_PWR_CTRL, GPIO_IN, false);
-   gpio_pull_up(PIN_PWR_CTRL); // latch board power on
-
-   init_gpio(PIN_PIP_EN, GPIO_OUT, true); // active low output
-   gpio_disable_pulls(PIN_PIP_EN);
-
-   init_gpio(PIN_TRIG_A1, GPIO_IN, false); // active low input
-   init_gpio(PIN_TRIG_A2, GPIO_IN, false); // active low input
-   init_gpio(PIN_TRIG_B1, GPIO_IN, false); // active low input
-   init_gpio(PIN_TRIG_B2, GPIO_IN, false); // active low input
-   gpio_disable_pulls(PIN_TRIG_A1);
-   gpio_disable_pulls(PIN_TRIG_A2);
-   gpio_disable_pulls(PIN_TRIG_B1);
-   gpio_disable_pulls(PIN_TRIG_B2);
-}
+// Cached sample buffer statistics. Computed when a new buffer is ready.
+static buf_stats_t buf_stats[TOTAL_ANALOG_CHANNELS] = {0};
 
 void analog_capture_init() {
    LOG_DEBUG("Init analog capture...");
+
+   init_gpio(PIN_PIP_EN, GPIO_OUT, true); // active low output
+   gpio_disable_pulls(PIN_PIP_EN);
 
    adc_gpio_init(PIN_ADC_AUDIO_LEFT);
    adc_gpio_init(PIN_ADC_AUDIO_RIGHT);
@@ -131,18 +110,47 @@ void analog_capture_init() {
    adc_run(true); // start free-running sampling
 }
 
-bool fetch_trigger_state(trigger_channel_t channel) {
-   if (channel >= TOTAL_TRIGGERS || channel == TRIGGER_CHANNEL_NONE)
-      return false;
-   return gpio_get(triggers[channel]);
+// Find the min, max, above/below zero count, and amplitude for the given sample buffer.
+static inline void mmaba(uint16_t* samples, size_t count, buf_stats_t* stats) {
+   stats->min = UINT32_MAX;
+   stats->max = 0;
+
+   for (size_t x = 0; x < count; x++) {
+      if (samples[x] > stats->max)
+         stats->max = samples[x];
+
+      if (samples[x] < stats->min)
+         stats->min = samples[x];
+
+      if (samples[x] > ADC_ZERO_POINT) {
+         stats->above++;
+      } else {
+         stats->below++;
+      }
+   }
+
+   // Determine output level from buffer.
+   // The capture period determines the minimum frequency for a full cycle.
+   // So we can handle lower frequencies (with only a partial cycle captured) use
+   // the highest value from the zero point, instead of delta between min and max.
+   int32_t above_max = stats->max - ADC_ZERO_POINT;
+   int32_t below_min = ADC_ZERO_POINT - stats->min;
+
+   int32_t level = MAX(above_max, below_min);
+   if (level < 0)
+      level = 0;
+
+   stats->amplitude = (float)level / ADC_ZERO_POINT;
 }
 
-bool fetch_analog_buffer(analog_channel_t channel, uint16_t* samples, uint16_t** buffer, uint32_t* capture_end_time_us) {
+bool fetch_analog_buffer(analog_channel_t channel, size_t* samples, uint16_t** buffer, uint32_t* capture_end_time_us, buf_stats_t* stats, bool update_stats) {
    switch (channel) {
+      case ANALOG_CHANNEL_SENSE:
+         update_stats = false;
+         // fall through
       case ANALOG_CHANNEL_AUDIO_LEFT:
       case ANALOG_CHANNEL_AUDIO_RIGHT:
-      case ANALOG_CHANNEL_AUDIO_MIC:
-      case ANALOG_CHANNEL_SENSE: {
+      case ANALOG_CHANNEL_AUDIO_MIC: {
          const uint8_t ready = buf_adc_ready; // Local copy, since volatile
 
          // Check if this channel has new or unprocessed buffer data available
@@ -152,41 +160,30 @@ bool fetch_analog_buffer(analog_channel_t channel, uint16_t* samples, uint16_t**
             const uint8_t offset = adc_stripe_offsets[channel]; // ADC round robin offset
 
             // Unravel interleaved capture buffer
-            for (uint x = 0; x < ADC_SAMPLE_COUNT; x++)
+            for (size_t x = 0; x < ADC_SAMPLE_COUNT; x++)
                buffers[channel][x] = (src[(x * ADC_SAMPLED_CHANNELS) + offset] & 0xFFF);
 
             adc_end_time_us = buf_adc_done_time_us; // Cache done time
 
             buf_adc_ready &= ~(1 << channel); // Clear flag
+
+            // Update and cache stats
+            if (update_stats)
+               mmaba(buffers[channel], ADC_SAMPLE_COUNT, &buf_stats[channel]);
          }
 
          *capture_end_time_us = adc_end_time_us;
          *buffer = buffers[channel];
          *samples = ADC_SAMPLE_COUNT;
+         *stats = buf_stats[channel];
          return available;
       }
       default:
          *capture_end_time_us = 0;
          *buffer = NULL;
          *samples = 0;
+         *stats = buf_stats[0];
          return false;
-   }
-}
-
-void swx_power_off() {
-   gpio_put(PIN_PWR_CTRL, 0);
-   gpio_set_dir(PIN_PWR_CTRL, GPIO_OUT);
-}
-
-uint32_t get_capture_duration_us(analog_channel_t channel) {
-   switch (channel) {
-      case ANALOG_CHANNEL_AUDIO_LEFT:
-      case ANALOG_CHANNEL_AUDIO_RIGHT:
-      case ANALOG_CHANNEL_AUDIO_MIC:
-      case ANALOG_CHANNEL_SENSE:
-         return adc_capture_duration_us;
-      default:
-         return 1;
    }
 }
 
