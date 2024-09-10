@@ -21,6 +21,9 @@
 #include <hardware/irq.h>
 #include <hardware/dma.h>
 
+#include "util/i2c.h"
+#include "hardware/mcp443x.h"
+
 // The number of analog samples per second per channel. Since 4 ADC channels are being sampled the actual sample rate is 4 times larger.
 #define ADC_SAMPLES_PER_SECOND (44100)
 
@@ -33,6 +36,7 @@
 static void init_pingpong_dma(const uint channel1, const uint channel2, uint dreq, const volatile void* read_addr, volatile void* write_addr1, volatile void* write_addr2,
                               uint transfer_count, enum dma_channel_transfer_size size, uint irq_num, irq_handler_t handler);
 static void dma_adc_handler();
+static inline bool write_pot(mcp443x_channel_t ch, uint8_t value);
 
 static uint dma_adc_ch1;
 static uint dma_adc_ch2;
@@ -81,6 +85,14 @@ void analog_capture_init() {
    adc_gpio_init(PIN_ADC_AUDIO_MIC);
    adc_gpio_init(PIN_ADC_SENSE);
 
+   // Check if digi-pot is reachable at address, if not, crash.
+   if (!i2c_check(I2C_PORT, I2C_ADDRESS_POT)) {
+      LOG_FATAL("No response from POT @ address 0x%02x", I2C_ADDRESS_POT);
+   }
+
+   for (size_t i = 0; i < MCP443X_MAX_CHANNELS; i++)
+      write_pot(i, 0);
+
    LOG_DEBUG("Init freerunning ADC...");
    adc_init();
    adc_select_input(0);
@@ -108,6 +120,41 @@ void analog_capture_init() {
    dma_channel_start(dma_adc_ch1);
 
    adc_run(true); // start free-running sampling
+}
+
+static inline bool write_pot(mcp443x_channel_t ch, uint8_t value) {
+   uint8_t buffer[2];
+
+   const size_t len = mcp443x_build_write_cmd(buffer, sizeof(buffer), ch, value);
+   if (len == 0)
+      LOG_FATAL("MCP443X build cmd failed!"); // should not happen
+
+   const int ret = i2c_write(I2C_PORT, I2C_ADDRESS_POT, buffer, len, false, I2C_DEVICE_TIMEOUT);
+   if (ret <= 0) {
+      LOG_ERROR("Digipot write failed! ch=%u ret=%d", ch, ret);
+      return false;
+   }
+   return true;
+}
+
+void gain_preamp_set(uint8_t value) {
+   write_pot(MCP443X_CHANNEL_4, value);
+}
+
+void gain_set(analog_channel_t channel, uint8_t value) {
+   static const int8_t analog_gain_channels[] = {
+       [ANALOG_CHANNEL_NONE] = -1,
+       [ANALOG_CHANNEL_SENSE] = -1,
+       [ANALOG_CHANNEL_AUDIO_RIGHT] = MCP443X_CHANNEL_1,
+       [ANALOG_CHANNEL_AUDIO_LEFT] = MCP443X_CHANNEL_2,
+       [ANALOG_CHANNEL_AUDIO_MIC] = MCP443X_CHANNEL_3,
+   };
+
+   int8_t ch = analog_gain_channels[channel];
+   if (ch < 0)
+      return;
+
+   write_pot(ch, value);
 }
 
 // Find the min, max, above/below zero count, and amplitude for the given sample buffer.

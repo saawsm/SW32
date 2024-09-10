@@ -42,6 +42,9 @@ void analog_capture_init();
 
 bool fetch_analog_buffer(analog_channel_t channel, size_t* samples, uint16_t** buffer, uint32_t* capture_end_time_us, buf_stats_t* stats, bool update_stats);
 
+void gain_preamp_set(uint8_t value);
+void gain_set(analog_channel_t channel, uint8_t value);
+
 static inline void mic_pip_enable(bool enabled) {
    gpio_put(PIN_PIP_EN, !enabled); // active low
 }

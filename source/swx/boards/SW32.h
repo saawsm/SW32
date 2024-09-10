@@ -43,6 +43,9 @@
 #define I2C_PORT_DAC (i2c0)
 #define I2C_FREQ_DAC (400000) // Hz
 
+#define I2C_ADDRESS_DAC (0x60)
+#define I2C_ADDRESS_POT (0x2F)
+
 // -------- UART --------
 #define PIN_TXD1 (20)
 #define PIN_RXD1 (21)
@@ -62,8 +65,6 @@
 #define PIN_ADC_AUDIO_MIC (27)
 
 // -------- Channels --------
-
-#define CH_DAC_ADDRESS (0x60)
 
 // -------- Channel Defaults --------
 

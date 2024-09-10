@@ -129,8 +129,8 @@ void output_init() {
    }
 
    // Ensure DAC is reachable at address, if not, panic since this is a fatal error that should not normally happen (DAC is not removable)
-   if (!i2c_check(I2C_PORT_DAC, CH_DAC_ADDRESS)) {
-      LOG_FATAL("No response from DAC @ address 0x%02x", CH_DAC_ADDRESS);
+   if (!i2c_check(I2C_PORT_DAC, I2C_ADDRESS_DAC)) {
+      LOG_FATAL("No response from DAC @ address 0x%02x", I2C_ADDRESS_DAC);
    }
 
    // If output board is missing, fail initialization
@@ -286,7 +286,7 @@ static bool write_dac(const channel_t* ch, uint16_t value) {
    if (len == 0)
       LOG_FATAL("MCP4728 build cmd failed!"); // should not happen
 
-   const int ret = i2c_write(I2C_PORT_DAC, CH_DAC_ADDRESS, buffer, len, false, I2C_DEVICE_TIMEOUT);
+   const int ret = i2c_write(I2C_PORT_DAC, I2C_ADDRESS_DAC, buffer, len, false, I2C_DEVICE_TIMEOUT);
    if (ret <= 0) {
       LOG_ERROR("DAC write failed! ch=%u ret=%d", ch->dac_channel, ret);
       return false;

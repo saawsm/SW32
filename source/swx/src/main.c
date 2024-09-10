@@ -116,6 +116,7 @@ void swx_power_off() {
 // Custom exit() handler
 void __attribute__((noreturn)) _exit(__unused int status) {
    stdio_flush();
+   sleep_ms(10); // fixes log message not getting printed during a panic() or LOG_FATAL()
 
    while (1) {
       __breakpoint();
