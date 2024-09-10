@@ -41,3 +41,17 @@ The reason for having a separate output board is primarily for flexibility, spac
 This build is mostly SMT with THT for connectors and front panel components. PCBs have been designed specifically for JLCPCB fabrication and assembly.
 
 Schematics can be found in [/schematics](/schematics), and PCB fabrication files (gerbers, BoMs, CPL, etc.) can be found in [/pcb](/pcb).
+
+## Disclaimer
+
+The SW32 comes with absolutely no warranty of any kind. The designs are free to use, under the conditions defined in the [License](LICENSE.md). Using the designs in original or modified form, implies acceptance of any and all associated risks and liabilities.
+
+* Use it entirely at your own risk.
+* Do not use it for anything safety-critical, medical, industrial, military, or illegal.
+* Do not use it on anyone without explicit and informed consent.
+* Keep any and all electrodes below the chest.
+* Do not use Li-Ion battery packs without a BMS.
+
+### Safety
+
+SW32 can generate potentially lethal voltages and currents on its outputs and on internal components, even when powered from a battery. The risks associated with building, testing and using this device can be reduced but not eliminated.

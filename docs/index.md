@@ -38,3 +38,21 @@ Display Module      | 1.8" 160x128 TFT SPI color display.
 *[Display Module]: Third-party display module (ADA358)
 
 The reason for having a separate output board is primarily for flexibility, space savings (expand vertically instead of horizontally), and long-term cost savings. Most of the cost is in the main board. So being able to reuse the main board when changing the output design will help keep costs down.
+
+## Disclaimer
+
+The SW32 comes with absolutely no warranty of any kind. The designs are free to use, under the conditions defined in the license. Using the designs in original or modified form, implies acceptance of any and all associated risks and liabilities.
+
+* Use it entirely at your own risk.
+* Do not use it for anything safety-critical, medical, industrial, military, or illegal.
+* Do not use it on anyone without explicit and informed consent.
+* Keep any and all electrodes below the chest.
+* Do not use Li-Ion battery packs without a BMS.
+
+*[BMS]: Battery Management System
+
+### Safety
+
+
+
+SW32 can generate potentially lethal voltages and currents on its outputs and on internal components, even when powered from a battery. The risks associated with building, testing and using this device can be reduced but not eliminated.
