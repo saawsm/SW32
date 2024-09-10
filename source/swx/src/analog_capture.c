@@ -20,6 +20,7 @@
 #include <hardware/adc.h>
 #include <hardware/irq.h>
 #include <hardware/dma.h>
+#include <hardware/clocks.h>
 
 #include "util/i2c.h"
 #include "hardware/mcp443x.h"
@@ -106,7 +107,7 @@ void analog_capture_init() {
                   false  // Don't reduce samples
    );
 
-   static const uint32_t div = 48000000ul / (ADC_SAMPLES_PER_SECOND * ADC_SAMPLED_CHANNELS);
+   uint32_t div = clock_get_hz(clk_adc) / (ADC_SAMPLES_PER_SECOND * ADC_SAMPLED_CHANNELS);
    adc_set_clkdiv(div - 1);
 
    // Setup ping-pong DMA for ADC FIFO writing to adc_capture_buf, wrapping once filled
