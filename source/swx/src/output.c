@@ -52,9 +52,6 @@ typedef struct {
 
 typedef struct {
    uint32_t abs_time_us;
-
-   uint8_t channel;
-
    uint16_t pos_us;
    uint16_t neg_us;
 } pulse_t;
@@ -77,17 +74,17 @@ uint8_t require_zero_mask = 0xff;
 static bool drv_enabled;
 static uint pio_offset;
 
-static queue_t pulse_queue;
+static queue_t pulse_queues[CHANNEL_COUNT];
 static queue_t power_queue;
 
-static pulse_t pulse;
-static bool fetch_pulse = false;
 static uint32_t last_pulse_time_us = 0;
 
 void output_init() {
    LOG_DEBUG("Init output...");
 
-   queue_init(&pulse_queue, sizeof(pulse_t), 16);
+   for (size_t ch_index = 0; ch_index < CHANNEL_COUNT; ch_index++)
+      queue_init(&pulse_queues[ch_index], sizeof(pulse_t), 64);
+
    queue_init(&power_queue, sizeof(pwr_cmd_t), 16);
 
    // Init drive enable pin
@@ -136,13 +133,9 @@ void output_init() {
    // If output board is missing, fail initialization
    if (check_output_board_missing()) {
       LOG_ERROR("Output board not installed! Disabling all channels...");
-
-      for (size_t i = 0; i < CHANNEL_COUNT; i++)
-         channels[i].status = CHANNEL_FAULT;
-
+      output_scram();
    } else {
-      // Kick-start processing queued channel pulses by fetching the first one if calibration was successful
-      fetch_pulse = calibrate();
+      calibrate();
    }
 }
 
@@ -297,45 +290,43 @@ static bool write_dac(const channel_t* ch, uint16_t value) {
 void output_process_pulse() {
    static const uint16_t PW_MAX = (1 << PULSE_GEN_BITS) - 1;
 
-   if (fetch_pulse) {
-      if (queue_try_remove(&pulse_queue, &pulse)) {
-         if (pulse.abs_time_us < time_us_32() + 1000000ul) { // Ignore pulses with wait times above 1 second.
-            fetch_pulse = false;
+   pulse_t pulse;
+   for (size_t ch_index = 0; ch_index < CHANNEL_COUNT; ch_index++) {
 
-            if (!drv_enabled) {
-               set_drive_enabled(true);
+      if (!queue_try_peek(&pulse_queues[ch_index], &pulse)) {
+         // Disable drive power if queue is empty, and more than 30 seconds since last output pulse.
+         if (drv_enabled && (time_us_32() - last_pulse_time_us) > 30000000u)
+            set_drive_enabled(false);
 
-               // Reset pulse time to prevent drive power being disabled due to require zero flag being set.
-               last_pulse_time_us = time_us_32();
-            }
-         }
-      } else if (drv_enabled && (time_us_32() - last_pulse_time_us) > 30000000u) {
-         // Disable drive power if more than 30 seconds since last output pulse.
-         set_drive_enabled(false);
+         continue;
       }
 
-   } else if (time_us_32() >= pulse.abs_time_us) {
-      const channel_t* ch = &channels[pulse.channel];
+      if (time_us_32() >= pulse.abs_time_us) {
+         queue_try_remove(&pulse_queues[ch_index], &pulse);
 
-      if (!(require_zero_mask & (1 << pulse.channel)) && drv_enabled && ch->status == CHANNEL_READY) {
-         if (!pio_sm_is_tx_fifo_full(CHANNEL_PIO, pulse.channel)) {
-            static_assert(PULSE_GEN_BITS <= 16); // Ensure we can fit the bits.
+         // Ignore pulses if drive power is disabled, wait time above 1 second, not ready, or requires zeroing.
+         if ((require_zero_mask & (1 << ch_index)) || channels[ch_index].status != CHANNEL_READY || pulse.abs_time_us > time_us_32() + 1000000u)
+            continue;
 
-            if (pulse.pos_us > PW_MAX)
-               pulse.pos_us = PW_MAX;
-            if (pulse.neg_us > PW_MAX)
-               pulse.neg_us = PW_MAX;
-
-            uint32_t val = (pulse.pos_us << PULSE_GEN_BITS) | (pulse.neg_us);
-            pio_sm_put(CHANNEL_PIO, pulse.channel, val);
-
-            last_pulse_time_us = time_us_32();
-         } else {
-            LOG_WARN("Pulse queue full! ch=%u", pulse.channel);
+         if (pio_sm_is_tx_fifo_full(CHANNEL_PIO, ch_index)) {
+            LOG_WARN("Pulse queue full! ch=%u", ch_index);
+            continue;
          }
-      }
 
-      fetch_pulse = true;
+         if (pulse.pos_us > PW_MAX)
+            pulse.pos_us = PW_MAX;
+         if (pulse.neg_us > PW_MAX)
+            pulse.neg_us = PW_MAX;
+
+         static_assert(PULSE_GEN_BITS <= 16); // Ensure we can fit the bits.
+         uint32_t val = (pulse.pos_us << PULSE_GEN_BITS) | (pulse.neg_us);
+         pio_sm_put(CHANNEL_PIO, ch_index, val);
+
+         last_pulse_time_us = time_us_32();
+
+         if (!drv_enabled)
+            set_drive_enabled(true);
+      }
    }
 }
 
@@ -376,13 +367,12 @@ bool output_pulse(uint8_t ch_index, uint16_t pos_us, uint16_t neg_us, uint32_t a
       return false;
 
    pulse_t pulse = {
-       .channel = ch_index,
        .pos_us = pos_us,
        .neg_us = neg_us,
        .abs_time_us = abs_time_us,
    };
 
-   return queue_try_add(&pulse_queue, &pulse);
+   return queue_try_add(&pulse_queues[ch_index], &pulse);
 }
 
 bool output_power(uint8_t ch_index, float power) {
