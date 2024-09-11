@@ -21,6 +21,15 @@
 #include "swx.h"
 #include "channel.h"
 
+// The number of analog samples per second per channel. Since 4 ADC channels are being sampled the actual sample rate is 4 times larger.
+#define ADC_SAMPLES_PER_SECOND (30720)
+
+// Number of ADC channels sampled
+#define ADC_SAMPLED_CHANNELS (4)
+
+#define ADC_CAPTURE_COUNT (8192)                                    // Total samples captured per DMA buffer
+#define ADC_SAMPLE_COUNT (ADC_CAPTURE_COUNT / ADC_SAMPLED_CHANNELS) // Number of samples per ADC channel
+
 #define ADC_ZERO_POINT (2047) // ~1.65V
 
 #ifdef __cplusplus

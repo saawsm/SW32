@@ -25,15 +25,6 @@
 #include "util/i2c.h"
 #include "hardware/mcp443x.h"
 
-// The number of analog samples per second per channel. Since 4 ADC channels are being sampled the actual sample rate is 4 times larger.
-#define ADC_SAMPLES_PER_SECOND (44100)
-
-// Number of ADC channels sampled
-#define ADC_SAMPLED_CHANNELS (4)
-
-#define ADC_CAPTURE_COUNT (1024)                                    // Total samples captured per DMA buffer
-#define ADC_SAMPLE_COUNT (ADC_CAPTURE_COUNT / ADC_SAMPLED_CHANNELS) // Number of samples per ADC channel
-
 static void init_pingpong_dma(const uint channel1, const uint channel2, uint dreq, const volatile void* read_addr, volatile void* write_addr1, volatile void* write_addr2,
                               uint transfer_count, enum dma_channel_transfer_size size, uint irq_num, irq_handler_t handler);
 static void dma_adc_handler();
@@ -53,7 +44,7 @@ static uint16_t adc_buffers[ADC_SAMPLED_CHANNELS][ADC_SAMPLE_COUNT];
 
 static uint32_t adc_end_time_us; // Cached version of: buf_adc_done_time_us
 
-const uint32_t adc_capture_duration_us = ADC_CAPTURE_COUNT * (1000000ul / (ADC_SAMPLES_PER_SECOND));
+const uint32_t adc_capture_duration_us = ADC_CAPTURE_COUNT * (1000000ul / (ADC_SAMPLES_PER_SECOND * ADC_SAMPLED_CHANNELS));
 const uint32_t adc_single_capture_duration_us = adc_capture_duration_us / ADC_SAMPLE_COUNT;
 
 // Lookup Table: Analog channel -> ADC round robin stripe offset
@@ -91,8 +82,10 @@ void analog_capture_init() {
       LOG_FATAL("No response from POT @ address 0x%02x", I2C_ADDRESS_POT);
    }
 
-   for (size_t i = 0; i < MCP443X_MAX_CHANNELS; i++)
-      write_pot(i, 0);
+   // Set no gain
+   gain_preamp_set(0);
+   for (size_t i = 0; i < TOTAL_ANALOG_CHANNELS; i++)
+      gain_set(i, 0);
 
    LOG_DEBUG("Init freerunning ADC...");
    adc_init();

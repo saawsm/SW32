@@ -22,9 +22,7 @@
 #include "output.h"
 #include "analog_capture.h"
 
-#define NOISE_THRESHOLD (8)
-
-static int32_t last_sample_values[CHANNEL_COUNT][2] = {0};
+static int32_t last_sample_values[CHANNEL_COUNT] = {0};
 static uint32_t last_process_times_us[CHANNEL_COUNT] = {0};
 
 float audio_process(analog_channel_t audio_src, bool gen_zcs, uint8_t ch_index, uint16_t pulse_width_us, uint32_t min_period_us, uint32_t* last_pulse_time_us) {
@@ -42,14 +40,10 @@ float audio_process(analog_channel_t audio_src, bool gen_zcs, uint8_t ch_index, 
    last_process_times_us[ch_index] = capture_end_time_us;
 
    // Noise filter, ignore very weak signals.
-   if (stats.amplitude < 0.05f)
+   if (stats.amplitude < 0.02f)
       return 0.0f;
 
    if (gen_zcs) {
-      // Signals that have a period less than the capture duration, should have samples in above/below zero be approx equal.
-      // Slow signals that dont complete a full cycle within the capture time will result in an unbalanced above/below zero count.
-      bool low_frequency = abs((int32_t)stats.above - (int32_t)stats.below) > 50;
-
       const uint32_t capture_start_time_us = capture_end_time_us - adc_capture_duration_us; // time when capture started
 
       // Process each sample at roughly the time it happened
@@ -57,8 +51,7 @@ float audio_process(analog_channel_t audio_src, bool gen_zcs, uint8_t ch_index, 
          const int32_t value = ADC_ZERO_POINT - sample_buffer[i];
 
          // Check for rising edge zero crossing
-         // Low frequencies, require at least two samples to be rising, to minimize false positives due to noise.
-         if ((value > 0 && last_sample_values[ch_index][0] <= 0) && (!low_frequency || (last_sample_values[ch_index][0] >= last_sample_values[ch_index][1]))) {
+         if (value > 0 && last_sample_values[ch_index] <= 0) {
 
             const uint32_t sample_time_us = capture_start_time_us + (adc_single_capture_duration_us * i);
 
@@ -69,8 +62,7 @@ float audio_process(analog_channel_t audio_src, bool gen_zcs, uint8_t ch_index, 
             }
          }
 
-         last_sample_values[ch_index][1] = last_sample_values[ch_index][0];
-         last_sample_values[ch_index][0] = value;
+         last_sample_values[ch_index] = value;
       }
    }
 
