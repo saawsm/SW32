@@ -44,7 +44,7 @@ Schematics can be found in [/schematics](/schematics), and PCB fabrication files
 
 ## Disclaimer
 
-The SW32 comes with absolutely no warranty of any kind. The designs are free to use, under the conditions defined in the [License](LICENSE.md). Using the designs in original or modified form, implies acceptance of any and all associated risks and liabilities.
+The SW32 comes with absolutely no warranty of any kind. The designs are free to use, under the conditions defined in the [LICENSE](LICENSE). Using the designs in original or modified form, implies acceptance of any and all associated risks and liabilities.
 
 * Use it entirely at your own risk.
 * Do not use it for anything safety-critical, medical, industrial, military, or illegal.
