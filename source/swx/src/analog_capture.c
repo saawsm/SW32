@@ -162,6 +162,8 @@ void gain_set(analog_channel_t channel, uint8_t value) {
 static inline void mmaba(uint16_t* samples, size_t count, buf_stats_t* stats) {
    stats->min = UINT32_MAX;
    stats->max = 0;
+   stats->above = 0;
+   stats->below = 0;
 
    for (size_t x = 0; x < count; x++) {
       if (samples[x] > stats->max)
