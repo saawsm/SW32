@@ -52,8 +52,8 @@ void trigger_process() {
       return;
    last_update_time_us = time_us_32();
 
-   // get trigger IO state as bit field (LSB is trigger 1)
-   trig_input_states = (gpio_get(PIN_TRIG_A1) << 0) | (gpio_get(PIN_TRIG_A2) << 1) | (gpio_get(PIN_TRIG_B1) << 2) | (gpio_get(PIN_TRIG_B2) << 3);
+   // get trigger IO state as bit field (LSB is trigger 1) - active low
+   trig_input_states = (!gpio_get(PIN_TRIG_A1) << 0) | (!gpio_get(PIN_TRIG_A2) << 1) | (!gpio_get(PIN_TRIG_B1) << 2) | (!gpio_get(PIN_TRIG_B2) << 3);
 
    for (size_t trig_index = 0; trig_index < MAX_TRIGGERS; trig_index++) {
       trigger_t* trigger = &triggers[trig_index];
