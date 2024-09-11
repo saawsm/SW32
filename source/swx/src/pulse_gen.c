@@ -62,8 +62,8 @@ void pulse_gen_init() {
 
    // Set default parameter values
    for (size_t ch_index = 0; ch_index < CHANNEL_COUNT; ch_index++) {
-      parameter_set(ch_index, PARAM_POWER, TARGET_MAX, 1000);   // max. 100% (auto cycle limit)
-      parameter_set(ch_index, PARAM_POWER, TARGET_VALUE, 1000); // 100%
+      parameter_set(ch_index, PARAM_POWER, TARGET_MAX, UINT16_MAX);   // max. 100% (auto cycle limit)
+      parameter_set(ch_index, PARAM_POWER, TARGET_VALUE, UINT16_MAX); // 100%
 
       parameter_set(ch_index, PARAM_FREQUENCY, TARGET_MAX, 5000);   // max. 500 Hz (auto cycle limit)
       parameter_set(ch_index, PARAM_FREQUENCY, TARGET_VALUE, 1800); // 180 Hz
