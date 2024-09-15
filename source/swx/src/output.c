@@ -386,17 +386,14 @@ bool output_power(uint8_t ch_index, float power) {
 }
 
 bool output_check_installed() {
-   const uint32_t state = save_and_disable_interrupts();
-
    gpio_set_dir(PIN_DRV_EN, GPIO_IN); // Hi-Z drive enable pin
    gpio_disable_pulls(PIN_DRV_EN);
+   sleep_us(50);
 
    const bool no_board = gpio_get(PIN_DRV_EN);
 
    gpio_set_dir(PIN_DRV_EN, GPIO_OUT);
    gpio_put(PIN_DRV_EN, drv_enabled);
-
-   restore_interrupts(state);
 
    swx_err &= ~SWX_ERR_HW_OUTPUT; // clear flag
    if (no_board)
@@ -415,6 +412,5 @@ static void set_drive_enabled(bool enabled) {
 
    drv_enabled = enabled;
 
-   gpio_set_dir(PIN_DRV_EN, GPIO_OUT);
    gpio_put(PIN_DRV_EN, enabled);
 }
