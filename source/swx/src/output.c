@@ -41,10 +41,10 @@
        .max_power = 0.0f,                                                                                                                                                \
    }
 
-static bool calibrate();
+static inline void calibrate();
 static float read_voltage();
 static bool write_dac(const channel_t* ch, uint16_t value);
-static bool set_drive_enabled(bool enabled);
+static void set_drive_enabled(bool enabled);
 
 typedef struct {
    uint8_t channel;
@@ -159,15 +159,15 @@ void output_scram() {
    }
 }
 
-static bool calibrate() {
+static inline void calibrate() {
    if (swx_err & (SWX_ERR_HW_DAC | SWX_ERR_HW_OUTPUT)) {
       LOG_WARN("Channel self-test calibration requires output board and functioning DAC!");
-      return false;
+      return;
    }
 
-   swx_err &= ~SWX_ERR_CAL; // Clear calibration error if any.
-
    LOG_INFO("Starting channel self-test calibration...");
+
+   swx_err &= ~SWX_ERR_CAL; // Clear calibration error if any.
 
    // Switch on power
    set_drive_enabled(true);
@@ -175,16 +175,11 @@ static bool calibrate() {
    for (size_t ch_index = 0; ch_index < CHANNEL_COUNT; ch_index++) {
       channel_t* ch = &channels[ch_index];
 
-      // Calibration of already calibrated channels (CHANNEL_READY) is not supported
-      if (ch->status != CHANNEL_INVALID)
-         continue;
-
       LOG_DEBUG("Calibrating channel: ch=%u", ch_index);
 
       float voltage = read_voltage();
       if (voltage > 0.015f) { // 15mV
          LOG_ERROR("Precalibration overvoltage! ch=%u voltage=%.3fv", ch_index, voltage);
-         break;
 
       } else {
          LOG_DEBUG("Precalibration voltage: ch=%u voltage=%.3fv", ch_index, voltage);
@@ -227,8 +222,8 @@ static bool calibrate() {
       write_dac(ch, DAC_MAX_VALUE);
 
       if (ch->status == CHANNEL_READY) {
-         // Init PIO state machine with pulse gen program
-         // Must be done here, since PIO uses different GPIO muxing compared to regular GPIO
+         // Init PIO state machine with pulse gen program.
+         // Must be done after test, since PIO uses different GPIO muxing compared to regular GPIO.
          pulse_gen_program_init(CHANNEL_PIO, ch_index, pio_offset, ch->pin_gate_a, ch->pin_gate_b);
          pio_sm_set_enabled(CHANNEL_PIO, ch_index, true); // Start state machine
       } else {
@@ -244,11 +239,9 @@ static bool calibrate() {
 
    if (swx_err & SWX_ERR_CAL) {
       LOG_ERROR("Calibration failed for one or more channels!");
-      return false;
+   } else {
+      LOG_INFO("Calibration successful!");
    }
-
-   LOG_INFO("Calibration successful!");
-   return true;
 }
 
 static int cmpfunc(const void* a, const void* b) {
@@ -313,9 +306,8 @@ void output_process_pulse() {
       if (time_us_32() >= pulse.abs_time_us) {
          queue_try_remove(&pulse_queues[ch_index], &pulse); // Always drain pulse queue, even if errors or channel is not ready to output pulses.
 
-         // Ignore pulses if errors, wait time above 1 second, not ready, or requires zeroing.
-         if ((swx_err & SWX_ERR_GROUP_OUTPUT) || (require_zero_mask & (1 << ch_index)) || channels[ch_index].status != CHANNEL_READY ||
-             pulse.abs_time_us > time_us_32() + 1000000u)
+         // Ignore pulses if requires zeroing, wait time above 1 second, or not ready.
+         if ((require_zero_mask & (1 << ch_index)) || pulse.abs_time_us > time_us_32() + 1000000u || channels[ch_index].status != CHANNEL_READY)
             continue;
 
          if (pio_sm_is_tx_fifo_full(CHANNEL_PIO, ch_index)) {
@@ -413,9 +405,9 @@ bool output_check_installed() {
    return !no_board;
 }
 
-static bool set_drive_enabled(bool enabled) {
-   bool errors = !!(swx_err & SWX_ERR_GROUP_OUTPUT);
-   if (errors) // force power off if any errors.
+static void set_drive_enabled(bool enabled) {
+   // Force power off if any errors.
+   if (swx_err & SWX_ERR_GROUP_OUTPUT)
       enabled = false;
 
    if (enabled != drv_enabled)
@@ -425,5 +417,4 @@ static bool set_drive_enabled(bool enabled) {
 
    gpio_set_dir(PIN_DRV_EN, GPIO_OUT);
    gpio_put(PIN_DRV_EN, enabled);
-   return !errors;
 }
