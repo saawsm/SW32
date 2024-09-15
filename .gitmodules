@@ -1,0 +1,18 @@
+[submodule "source/swef/components/ebtn"]
+	path = source/swef/components/ebtn
+	url = https://github.com/saawsm/ebtn
+[submodule "source/swef/components/led_strip"]
+	path = source/swef/components/led_strip
+	url = https://github.com/saawsm/led_strip
+[submodule "source/swef/components/hagl"]
+	path = source/swef/components/hagl
+	url = https://github.com/saawsm/hagl
+[submodule "source/swef/components/hagl_hal"]
+	path = source/swef/components/hagl_hal
+	url = https://github.com/saawsm/hagl_esp_mipi
+[submodule "source/swx/lib/cobs-c"]
+	path = source/swx/lib/cobs-c
+	url = https://github.com/saawsm/cobs-c
+[submodule "source/swx/lib/littlefs"]
+	path = source/swx/lib/littlefs
+	url = https://github.com/saawsm/littlefs
