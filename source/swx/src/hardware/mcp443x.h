@@ -40,11 +40,11 @@ static inline size_t mcp443x_build_write_cmd(uint8_t* buffer, size_t len, mcp443
    if (len < BUF_SIZE)
       return 0;
 
-   static const uint8_t addresses[] = {
-       [MCP443X_CHANNEL_1] = 0b0000,
-       [MCP443X_CHANNEL_2] = 0b0001,
-       [MCP443X_CHANNEL_3] = 0b0110,
-       [MCP443X_CHANNEL_4] = 0b0111,
+   static const uint8_t addresses[] = { 
+       [MCP443X_CHANNEL_1] = 0x00,
+       [MCP443X_CHANNEL_2] = 0x10,
+       [MCP443X_CHANNEL_3] = 0x60,
+       [MCP443X_CHANNEL_4] = 0x70,
    };
 
    buffer[0] = addresses[channel]; // Note: Value is 9 bit (max 256), ignored for simplicity.

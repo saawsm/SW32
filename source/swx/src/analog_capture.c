@@ -119,6 +119,9 @@ void analog_capture_init() {
 static inline bool write_pot(mcp443x_channel_t ch, uint8_t value) {
    uint8_t buffer[2];
 
+   // Hardware gain is inverted. So invert value so gain will increase as value increases.
+   value = 0xff - value;
+
    const size_t len = mcp443x_build_write_cmd(buffer, sizeof(buffer), ch, value);
    if (len == 0)
       LOG_FATAL("MCP443X build cmd failed!"); // should not happen
