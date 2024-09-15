@@ -286,8 +286,11 @@ static void process_frame(comm_channel_t ch, ringbuffer_t* rb) {
             uint16_t value = U8_U16(data, 2);
 
             for (size_t ch_index = 0; ch_index < CHANNEL_COUNT; ch_index++) {
-               if (ch_mask & (1 << ch_index))
+               if (ch_mask & (1 << ch_index)) {
+                  if (target != TARGET_MODE && parameter_get(ch_index, param, TARGET_MODE) & TARGET_MODE_FLAG_READONLY)
+                     continue;
                   parameter_set(ch_index, param, target, value);
+               }
             }
 
             LOG_FINE("Update param: ch_mask=%u param=%u target=%u value=%u", ch_mask, param, target, value);
