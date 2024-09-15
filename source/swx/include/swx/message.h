@@ -68,6 +68,18 @@
 
 // ----------------------------------------------------------------------------------------
 
+// Requests the microphone preamp gain. Replies to sender with a MSG_ID_UPDATE_MIC_GAIN message.
+//
+// Format: <none>
+#define MSG_ID_REQUEST_MIC_GAIN (13)
+
+// Sets the microphone preamp gain.
+//
+// Format: [gain:8]
+#define MSG_ID_UPDATE_MIC_GAIN (14)
+
+// ----------------------------------------------------------------------------------------
+
 // Requests the maximum power level for one or more output channels. Replies to sender with one or more MSG_ID_UPDATE_MAX_POWER messages.
 //
 // Format: [ch_mask:8]
@@ -102,6 +114,18 @@
 //
 // Format: [ch_mask:8] [gen_pulses:1 gen_power:1 audio_src:6]
 #define MSG_ID_UPDATE_CH_AUDIO (25)
+
+// ----------------------------------------------------------------------------------------
+
+// Requests the gain for a specific analog channel. Replies to sender with a MSG_ID_UPDATE_GAIN message.
+//
+// Format: [analog_channel:8]
+#define MSG_ID_REQUEST_GAIN (26)
+
+// Sets the gain for a specific analog channel.
+//
+// Format: [analog_channel:8] [gain:8]
+#define MSG_ID_UPDATE_GAIN (27)
 
 // ----------------------------------------------------------------------------------------
 

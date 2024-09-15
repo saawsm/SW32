@@ -230,6 +230,40 @@ static void process_frame(comm_channel_t ch, ringbuffer_t* rb) {
             }
          }
       } break;
+      case MSG_ID_UPDATE_MIC_GAIN: {
+         uint8_t value = data[0];
+
+         gain_preamp_set(value);
+
+         LOG_FINE("Update preamp: value=%u", value);
+      } break;
+      case MSG_ID_REQUEST_MIC_GAIN: {
+         uint8_t value = gain_preamp_get();
+
+         LOG_FINE("Fetch preamp: value=%u", value);
+
+         PROTO_REPLY(ch, MSG_ID_UPDATE_MIC_GAIN, value);
+      } break;
+      case MSG_ID_UPDATE_GAIN: {
+         uint8_t ach = data[0];
+         uint8_t value = data[1];
+
+         if (ach < TOTAL_ANALOG_CHANNELS) {
+            gain_set(ach, value);
+
+            LOG_FINE("Update gain: ch=%u value=%u", ach, value);
+         }
+      } break;
+      case MSG_ID_REQUEST_GAIN: {
+         uint8_t ach = data[0];
+         if (ach < TOTAL_ANALOG_CHANNELS) {
+            uint8_t value = gain_get(ach);
+
+            LOG_FINE("Fetch gain: ch=%u value=%u", ach, value);
+
+            PROTO_REPLY(ch, MSG_ID_UPDATE_GAIN, ach, value);
+         }
+      } break;
       case MSG_ID_UPDATE_CH_EN_MASK: {
          uint8_t mask = data[0];
          require_zero_mask |= pulse_gen.en_mask ^ mask; // require zero if enable changed

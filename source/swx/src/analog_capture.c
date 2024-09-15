@@ -63,6 +63,18 @@ static uint16_t* const buffers[] = {
     [ANALOG_CHANNEL_SENSE] = adc_buffers[3],
 };
 
+// Lookup Table: Analog channel -> Digipot channel
+static const int8_t analog_gain_channels[] = {
+    [ANALOG_CHANNEL_NONE] = -1,
+    [ANALOG_CHANNEL_SENSE] = -1,
+    [ANALOG_CHANNEL_AUDIO_RIGHT] = MCP443X_CHANNEL_1,
+    [ANALOG_CHANNEL_AUDIO_LEFT] = MCP443X_CHANNEL_2,
+    [ANALOG_CHANNEL_AUDIO_MIC] = MCP443X_CHANNEL_3,
+};
+
+// Last set digipot gain values.
+static uint8_t gains[MCP443X_MAX_CHANNELS];
+
 // Cached sample buffer statistics. Computed when a new buffer is ready.
 static buf_stats_t buf_stats[TOTAL_ANALOG_CHANNELS] = {0};
 
@@ -135,23 +147,28 @@ static inline bool write_pot(mcp443x_channel_t ch, uint8_t value) {
 }
 
 void gain_preamp_set(uint8_t value) {
-   write_pot(MCP443X_CHANNEL_4, value);
+   if (write_pot(MCP443X_CHANNEL_4, value))
+      gains[MCP443X_CHANNEL_4] = value;
+}
+
+uint8_t gain_preamp_get() {
+   return gains[MCP443X_CHANNEL_4];
 }
 
 void gain_set(analog_channel_t channel, uint8_t value) {
-   static const int8_t analog_gain_channels[] = {
-       [ANALOG_CHANNEL_NONE] = -1,
-       [ANALOG_CHANNEL_SENSE] = -1,
-       [ANALOG_CHANNEL_AUDIO_RIGHT] = MCP443X_CHANNEL_1,
-       [ANALOG_CHANNEL_AUDIO_LEFT] = MCP443X_CHANNEL_2,
-       [ANALOG_CHANNEL_AUDIO_MIC] = MCP443X_CHANNEL_3,
-   };
-
    int8_t ch = analog_gain_channels[channel];
    if (ch < 0)
       return;
 
-   write_pot(ch, value);
+   if (write_pot(ch, value))
+      gains[ch] = value;
+}
+
+uint8_t gain_get(analog_channel_t channel) {
+   int8_t ch = analog_gain_channels[channel];
+   if (ch < 0)
+      return 0;
+   return gains[ch];
 }
 
 // Find the min, max, above/below zero count, and amplitude for the given sample buffer.
