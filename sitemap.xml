@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+         <loc>https://saawsm.github.io/SW32/</loc>
+         <lastmod>2024-09-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://saawsm.github.io/SW32/building/</loc>
+         <lastmod>2024-09-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://saawsm.github.io/SW32/firmware/</loc>
+         <lastmod>2024-09-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+</urlset>

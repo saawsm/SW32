@@ -1,0 +1,3 @@
+tr:has(td.parent-display-none) {
+    display: none;
+}
