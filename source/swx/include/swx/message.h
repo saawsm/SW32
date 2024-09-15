@@ -44,6 +44,18 @@
 
 // ----------------------------------------------------------------------------------------
 
+// Requests swx error state. Replies to sender with a MSG_ID_ERR message.
+//
+// Format: <none>
+#define MSG_ID_REQUEST_ERR (4)
+
+// SWX error state. See SWX_ERR* for errors.
+//
+// Format: [err_hi:8 err_lo:8]
+#define MSG_ID_ERR (5)
+
+// ----------------------------------------------------------------------------------------
+
 // Shutdown device. Device will remain on until USB power is removed.
 //
 // Format: <none>

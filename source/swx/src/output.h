@@ -53,7 +53,7 @@ void output_process_pulse();
 bool output_pulse(uint8_t ch_index, uint16_t pos_us, uint16_t neg_us, uint32_t abs_time_us);
 bool output_power(uint8_t ch_index, float power);
 
-bool check_output_board_missing();
+bool output_check_installed();
 
 #ifdef __cplusplus
 }

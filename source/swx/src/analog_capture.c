@@ -22,6 +22,7 @@
 #include <hardware/dma.h>
 #include <hardware/clocks.h>
 
+#include "error.h"
 #include "util/i2c.h"
 #include "hardware/mcp443x.h"
 
@@ -73,7 +74,7 @@ static const int8_t analog_gain_channels[] = {
 };
 
 // Last set digipot gain values.
-static uint8_t gains[MCP443X_MAX_CHANNELS];
+static uint8_t gains[MCP443X_MAX_CHANNELS] = {0};
 
 // Cached sample buffer statistics. Computed when a new buffer is ready.
 static buf_stats_t buf_stats[TOTAL_ANALOG_CHANNELS] = {0};
@@ -83,6 +84,7 @@ void analog_capture_init() {
 
    init_gpio(PIN_PIP_EN, GPIO_OUT, true); // active low output
    gpio_disable_pulls(PIN_PIP_EN);
+   mic_pip_enable(false);
 
    adc_gpio_init(PIN_ADC_AUDIO_LEFT);
    adc_gpio_init(PIN_ADC_AUDIO_RIGHT);
@@ -91,7 +93,8 @@ void analog_capture_init() {
 
    // Check if digi-pot is reachable at address, if not, crash.
    if (!i2c_check(I2C_PORT, I2C_ADDRESS_POT)) {
-      LOG_FATAL("No response from POT @ address 0x%02x", I2C_ADDRESS_POT);
+      swx_err |= SWX_ERR_HW_POT;
+      LOG_ERROR("No response from POT @ address 0x%02x", I2C_ADDRESS_POT);
    }
 
    // Set no gain
@@ -129,6 +132,9 @@ void analog_capture_init() {
 }
 
 static inline bool write_pot(mcp443x_channel_t ch, uint8_t value) {
+   if (swx_err & SWX_ERR_HW_POT)
+      return false;
+
    uint8_t buffer[2];
 
    // Hardware gain is inverted. So invert value so gain will increase as value increases.

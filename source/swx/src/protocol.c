@@ -162,6 +162,9 @@ static void process_frame(comm_channel_t ch, ringbuffer_t* rb) {
       case MSG_ID_REQUEST_VERSION: {
          PROTO_REPLY(ch, MSG_ID_VERSION, SWX_VERSION_PCB_REV, SWX_VERSION_MAJOR, SWX_VERSION_MINOR);
       } break;
+      case MSG_ID_REQUEST_ERR: {
+         PROTO_REPLY(ch, MSG_ID_ERR, U16_U8(swx_err));
+      } break;
       case MSG_ID_UPDATE_MAX_POWER: {
          uint8_t ch_mask = data[0];
 

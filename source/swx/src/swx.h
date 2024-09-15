@@ -64,6 +64,8 @@
 #define PIN_ADC_BASE (26)
 #endif
 
+extern uint16_t swx_err;
+
 static inline float fclamp(float val, float min, float max) {
    if (val < min) {
       return min;

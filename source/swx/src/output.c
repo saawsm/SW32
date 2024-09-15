@@ -22,6 +22,7 @@
 #include <pico/util/queue.h>
 #include <hardware/adc.h>
 
+#include "error.h"
 #include "util/i2c.h"
 
 #include "hardware/mcp4728.h"
@@ -82,11 +83,6 @@ static uint32_t last_pulse_time_us = 0;
 void output_init() {
    LOG_DEBUG("Init output...");
 
-   for (size_t ch_index = 0; ch_index < CHANNEL_COUNT; ch_index++)
-      queue_init(&pulse_queues[ch_index], sizeof(pulse_t), 64);
-
-   queue_init(&power_queue, sizeof(pwr_cmd_t), 16);
-
    // Init drive enable pin
    init_gpio(PIN_DRV_EN, GPIO_OUT, 0);
    gpio_disable_pulls(PIN_DRV_EN);
@@ -117,6 +113,11 @@ void output_init() {
       pio_sm_claim(CHANNEL_PIO, ch_index);
    }
 
+   for (size_t ch_index = 0; ch_index < CHANNEL_COUNT; ch_index++)
+      queue_init(&pulse_queues[ch_index], sizeof(pulse_t), 64);
+
+   queue_init(&power_queue, sizeof(pwr_cmd_t), 16);
+
    LOG_DEBUG("Load PIO pulse gen program");
    if (pio_can_add_program(CHANNEL_PIO, &CHANNEL_PIO_PROGRAM)) {
       pio_offset = pio_add_program(CHANNEL_PIO, &CHANNEL_PIO_PROGRAM);
@@ -125,22 +126,21 @@ void output_init() {
       LOG_FATAL("PIO program cant be added! No program space!");
    }
 
-   // Ensure DAC is reachable at address, if not, panic since this is a fatal error that should not normally happen (DAC is not removable)
+   // Ensure DAC is reachable at address.
    if (!i2c_check(I2C_PORT_DAC, I2C_ADDRESS_DAC)) {
-      LOG_FATAL("No response from DAC @ address 0x%02x", I2C_ADDRESS_DAC);
+      swx_err |= SWX_ERR_HW_DAC;
+      LOG_ERROR("No response from DAC @ address 0x%02x", I2C_ADDRESS_DAC);
    }
 
-   // If output board is missing, fail initialization
-   if (check_output_board_missing()) {
-      LOG_ERROR("Output board not installed! Disabling all channels...");
-      output_scram();
-   } else {
-      calibrate();
-   }
+   // Ensure output board is installed.
+   if (!output_check_installed())
+      LOG_ERROR("Output board not installed!");
+
+   calibrate();
 }
 
 void output_scram() {
-   // ensure drive power and nfet gates are off, before entering inf loop
+   // ensure drive power and nfet gates are off
    set_drive_enabled(false);
 
    for (size_t i = 0; i < CHANNEL_COUNT; i++) {
@@ -148,7 +148,7 @@ void output_scram() {
 
       pio_sm_set_enabled(CHANNEL_PIO, i, false);
 
-      // since pins are used by PIO mux them back to SIO
+      // since pins are used by PIO, mux them back to SIO
       init_gpio(channels[i].pin_gate_a, GPIO_OUT, 0);
       init_gpio(channels[i].pin_gate_b, GPIO_OUT, 0);
    }
@@ -160,13 +160,18 @@ void output_scram() {
 }
 
 static bool calibrate() {
+   if (swx_err & (SWX_ERR_HW_DAC | SWX_ERR_HW_OUTPUT)) {
+      LOG_WARN("Channel self-test calibration requires output board and functioning DAC!");
+      return false;
+   }
+
+   swx_err &= ~SWX_ERR_CAL; // Clear calibration error if any.
+
    LOG_INFO("Starting channel self-test calibration...");
 
-   // Enable PSU directly since set_drive_enabled() is disabled before calibration is complete
-   gpio_put(PIN_DRV_EN, 1);
-   sleep_ms(100); // Stabilize
+   // Switch on power
+   set_drive_enabled(true);
 
-   bool success = true;
    for (size_t ch_index = 0; ch_index < CHANNEL_COUNT; ch_index++) {
       channel_t* ch = &channels[ch_index];
 
@@ -227,7 +232,7 @@ static bool calibrate() {
          pulse_gen_program_init(CHANNEL_PIO, ch_index, pio_offset, ch->pin_gate_a, ch->pin_gate_b);
          pio_sm_set_enabled(CHANNEL_PIO, ch_index, true); // Start state machine
       } else {
-         success = false;
+         swx_err |= SWX_ERR_CAL;
          ch->status = CHANNEL_FAULT;
          LOG_ERROR("Calibration failed! ch=%u", ch_index);
          break;
@@ -237,12 +242,13 @@ static bool calibrate() {
    // Disable PSU since we are done with calibration
    set_drive_enabled(false);
 
-   if (success) {
-      LOG_INFO("Calibration successful!");
-   } else {
+   if (swx_err & SWX_ERR_CAL) {
       LOG_ERROR("Calibration failed for one or more channels!");
+      return false;
    }
-   return success;
+
+   LOG_INFO("Calibration successful!");
+   return true;
 }
 
 static int cmpfunc(const void* a, const void* b) {
@@ -273,6 +279,9 @@ static float read_voltage() {
 }
 
 static bool write_dac(const channel_t* ch, uint16_t value) {
+   if (swx_err & SWX_ERR_HW_DAC)
+      return false;
+
    uint8_t buffer[3];
 
    const size_t len = mcp4728_build_write_cmd(buffer, sizeof(buffer), ch->dac_channel, value, MCP4728_VREF_VDD, MCP4728_GAIN_ONE, MCP4728_PD_NORMAL, MCP4728_UDAC_FALSE);
@@ -302,10 +311,11 @@ void output_process_pulse() {
       }
 
       if (time_us_32() >= pulse.abs_time_us) {
-         queue_try_remove(&pulse_queues[ch_index], &pulse);
+         queue_try_remove(&pulse_queues[ch_index], &pulse); // Always drain pulse queue, even if errors or channel is not ready to output pulses.
 
-         // Ignore pulses if drive power is disabled, wait time above 1 second, not ready, or requires zeroing.
-         if ((require_zero_mask & (1 << ch_index)) || channels[ch_index].status != CHANNEL_READY || pulse.abs_time_us > time_us_32() + 1000000u)
+         // Ignore pulses if errors, wait time above 1 second, not ready, or requires zeroing.
+         if ((swx_err & SWX_ERR_GROUP_OUTPUT) || (require_zero_mask & (1 << ch_index)) || channels[ch_index].status != CHANNEL_READY ||
+             pulse.abs_time_us > time_us_32() + 1000000u)
             continue;
 
          if (pio_sm_is_tx_fifo_full(CHANNEL_PIO, ch_index)) {
@@ -383,43 +393,37 @@ bool output_power(uint8_t ch_index, float power) {
    return queue_try_add(&power_queue, &cmd);
 }
 
-bool check_output_board_missing() {
-   if (!drv_enabled) {
-      const uint32_t state = save_and_disable_interrupts();
+bool output_check_installed() {
+   const uint32_t state = save_and_disable_interrupts();
 
-      gpio_set_dir(PIN_DRV_EN, GPIO_IN); // Hi-Z drive enable pin
-      gpio_disable_pulls(PIN_DRV_EN);
+   gpio_set_dir(PIN_DRV_EN, GPIO_IN); // Hi-Z drive enable pin
+   gpio_disable_pulls(PIN_DRV_EN);
 
-      const bool no_board = gpio_get(PIN_DRV_EN);
+   const bool no_board = gpio_get(PIN_DRV_EN);
 
-      gpio_set_dir(PIN_DRV_EN, GPIO_OUT);
-      gpio_put(PIN_DRV_EN, drv_enabled);
+   gpio_set_dir(PIN_DRV_EN, GPIO_OUT);
+   gpio_put(PIN_DRV_EN, drv_enabled);
 
-      restore_interrupts(state);
-      return no_board;
-   } else {
-      return false;
-   }
+   restore_interrupts(state);
+
+   swx_err &= ~SWX_ERR_HW_OUTPUT; // clear flag
+   if (no_board)
+      swx_err |= SWX_ERR_HW_OUTPUT;
+
+   return !no_board;
 }
 
 static bool set_drive_enabled(bool enabled) {
-   if (enabled != drv_enabled) {
-      if (enabled) { // prevent output power enable if any channel is faulted or is uninitialized
-         for (uint8_t ch_index = 0; ch_index < CHANNEL_COUNT; ch_index++) {
-            if (channels[ch_index].status != CHANNEL_READY) {
-               set_drive_enabled(false);
-               return false;
-            }
-         }
-         LOG_INFO("Enabling drive power...");
-      } else {
-         LOG_INFO("Disabling drive power...");
-      }
-   }
+   bool errors = !!(swx_err & SWX_ERR_GROUP_OUTPUT);
+   if (errors) // force power off if any errors.
+      enabled = false;
+
+   if (enabled != drv_enabled)
+      LOG_INFO("Drive power: en=%u", enabled);
 
    drv_enabled = enabled;
 
    gpio_set_dir(PIN_DRV_EN, GPIO_OUT);
    gpio_put(PIN_DRV_EN, enabled);
-   return true;
+   return !errors;
 }

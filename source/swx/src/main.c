@@ -22,6 +22,7 @@
 #include <pico/multicore.h>
 #include <hardware/i2c.h>
 
+#include "error.h"
 #include "filesystem.h"
 #include "analog_capture.h"
 #include "trigger.h"
@@ -29,6 +30,9 @@
 #include "pulse_gen.h"
 
 #include "protocol.h"
+
+// SWX error state, bit flags indicating what error occurred. See SWX_ERR* defines.
+uint16_t swx_err = 0;
 
 static inline void init() {
    init_gpio(PIN_PWR_CTRL, GPIO_IN, false);
@@ -87,7 +91,8 @@ int main() {
    LOG_DEBUG("Mounting filesystem...");
    int err = fs_flash_mount(true);
    if (err) { // should not happen - mounting and formatting failed
-      LOG_FATAL("Mounting failed! err=%u (%s)", err, lfs_err_msg(err));
+      swx_err |= SWX_ERR_FS;
+      LOG_ERROR("Mounting failed! err=%u (%s)", err, lfs_err_msg(err));
    }
 
    // Initialize parametric pulse generation
